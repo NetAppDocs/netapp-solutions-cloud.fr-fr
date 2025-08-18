@@ -1,0 +1,58 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-hybrid-use-cases.html 
+keywords: NetApp Solutions, ehc, enterprise hybrid cloud, use case, hyperscalers, vmware 
+summary:  
+---
+= Cas d'utilisation de NetApp Hybrid Multicloud avec VMware
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un aperçu des cas d’utilisation importants pour l’organisation informatique lors de la planification de déploiements de cloud hybride ou de cloud first.
+
+
+
+== Cas d'utilisation populaires
+
+Les cas d'utilisation incluent :
+
+* Reprise après sinistre,
+* Hébergement des charges de travail pendant la maintenance du centre de données, * pic rapide dans lequel des ressources supplémentaires sont nécessaires au-delà de ce qui est provisionné dans le centre de données local,
+* Extension du site VMware,
+* Migration rapide vers le cloud,
+* Développement/test, et
+* Modernisation des applications exploitant les technologies complémentaires du cloud.
+
+
+Tout au long de cette documentation, les références de charge de travail cloud seront détaillées à l’aide des cas d’utilisation VMware.  Ces cas d’utilisation sont :
+
+* Protéger (comprend à la fois la reprise après sinistre et la sauvegarde/restauration)
+* Émigrer
+* Étendre
+
+
+
+
+=== Au cœur du parcours informatique
+
+La plupart des organisations sont en chemin vers la transformation et la modernisation.  Dans le cadre de ce processus, les entreprises tentent d’utiliser leurs investissements VMware existants tout en tirant parti des avantages du cloud et en explorant les moyens de rendre le processus de migration aussi transparent que possible.  Cette approche rendrait leurs efforts de modernisation très faciles car les données sont déjà dans le cloud.
+
+La réponse la plus simple à ce scénario est l’offre VMware dans chaque hyperscaler.  Comme NetApp Cloud Volumes, VMware offre un moyen de déplacer ou d’étendre les environnements VMware sur site vers n’importe quel cloud, vous permettant de conserver les actifs, les compétences et les outils sur site existants tout en exécutant des charges de travail de manière native dans le cloud.  Cela réduit les risques car il n’y aura pas d’interruption de service ni de besoin de changement d’IP et offre à l’équipe informatique la possibilité de fonctionner comme elle le fait sur site en utilisant les compétences et les outils existants.  Cela peut conduire à des migrations cloud accélérées et à une transition beaucoup plus fluide vers une architecture multicloud hybride.
+
+
+
+=== Comprendre l'importance des options de stockage NFS supplémentaires
+
+Bien que VMware, quel que soit le cloud, offre des capacités hybrides uniques à chaque client, les options de stockage NFS supplémentaires limitées ont limité son utilité pour les organisations ayant des charges de travail lourdes en stockage.  Étant donné que le stockage est directement lié aux hôtes, la seule façon de faire évoluer le stockage est d’ajouter davantage d’hôtes, ce qui peut augmenter les coûts de 35 à 40 % ou plus pour les charges de travail gourmandes en stockage.  Ces charges de travail nécessitent simplement un stockage supplémentaire, pas une puissance supplémentaire.  Mais cela signifie payer pour des hôtes supplémentaires.
+
+Considérons ce scénario :
+
+Un client n'a besoin que de cinq hôtes pour le processeur et la mémoire, mais a de nombreux besoins de stockage et a besoin de 12 hôtes pour répondre aux exigences de stockage.  Cette exigence finit par faire pencher la balance financière en obligeant à acheter des chevaux supplémentaires, alors qu'ils n'ont besoin que d'augmenter le stockage.
+
+Lorsque vous planifiez l’adoption et les migrations vers le cloud, il est toujours important d’évaluer la meilleure approche et de suivre le chemin le plus simple qui réduit les investissements totaux.  L'approche la plus courante et la plus simple pour toute migration d'application est le réhébergement (également appelé lift and shift) où il n'y a pas de machine virtuelle (VM) ou de conversion de données.  L'utilisation de NetApp Cloud Volumes avec le centre de données défini par logiciel VMware (SDDC), tout en complétant vSAN, offre une option de transfert et de transfert facile.

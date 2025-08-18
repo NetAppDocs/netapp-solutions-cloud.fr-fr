@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: google/gcp-gcnv-nas-overview.html 
+keywords: nas, nfs, smb, cifs 
+summary: 'Les protocoles NAS incluent NFS (v3 et v4.1) et SMB/CIFS (2.x et 3.x).  Ces protocoles permettent à NetApp Volumes de permettre un accès partagé aux données sur plusieurs clients NAS.  De plus, Google Cloud NetApp Volumes peut fournir un accès simultané aux clients NFS et SMB/CIFS (double protocole) tout en respectant tous les paramètres d"identité et d"autorisation sur les fichiers et dossiers des partages NAS.' 
+---
+= Présentation des protocoles NAS
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les protocoles NAS incluent NFS (v3 et v4.1) et SMB/CIFS (2.x et 3.x).  Ces protocoles permettent à NetApp Volumes de permettre un accès partagé aux données sur plusieurs clients NAS.  De plus, Google Cloud NetApp Volumes peut fournir un accès simultané aux clients NFS et SMB/CIFS (double protocole) tout en respectant tous les paramètres d'identité et d'autorisation sur les fichiers et dossiers des partages NAS.  Pour maintenir la sécurité de transfert de données la plus élevée possible, Google Cloud NetApp Volumes prend en charge le chiffrement de protocole en vol à l'aide du chiffrement SMB et de NFS Kerberos 5p.
+
+
+NOTE: Le double protocole est disponible uniquement avec NetApp Volumes-Performance.

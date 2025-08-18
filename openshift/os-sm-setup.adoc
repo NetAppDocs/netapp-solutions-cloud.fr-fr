@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-sm-setup.html 
+keywords: NetApp Solutions, redhat OpenShift, red hat OpenShift, redhat openshift container platform, ocp, openshift container platform, Advanced Cluster Management, ACM, Hub Cluster, containers, container workloads, VMware, customer managed storage, ONTAP 
+summary:  
+---
+= Déployer et configurer la plateforme Red Hat OpenShift Container sur AWS
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cette section décrit un flux de travail de haut niveau expliquant comment configurer et gérer les clusters OpenShift dans AWS et déployer des applications avec état sur eux.  Il montre l'utilisation du stockage NetApp Cloud Volumes ONTAP avec l'aide de Trident pour fournir des volumes persistants.  Des détails sont fournis sur l'utilisation de Trident Protect pour effectuer des activités de protection et de migration des données pour les applications avec état.
+
+
+NOTE: Il existe plusieurs façons de déployer des clusters de plateforme Red Hat OpenShift Container sur AWS.  Cette description de haut niveau de la configuration fournit des liens de documentation pour la méthode spécifique qui a été utilisée.  Vous pouvez vous référer aux autres méthodes dans les liens pertinents fournis dans lelink:os-solutions-resources.html["section ressources"] .
+
+Voici un diagramme qui illustre les clusters déployés sur AWS et connectés au centre de données à l’aide d’un VPN.
+
+image:rhhc-self-managed-aws.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+Le processus de configuration peut être décomposé selon les étapes suivantes :
+
+.Installez un cluster OCP sur AWS à partir de la gestion avancée des clusters.
+[%collapsible%open]
+====
+* Créez un VPC avec une connexion VPN de site à site (à l’aide de pfsense) pour vous connecter au réseau local.
+* Le réseau sur site dispose d’une connectivité Internet.
+* Créez 3 sous-réseaux privés dans 3 AZ différents.
+* Créez une zone hébergée privée Route 53 et un résolveur DNS pour le VPC.
+
+
+Créez un cluster OpenShift sur AWS à partir de l’assistant de gestion avancée des clusters (ACM).  Se référer aux instructionslink:https://docs.openshift.com/dedicated/osd_install_access_delete_cluster/creating-an-aws-cluster.html["ici"] .
+
+
+NOTE: Vous pouvez également créer le cluster dans AWS à partir de la console OpenShift Hybrid Cloud.  Référerlink:https://docs.openshift.com/container-platform/4.10/installing/installing_aws/installing-aws-default.html["ici"] pour les instructions.
+
+
+TIP: Lors de la création du cluster à l'aide de l'ACM, vous avez la possibilité de personnaliser l'installation en modifiant le fichier yaml après avoir rempli les détails dans la vue formulaire.  Une fois le cluster créé, vous pouvez vous connecter via SSH aux nœuds du cluster pour le dépannage ou une configuration manuelle supplémentaire.  Utilisez la clé ssh que vous avez fournie lors de l'installation et le nom d'utilisateur core pour vous connecter.
+
+====
+.Déployez Cloud Volumes ONTAP dans AWS à l’aide de BlueXP.
+[%collapsible%open]
+====
+* Installez le connecteur dans un environnement VMware sur site.  Se référer aux instructionslink:https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-install-connector-on-prem.html#install-the-connector["ici"] .
+* Déployez une instance CVO dans AWS à l’aide du connecteur.  Se référer aux instructionslink:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-getting-started-aws.html["ici"] .
+
+
+
+NOTE: Le connecteur peut également être installé dans l'environnement cloud.  Référerlink:https://docs.netapp.com/us-en/cloud-manager-setup-admin/concept-connectors.html["ici"] pour plus d'informations.
+
+====
+.Installer Trident dans le cluster OCP
+[%collapsible%open]
+====
+* Déployez Trident Operator à l'aide de Helm.  Se référer aux instructionslink:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-helm.html["ici"]
+* Créez un backend et une classe de stockage.  Se référer aux instructionslink:https://docs.netapp.com/us-en/trident/trident-use/backends.html["ici"] .
+
+
+====
+.Utilisation de la fonctionnalité Topologie CSI de Trident pour les architectures multizones
+Les fournisseurs de cloud permettent aujourd’hui aux administrateurs de clusters Kubernetes/OpenShift de générer des nœuds de clusters basés sur des zones.  Les nœuds peuvent être situés dans différentes zones de disponibilité au sein d’une région ou dans plusieurs régions.  Pour faciliter le provisionnement des volumes pour les charges de travail dans une architecture multizone, Trident utilise la topologie CSI.  À l’aide de la fonctionnalité Topologie CSI, l’accès aux volumes peut être limité à un sous-ensemble de nœuds, en fonction des régions et des zones de disponibilité.  Référerlink:https://docs.netapp.com/us-en/trident/trident-use/csi-topology.html["ici"] pour plus de détails.
+
+
+NOTE: Kubernetes prend en charge deux modes de liaison de volume : - Lorsque **_VolumeBindingMode_ est défini sur _Immediate_** (par défaut), Trident crée le volume sans aucune connaissance de la topologie.  Les volumes persistants sont créés sans aucune dépendance aux exigences de planification du pod demandeur.  - Lorsque **_VolumeBindingMode_ est défini sur _WaitForFirstConsumer_**, la création et la liaison d'un volume persistant pour un PVC sont retardées jusqu'à ce qu'un pod utilisant le PVC soit planifié et créé.  De cette façon, les volumes sont créés pour répondre aux contraintes de planification imposées par les exigences de topologie.  Les backends de stockage Trident peuvent être conçus pour provisionner de manière sélective des volumes en fonction des zones de disponibilité (backend prenant en compte la topologie).  Pour les StorageClasses qui utilisent un tel backend, un volume ne sera créé que s'il est demandé par une application planifiée dans une région/zone prise en charge.  (Classe de stockage prenant en compte la topologie) Référez-vouslink:https://docs.netapp.com/us-en/trident/trident-use/csi-topology.html["ici"] pour plus de détails.

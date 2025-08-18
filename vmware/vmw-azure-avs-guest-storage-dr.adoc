@@ -1,0 +1,440 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-azure-avs-guest-storage-dr.html 
+keywords: tr4935, 4935, azure, avs, jetstream, guest connect, dr, disaster recovery 
+summary: La reprise après sinistre dans le cloud est un moyen résilient et rentable de protéger les charges de travail contre les pannes de site et les événements de corruption de données tels que les ransomwares.  Avec NetApp SnapMirror, les charges de travail VMware sur site qui utilisent un stockage connecté en tant qu’invité peuvent être répliquées vers NetApp Cloud Volumes ONTAP exécuté dans Azure. 
+---
+= Reprise après sinistre avec CVO et AVS (stockage connecté en tant qu'invité)
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+La reprise après sinistre dans le cloud est un moyen résilient et rentable de protéger les charges de travail contre les pannes de site et les événements de corruption de données tels que les ransomwares.  Avec NetApp SnapMirror, les charges de travail VMware sur site qui utilisent un stockage connecté en tant qu’invité peuvent être répliquées vers NetApp Cloud Volumes ONTAP exécuté dans Azure.
+
+
+
+== Aperçu
+
+ This covers application data; however, what about the actual VMs themselves. Disaster recovery should cover all dependent components, including virtual machines, VMDKs, application data, and more. To accomplish this, SnapMirror along with Jetstream can be used to seamlessly recover workloads replicated from on-premises to Cloud Volumes ONTAP while using vSAN storage for VM VMDKs.
+Ce document fournit une approche étape par étape pour la configuration et l’exécution de la reprise après sinistre qui utilise NetApp SnapMirror, JetStream et Azure VMware Solution (AVS).
+
+image:dr-cvo-avs-001.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+
+
+== Hypothèses
+
+Ce document se concentre sur le stockage en invité pour les données d’application (également appelé invité connecté), et nous supposons que l’environnement sur site utilise SnapCenter pour les sauvegardes cohérentes avec les applications.
+
+
+NOTE: Ce document s’applique à toute solution de sauvegarde ou de récupération tierce.  En fonction de la solution utilisée dans l’environnement, suivez les meilleures pratiques pour créer des politiques de sauvegarde qui respectent les SLA organisationnels.
+
+Pour la connectivité entre l’environnement local et le réseau virtuel Azure, utilisez la route express globale ou un WAN virtuel avec une passerelle VPN.  Les segments doivent être créés en fonction de la conception du VLAN sur site.
+
+
+NOTE: Il existe plusieurs options pour connecter les centres de données locaux à Azure, ce qui nous empêche de décrire un flux de travail spécifique dans ce document.  Reportez-vous à la documentation Azure pour connaître la méthode de connectivité locale vers Azure appropriée.
+
+
+
+== Déploiement de la solution DR
+
+
+
+=== Présentation du déploiement de la solution
+
+. Assurez-vous que les données d’application sont sauvegardées à l’aide de SnapCenter avec les exigences RPO nécessaires.
+. Provisionnez Cloud Volumes ONTAP avec la taille d'instance correcte à l'aide du gestionnaire Cloud dans l'abonnement et le réseau virtuel appropriés.
++
+.. Configurez SnapMirror pour les volumes d’application concernés.
+.. Mettez à jour les stratégies de sauvegarde dans SnapCenter pour déclencher les mises à jour de SnapMirror après les tâches planifiées.
+
+
+. Installez le logiciel JetStream DR dans le centre de données sur site et démarrez la protection des machines virtuelles.
+. Installez le logiciel JetStream DR dans le cloud privé Azure VMware Solution.
+. Lors d’un événement de catastrophe, interrompez la relation SnapMirror à l’aide de Cloud Manager et déclenchez le basculement des machines virtuelles vers Azure NetApp Files ou vers les banques de données vSAN dans le site de reprise après sinistre AVS désigné.
++
+.. Reconnectez les LUN ISCSI et les montages NFS pour les machines virtuelles d’application.
+
+
+. Appelez la restauration automatique du site protégé en resynchronisant SnapMirror en sens inverse une fois le site principal récupéré.
+
+
+
+
+=== Détails du déploiement
+
+.Configurer CVO sur Azure et répliquer les volumes vers CVO
+[%collapsible%open]
+====
+La première étape consiste à configurer Cloud Volumes ONTAP sur Azure (link:vmw-azure-avs-guest-storage.html["Lien"^] ) et répliquez les volumes souhaités vers Cloud Volumes ONTAP avec les fréquences et les rétentions de snapshots souhaitées.
+
+image:dr-cvo-avs-002.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+====
+.Configurer les hôtes AVS et l'accès aux données CVO
+[%collapsible%open]
+====
+Deux facteurs importants à prendre en compte lors du déploiement du SDDC sont la taille du cluster SDDC dans la solution Azure VMware et la durée pendant laquelle le SDDC doit être maintenu en service.  Ces deux considérations clés pour une solution de reprise après sinistre contribuent à réduire les coûts opérationnels globaux.  Le SDDC peut être aussi petit que trois hôtes, jusqu'à un cluster multi-hôtes dans un déploiement à grande échelle.
+
+La décision de déployer un cluster AVS est principalement basée sur les exigences RPO/RTO.  Avec la solution Azure VMware, le SDDC peut être provisionné juste à temps en prévision d’un test ou d’un événement catastrophique réel.  Un SDDC déployé juste à temps permet d’économiser sur les coûts d’hébergement ESXi lorsque vous n’êtes pas confronté à une catastrophe.  Cependant, cette forme de déploiement affecte le RTO de quelques heures pendant que le SDDC est en cours de provisionnement.
+
+L'option déployée la plus courante consiste à faire fonctionner le SDDC en mode de fonctionnement permanent et en mode veilleuse.  Cette option offre une petite empreinte de trois hôtes toujours disponibles et accélère également les opérations de récupération en fournissant une base de référence pour les activités de simulation et les contrôles de conformité, évitant ainsi le risque de dérive opérationnelle entre les sites de production et de reprise après sinistre.  Le groupe de veilleuses peut être rapidement mis à l'échelle jusqu'au niveau souhaité lorsque cela est nécessaire pour gérer un événement DR réel.
+
+Pour configurer AVS SDDC (que ce soit à la demande ou en mode veilleuse), voirlink:vmw-azure-avs-setup.html["Déployer et configurer l'environnement de virtualisation sur Azure"^] .  Comme condition préalable, vérifiez que les machines virtuelles invitées résidant sur les hôtes AVS sont en mesure de consommer les données de Cloud Volumes ONTAP une fois la connectivité établie.
+
+Une fois Cloud Volumes ONTAP et AVS correctement configurés, commencez à configurer Jetstream pour automatiser la récupération des charges de travail sur site vers AVS (machines virtuelles avec VMDK d'application et machines virtuelles avec stockage en invité) en utilisant le mécanisme VAIO et en exploitant SnapMirror pour les copies de volumes d'application vers Cloud Volumes ONTAP.
+
+====
+.Installer JetStream DR dans un centre de données sur site
+[%collapsible%open]
+====
+Le logiciel JetStream DR se compose de trois composants principaux : le JetStream DR Management Server Virtual Appliance (MSA), le DR Virtual Appliance (DRVA) et les composants hôtes (packages de filtres d'E/S).  Le MSA est utilisé pour installer et configurer les composants hôtes sur le cluster de calcul, puis pour administrer le logiciel JetStream DR.  Le processus d'installation est le suivant :
+
+. Vérifiez les prérequis.
+. Exécutez l’outil de planification de la capacité pour obtenir des recommandations en matière de ressources et de configuration.
+. Déployez le JetStream DR MSA sur chaque hôte vSphere du cluster désigné.
+. Lancez le MSA en utilisant son nom DNS dans un navigateur.
+. Enregistrez le serveur vCenter auprès du MSA.
+. Une fois JetStream DR MSA déployé et vCenter Server enregistré, accédez au plug-in JetStream DR avec vSphere Web Client.  Cela peut être fait en accédant à Centre de données > Configurer > JetStream DR.
++
+image:dr-cvo-avs-003.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Depuis l’interface JetStream DR, effectuez les tâches suivantes :
++
+.. Configurez le cluster avec le package de filtre d’E/S.
++
+image:dr-cvo-avs-004.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+.. Ajoutez le stockage Azure Blob situé sur le site de récupération.
++
+image:dr-cvo-avs-005.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+
+
+. Déployez le nombre requis d’appliances virtuelles DR (DRVA) à partir de l’onglet Appliances.
++
+
+NOTE: Utilisez l’outil de planification de la capacité pour estimer le nombre de DRVA requis.
+
++
+image:dr-cvo-avs-006.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+image:dr-cvo-avs-007.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Créez des volumes de journaux de réplication pour chaque DRVA à l'aide du VMDK à partir des banques de données disponibles ou du pool de stockage iSCSI partagé indépendant.
++
+image:dr-cvo-avs-008.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. À partir de l’onglet Domaines protégés, créez le nombre requis de domaines protégés à l’aide des informations sur le site Azure Blob Storage, l’instance DRVA et le journal de réplication.  Un domaine protégé définit une machine virtuelle spécifique ou un ensemble de machines virtuelles d'application au sein du cluster qui sont protégées ensemble et auxquelles est attribué un ordre de priorité pour les opérations de basculement/restauration.
++
+image:dr-cvo-avs-009.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+image:dr-cvo-avs-010.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Sélectionnez les machines virtuelles à protéger et regroupez-les en groupes d’applications en fonction de la dépendance.  Les définitions d’application vous permettent de regrouper des ensembles de machines virtuelles en groupes logiques contenant leurs ordres de démarrage, leurs délais de démarrage et leurs validations d’application facultatives qui peuvent être exécutées lors de la récupération.
++
+
+NOTE: Assurez-vous que le même mode de protection est utilisé pour toutes les machines virtuelles d’un domaine protégé.
+
++
+
+NOTE: Le mode Write-Back (VMDK) offre des performances supérieures.
+
++
+image:dr-cvo-avs-011.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Assurez-vous que les volumes de journaux de réplication sont placés sur un stockage hautes performances.
++
+image:dr-cvo-avs-012.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Une fois que vous avez terminé, cliquez sur Démarrer la protection pour le domaine protégé.  Cela démarre la réplication des données pour les machines virtuelles sélectionnées vers le magasin d'objets Blob désigné.
++
+image:dr-cvo-avs-013.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Une fois la réplication terminée, l’état de protection de la machine virtuelle est marqué comme récupérable.
++
+image:dr-cvo-avs-014.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+
+NOTE: Les runbooks de basculement peuvent être configurés pour regrouper les machines virtuelles (appelées groupe de récupération), définir la séquence d'ordre de démarrage et modifier les paramètres CPU/mémoire ainsi que les configurations IP.
+
+. Cliquez sur Paramètres, puis sur le lien Configurer du runbook pour configurer le groupe de runbooks.
++
+image:dr-cvo-avs-015.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Cliquez sur le bouton Créer un groupe pour commencer à créer un nouveau groupe de cahiers d'exécution.
++
+
+NOTE: Si nécessaire, dans la partie inférieure de l'écran, appliquez des pré-scripts et des post-scripts personnalisés à exécuter automatiquement avant et après l'opération du groupe de runbooks.  Assurez-vous que les scripts Runbook résident sur le serveur de gestion.
+
++
+image:dr-cvo-avs-016.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Modifiez les paramètres de la machine virtuelle selon vos besoins.  Spécifiez les paramètres de récupération des machines virtuelles, notamment la séquence de démarrage, le délai de démarrage (spécifié en secondes), le nombre de processeurs et la quantité de mémoire à allouer.  Modifiez la séquence de démarrage des machines virtuelles en cliquant sur les flèches vers le haut ou vers le bas.  Des options sont également fournies pour conserver le MAC.
++
+image:dr-cvo-avs-017.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Les adresses IP statiques peuvent être configurées manuellement pour les machines virtuelles individuelles du groupe.  Cliquez sur le lien Affichage NIC d’une machine virtuelle pour configurer manuellement ses paramètres d’adresse IP.
++
+image:dr-cvo-avs-018.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Cliquez sur le bouton Configurer pour enregistrer les paramètres NIC pour les machines virtuelles respectives.
++
+image:dr-cvo-avs-019.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+image:dr-cvo-avs-020.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+
+
+L'état des runbooks de basculement et de restauration est désormais répertorié comme Configuré.  Les groupes de runbooks de basculement et de restauration sont créés par paires à l'aide du même groupe initial de machines virtuelles et de paramètres.  Si nécessaire, les paramètres de n'importe quel groupe de runbook peuvent être personnalisés individuellement en cliquant sur son lien Détails respectif et en apportant des modifications.
+
+====
+.Installer JetStream DR pour AVS dans un cloud privé
+[%collapsible%open]
+====
+Une bonne pratique pour un site de récupération (AVS) consiste à créer à l’avance un cluster de voyants lumineux à trois nœuds.  Cela permet de préconfigurer l'infrastructure du site de récupération, y compris les éléments suivants :
+
+* Segments de réseau de destination, pare-feu, services tels que DHCP et DNS, etc.
+* Installation de JetStream DR pour AVS
+* Configuration des volumes ANF en tant que banques de données et plus
+
+
+JetStream DR prend en charge un mode RTO proche de zéro pour les domaines critiques.  Pour ces domaines, le stockage de destination doit être préinstallé.  L'ANF est un type de stockage recommandé dans ce cas.
+
+
+NOTE: La configuration du réseau, y compris la création de segments, doit être configurée sur le cluster AVS pour correspondre aux exigences locales.
+
+
+NOTE: En fonction des exigences SLA et RTO, vous pouvez utiliser le mode de basculement continu ou le mode de basculement standard.  Pour un RTO proche de zéro, vous devez commencer la réhydratation continue au site de récupération.
+
+. Pour installer JetStream DR pour AVS sur un cloud privé Azure VMware Solution, utilisez la commande Exécuter.  Depuis le portail Azure, accédez à la solution Azure VMware, sélectionnez le cloud privé, puis sélectionnez Exécuter la commande > Packages > JSDR.Configuration.
++
+
+NOTE: L'utilisateur CloudAdmin par défaut de la solution Azure VMware ne dispose pas de privilèges suffisants pour installer JetStream DR pour AVS.  La solution Azure VMware permet une installation simplifiée et automatisée de JetStream DR en appelant la commande Azure VMware Solution Run pour JetStream DR.
+
++
+La capture d’écran suivante montre l’installation à l’aide d’une adresse IP basée sur DHCP.
+
++
+image:dr-cvo-avs-021.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Une fois l’installation de JetStream DR pour AVS terminée, actualisez le navigateur.  Pour accéder à l'interface utilisateur de JetStream DR, accédez à SDDC Datacenter > Configurer > JetStream DR.
++
+image:dr-cvo-avs-022.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Depuis l’interface JetStream DR, effectuez les tâches suivantes :
++
+.. Ajoutez le compte de stockage d’objets blob Azure qui a été utilisé pour protéger le cluster local en tant que site de stockage, puis exécutez l’option Analyser les domaines.
+.. Dans la fenêtre de dialogue contextuelle qui s’affiche, sélectionnez le domaine protégé à importer, puis cliquez sur son lien Importer.
++
+image:dr-cvo-avs-023.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+
+
+. Le domaine est importé pour récupération.  Accédez à l’onglet Domaines protégés et vérifiez que le domaine souhaité a été sélectionné ou choisissez celui souhaité dans le menu Sélectionner un domaine protégé.  Une liste des machines virtuelles récupérables dans le domaine protégé s'affiche.
++
+image:dr-cvo-avs-024.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Une fois les domaines protégés importés, déployez les appliances DRVA.
++
+
+NOTE: Ces étapes peuvent également être automatisées à l’aide de plans créés par CPT.
+
+. Créez des volumes de journaux de réplication à l’aide des banques de données vSAN ou ANF disponibles.
+. Importez les domaines protégés et configurez l'AV de récupération pour utiliser une banque de données ANF pour les placements de machines virtuelles.
++
+image:dr-cvo-avs-025.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+
+NOTE: Assurez-vous que DHCP est activé sur le segment sélectionné et que suffisamment d'adresses IP sont disponibles.  Les adresses IP dynamiques sont utilisées temporairement pendant la récupération des domaines.  Chaque VM en cours de récupération (y compris la réhydratation continue) nécessite une IP dynamique individuelle.  Une fois la récupération terminée, l’IP est libérée et peut être réutilisée.
+
+. Sélectionnez l’option de basculement appropriée (basculement continu ou basculement).  Dans cet exemple, la réhydratation continue (basculement continu) est sélectionnée.
++
+
+NOTE: Bien que les modes de basculement continu et de basculement diffèrent selon le moment où la configuration est effectuée, les deux modes de basculement sont configurés à l'aide des mêmes étapes.  Les étapes de basculement sont configurées et exécutées ensemble en réponse à un événement catastrophique.  Le basculement continu peut être configuré à tout moment, puis autorisé à s'exécuter en arrière-plan pendant le fonctionnement normal du système.  Après un événement catastrophique, un basculement continu est effectué pour transférer immédiatement la propriété des machines virtuelles protégées vers le site de récupération (RTO proche de zéro).
+
++
+image:dr-cvo-avs-026.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+
+
+Le processus de basculement continu commence et sa progression peut être surveillée à partir de l'interface utilisateur.  Cliquer sur l’icône bleue dans la section Étape actuelle affiche une fenêtre contextuelle affichant les détails de l’étape actuelle du processus de basculement.
+
+====
+.Basculement et restauration automatique
+[%collapsible%open]
+====
+. Après qu'un sinistre se produit dans le cluster protégé de l'environnement local (défaillance partielle ou complète), vous pouvez déclencher le basculement pour les machines virtuelles à l'aide de Jetstream après avoir rompu la relation SnapMirror pour les volumes d'application respectifs.
++
+image:dr-cvo-avs-027.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+image:dr-cvo-avs-028.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+
+NOTE: Cette étape peut facilement être automatisée pour faciliter le processus de récupération.
+
+. Accédez à l'interface utilisateur Jetstream sur AVS SDDC (côté destination) et déclenchez l'option de basculement pour terminer le basculement.  La barre des tâches affiche la progression des activités de basculement.
++
+Dans la fenêtre de dialogue qui s'affiche une fois le basculement terminé, la tâche de basculement peut être spécifiée comme planifiée ou supposée forcée.
+
++
+image:dr-cvo-avs-029.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+image:dr-cvo-avs-030.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+Le basculement forcé suppose que le site principal n'est plus accessible et que la propriété du domaine protégé doit être directement assumée par le site de récupération.
+
++
+image:dr-cvo-avs-031.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+image:dr-cvo-avs-032.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Une fois le basculement continu terminé, un message s'affiche confirmant la fin de la tâche.  Une fois la tâche terminée, accédez aux machines virtuelles récupérées pour configurer les sessions ISCSI ou NFS.
++
+
+NOTE: Le mode de basculement passe à Exécution en mode de basculement et l'état de la machine virtuelle est Récupérable.  Toutes les machines virtuelles du domaine protégé s’exécutent désormais sur le site de récupération dans l’état spécifié par les paramètres du runbook de basculement.
+
++
+
+NOTE: Pour vérifier la configuration et l'infrastructure de basculement, JetStream DR peut être utilisé en mode test (option Test Failover) pour observer la récupération des machines virtuelles et de leurs données depuis le magasin d'objets vers un environnement de récupération de test.  Lorsqu'une procédure de basculement est exécutée en mode test, son fonctionnement ressemble à un processus de basculement réel.
+
++
+image:dr-cvo-avs-033.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Une fois les machines virtuelles récupérées, utilisez la récupération après sinistre du stockage pour le stockage en invité.  Pour illustrer ce processus, le serveur SQL est utilisé dans cet exemple.
+. Connectez-vous à la machine virtuelle SnapCenter récupérée sur AVS SDDC et activez le mode DR.
++
+.. Accédez à l’interface utilisateur de SnapCenter à l’aide du navigateurN.
++
+image:dr-cvo-avs-034.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+.. Dans la page Paramètres, accédez à Paramètres > Paramètres globaux > Reprise après sinistre.
+.. Sélectionnez Activer la récupération après sinistre.
+.. Cliquez sur Appliquer.
++
+image:dr-cvo-avs-035.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+.. Vérifiez si la tâche DR est activée en cliquant sur Surveiller > Tâches.
++
+
+NOTE: NetApp SnapCenter 4.6 ou version ultérieure doit être utilisé pour la récupération après sinistre du stockage.  Pour les versions précédentes, des snapshots cohérents avec l'application (répliqués à l'aide de SnapMirror) doivent être utilisés et une récupération manuelle doit être exécutée au cas où des sauvegardes précédentes doivent être récupérées sur le site de reprise après sinistre.
+
+
+
+. Assurez-vous que la relation SnapMirror est rompue.
++
+image:dr-cvo-avs-036.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Attachez le LUN de Cloud Volumes ONTAP à la machine virtuelle invitée SQL récupérée avec les mêmes lettres de lecteur.
++
+image:dr-cvo-avs-037.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Ouvrez l'initiateur iSCSI, effacez la session déconnectée précédente et ajoutez la nouvelle cible avec le multipath pour les volumes Cloud Volumes ONTAP répliqués.
++
+image:dr-cvo-avs-038.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Assurez-vous que tous les disques sont connectés à l’aide des mêmes lettres de lecteur que celles utilisées avant DR.
++
+image:dr-cvo-avs-039.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Redémarrez le service serveur MSSQL.
++
+image:dr-cvo-avs-040.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Assurez-vous que les ressources SQL sont de nouveau en ligne.
++
+image:dr-cvo-avs-041.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+
+NOTE: Dans le cas de NFS, attachez les volumes à l'aide de la commande mount et mettez à jour le `/etc/fstab` entrées.
+
++
+À ce stade, les opérations peuvent être exécutées et les affaires continuent normalement.
+
++
+
+NOTE: Du côté NSX-T, une passerelle de niveau 1 dédiée distincte peut être créée pour simuler des scénarios de basculement.  Cela garantit que toutes les charges de travail peuvent communiquer entre elles, mais qu'aucun trafic ne peut entrer ou sortir de l'environnement, de sorte que toutes les tâches de triage, de confinement ou de renforcement peuvent être effectuées sans risque de contamination croisée.  Cette opération n’entre pas dans le cadre de ce document, mais elle peut être facilement réalisée pour simuler l’isolement.
+
+
+
+Une fois le site principal à nouveau opérationnel, vous pouvez effectuer une restauration automatique.  La protection de la machine virtuelle est reprise par Jetstream et la relation SnapMirror doit être inversée.
+
+. Restaurer l’environnement sur site.  Selon le type d’incident de sinistre, il peut être nécessaire de restaurer et/ou de vérifier la configuration du cluster protégé.  Si nécessaire, le logiciel JetStream DR devra peut-être être réinstallé.
+. Accédez à l’environnement local restauré, accédez à l’interface utilisateur Jetstream DR et sélectionnez le domaine protégé approprié.  Une fois que le site protégé est prêt pour la restauration, sélectionnez l’option Restauration dans l’interface utilisateur.
++
+
+NOTE: Le plan de restauration automatique généré par CPT peut également être utilisé pour initier le retour des machines virtuelles et de leurs données du magasin d'objets vers l'environnement VMware d'origine.
+
++
+image:dr-cvo-avs-042.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+
+NOTE: Spécifiez le délai maximal après la mise en pause des machines virtuelles sur le site de récupération et leur redémarrage sur le site protégé.  Le temps nécessaire pour terminer ce processus comprend l’achèvement de la réplication après l’arrêt des machines virtuelles de basculement, le temps nécessaire pour nettoyer le site de récupération et le temps nécessaire pour recréer les machines virtuelles dans le site protégé.  NetApp recommande 10 minutes.
+
++
+image:dr-cvo-avs-043.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Terminez le processus de restauration automatique, puis confirmez la reprise de la protection de la machine virtuelle et de la cohérence des données.
++
+image:dr-cvo-avs-044.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Une fois les machines virtuelles récupérées, déconnectez le stockage secondaire de l’hôte et connectez-vous au stockage principal.
++
+image:dr-cvo-avs-045.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+image:dr-cvo-avs-046.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Redémarrez le service serveur MSSQL.
+. Vérifiez que les ressources SQL sont de nouveau en ligne.
++
+image:dr-cvo-avs-047.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+
+NOTE: Pour revenir au stockage principal, assurez-vous que la direction de la relation reste la même qu'avant le basculement en effectuant une opération de resynchronisation inverse.
+
++
+
+NOTE: Pour conserver les rôles de stockage principal et secondaire après l'opération de resynchronisation inverse, effectuez à nouveau l'opération de resynchronisation inverse.
+
+
+
+Ce processus est applicable à d’autres applications comme Oracle, à des versions de bases de données similaires et à toute autre application utilisant un stockage connecté en tant qu’invité.
+
+Comme toujours, testez les étapes nécessaires à la récupération des charges de travail critiques avant de les porter en production.
+
+====
+
+
+== Avantages de cette solution
+
+* Utilise la réplication efficace et résiliente de SnapMirror.
+* Récupère à n'importe quel point disponible dans le temps avec la conservation des instantanés ONTAP .
+* L'automatisation complète est disponible pour toutes les étapes requises pour récupérer des centaines à des milliers de machines virtuelles, depuis les étapes de stockage, de calcul, de réseau et de validation des applications.
+* SnapCenter utilise des mécanismes de clonage qui ne modifient pas le volume répliqué.
++
+** Cela évite le risque de corruption des données pour les volumes et les instantanés.
+** Évite les interruptions de réplication pendant les flux de travail de test DR.
+** Exploite les données DR pour les flux de travail au-delà de DR, tels que le développement/test, les tests de sécurité, les tests de correctifs et de mise à niveau et les tests de correction.
+
+
+* L’optimisation du processeur et de la RAM peut contribuer à réduire les coûts du cloud en permettant la récupération vers des clusters de calcul plus petits.
+

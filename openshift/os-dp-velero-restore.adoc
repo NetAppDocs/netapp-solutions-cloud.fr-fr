@@ -1,0 +1,128 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-dp-velero-restore.html 
+keywords: OpenShift, OCP, Trident, NetApp ONTAP, Red Hat OpenShift, OADP operator, Openshift Data Protection Application operator, Velero 
+summary: Protection des données des applications conteneurisées Red Hat OpenShift avec NetApp ONTAP 
+---
+= Restaurer une application à partir d'une sauvegarde
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cette section décrit comment restaurer des applications à partir d'une sauvegarde.
+
+
+
+== Prérequis
+
+Pour restaurer à partir d’une sauvegarde, supposons que l’espace de noms où l’application existait a été supprimé accidentellement.
+
+image:redhat-openshift-oadp-app-deleted-001.png["Application supprimée"]
+
+.Restaurer vers le même espace de noms
+[%collapsible%open]
+====
+Pour restaurer à partir de la sauvegarde que nous venons de créer, nous devons créer une ressource personnalisée de restauration (CR).  Nous devons lui donner un nom, fournir le nom de la sauvegarde à partir de laquelle nous voulons restaurer et définir restorePVs sur true.  Des paramètres supplémentaires peuvent être définis comme indiqué dans lelink:https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications.html["documentation"] .  Cliquez sur le bouton Créer.
+
+image:redhat-openshift-oadp-restore-001.png["Créer Restaurer CR"]
+
+....
+apiVersion: velero.io/v1
+kind: Restore
+apiVersion: velero.io/v1
+metadata:
+  name: restore
+  namespace: openshift-adp
+spec:
+  backupName: backup-postgresql-ontaps3
+  restorePVs: true
+....
+Lorsque la phase est terminée, vous pouvez voir que l'application a été restaurée à l'état dans lequel l'instantané a été pris.  L'application est restaurée dans le même espace de noms.
+
+image:redhat-openshift-oadp-restore-002.png["Restauration terminée"] image:redhat-openshift-oadp-restore-002-a.png["Restauré dans le même espace de noms"]
+
+====
+.Restaurer vers un espace de noms différent
+[%collapsible%open]
+====
+Pour restaurer l'application dans un espace de noms différent, vous pouvez fournir un namespaceMapping dans la définition yaml du CR de restauration.
+
+L'exemple de fichier yaml suivant crée un CR de restauration pour restaurer une application et son stockage persistant à partir de l'espace de noms postgresql, vers le nouvel espace de noms postgresql-restored.
+
+....
+apiVersion: velero.io/v1
+kind: Restore
+metadata:
+  name: restore-to-different-ns
+  namespace: openshift-adp
+spec:
+  backupName: backup-postgresql-ontaps3
+  restorePVs: true
+  includedNamespaces:
+  - postgresql
+  namespaceMapping:
+    postgresql: postgresql-restored
+....
+Lorsque la phase est terminée, vous pouvez voir que l'application a été restaurée à l'état dans lequel l'instantané a été pris.  L'application est restaurée dans un espace de noms différent tel que spécifié dans le yaml.
+
+image:redhat-openshift-oadp-restore-003.png["Restauration terminée vers un nouvel espace de noms"]
+
+====
+.Restaurer vers une classe de stockage différente
+[%collapsible%open]
+====
+Velero fournit une capacité générique pour modifier les ressources pendant la restauration en spécifiant des correctifs json.  Les correctifs JSON sont appliqués aux ressources avant leur restauration.  Les correctifs json sont spécifiés dans une configmap et la configmap est référencée dans la commande de restauration.  Cette fonctionnalité vous permet de restaurer à l’aide de différentes classes de stockage.
+
+Dans l'exemple ci-dessous, l'application, lors du déploiement, utilise ontap-nas comme classe de stockage pour ses volumes persistants.  Une sauvegarde de l'application nommée backup-postgresql-ontaps3 est créée.
+
+image:redhat-openshift-oadp-restore-004.png["Machine virtuelle utilisant ontap-nas"]
+
+image:redhat-openshift-oadp-restore-005.png["Sauvegarde de machine virtuelle ontap-nas"]
+
+Simulez une perte de l'application en désinstallant l'application.
+
+Pour restaurer la machine virtuelle à l'aide d'une classe de stockage différente, par exemple, la classe de stockage ontap-nas-eco, vous devez effectuer les deux étapes suivantes :
+
+**Étape 1**
+
+Créez une carte de configuration (console) dans l'espace de noms openshift-adp comme suit : Remplissez les détails comme indiqué dans la capture d'écran : Sélectionnez l'espace de noms : openshift-adp Nom : change-ontap-sc (peut être n'importe quel nom) Clé : change-ontap-sc-config.yaml : Valeur :
+
+....
+version: v1
+resourceModifierRules:
+- conditions:
+     groupResource: persistentvolumeclaims
+     resourceNameRegex: "data-postgresql*"
+     namespaces:
+     - postgresql
+  patches:
+  - operation: replace
+    path: "/spec/storageClassName"
+    value: "ontap-nas-eco"
+....
+image:redhat-openshift-oadp-restore-006.png["interface utilisateur de la carte de configuration"]
+
+L'objet de carte de configuration résultant devrait ressembler à ceci (CLI) :
+
+image:redhat-openshift-oadp-restore-007.png["carte de configuration CLI"]
+
+Cette carte de configuration appliquera la règle de modification des ressources lors de la création de la restauration.  Un correctif sera appliqué pour remplacer le nom de la classe de stockage par ontap-nas-eco pour toutes les revendications de volume persistant commençant par rhel.
+
+**Étape 2**
+
+Pour restaurer la machine virtuelle, utilisez la commande suivante depuis la CLI Velero :
+
+....
+
+#velero restore create restore1 --from-backup backup1 --resource-modifier-configmap change-storage-class-config -n openshift-adp
+....
+L'application est restaurée dans le même espace de noms avec les revendications de volume persistant créées à l'aide de la classe de stockage ontap-nas-eco.
+
+image:redhat-openshift-oadp-restore-008.png["Restauration de VM ontap-nas-eco"]
+
+====

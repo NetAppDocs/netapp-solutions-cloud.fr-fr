@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: videos/hmc-aws-videos.html 
+summary: Vidéos et démonstrations présentant les solutions multicloud hybrides AWS avec NetApp 
+keywords: hybrid cloud, rosa, fsx ontap, azure vmware, netapp hci, videos, demos 
+---
+= Regardez des vidéos sur les solutions multicloud hybrides pour Amazon Web Services avec NetApp
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Explorez la bibliothèque vidéo complète de NetApp présentant des solutions multicloud hybrides pour AWS avec NetApp.  Regardez des vidéos sur le stockage connecté aux invités, les économies de coût total de possession, les banques de données supplémentaires et les flux de travail de migration pour VMware Cloud sur AWS et Amazon FSx pour ONTAP, y compris les scénarios Windows et Linux.
+
+
+
+== Stockage connecté aux invités
+
+.Stockage invité Windows connecté avec FSx ONTAP à l'aide d'iSCSI
+video::0d03e040-634f-4086-8cb5-b01200fb8515[panopto,width=360]
+.Stockage invité Linux connecté avec FSx ONTAP utilisant NFS
+video::c3befe1b-4f32-4839-a031-b01200fb6d60[panopto,width=360]
+
+
+== TCO et magasins de données supplémentaires
+
+.Économies TCO VMware Cloud sur AWS avec Amazon FSx ONTAP
+video::f0fedec5-dc17-47af-8821-b01200f00e08[panopto,width=360]
+.Banque de données supplémentaire VMware Cloud sur AWS avec Amazon FSx ONTAP
+video::2065dcc1-f31a-4e71-a7d5-b01200f01171[panopto,width=360]
+
+
+== Flux de travail de migration (HCX)
+
+.Déploiement et configuration de VMware HCX pour VMC
+video::6132c921-a44c-4c81-aab7-b01200fb5d29[panopto,width=360]
+.Démonstration de migration vMotion avec VMware HCX pour VMC et FSx ONTAP
+video::52661f10-3f90-4f3d-865a-b01200f06d31[panopto,width=360]
+.Démonstration de migration à froid avec VMware HCX pour VMC et FSx ONTAP
+video::685c0dc2-9d8a-42ff-b46d-b01200f056b0[panopto,width=360]

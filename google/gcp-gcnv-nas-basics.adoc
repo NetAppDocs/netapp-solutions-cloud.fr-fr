@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: google/gcp-gcnv-nas-basics.html 
+keywords: nas, basics, gcp, nfs, smb 
+summary: 'Les protocoles NAS sont des moyens permettant à plusieurs clients d"un réseau d"accéder aux mêmes données sur un système de stockage, tel que Google Cloud NetApp Volumes sur GCP.  NFS et SMB sont les protocoles NAS définis et fonctionnent sur une base client/serveur où Google Cloud NetApp Volumes agit comme serveur.' 
+---
+= Notions de base sur les protocoles NAS
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les protocoles NAS sont des moyens permettant à plusieurs clients d'un réseau d'accéder aux mêmes données sur un système de stockage, tel que Google Cloud NetApp Volumes sur GCP.  NFS et SMB sont les protocoles NAS définis et fonctionnent sur une base client/serveur où Google Cloud NetApp Volumes agit comme serveur.  Les clients envoient des demandes d'accès, de lecture et d'écriture au serveur, et le serveur est responsable de la coordination des mécanismes de verrouillage des fichiers, du stockage des autorisations et de la gestion des demandes d'identité et d'authentification.
+
+Par exemple, le processus général suivant est suivi si un client NAS souhaite créer un nouveau fichier dans un dossier.
+
+. Le client demande au serveur des informations sur le répertoire (autorisations, propriétaire, groupe, ID de fichier, espace disponible, etc.) ; le serveur répond avec les informations si le client et l'utilisateur demandeurs disposent des autorisations nécessaires sur le dossier parent.
+. Si les autorisations sur le répertoire autorisent l'accès, le client demande alors au serveur si le nom de fichier en cours de création existe déjà dans le système de fichiers.  Si le nom du fichier est déjà utilisé, la création échoue.  Si le nom du fichier n'existe pas, le serveur informe le client qu'il peut continuer.
+. Le client émet un appel au serveur pour créer le fichier avec le handle du répertoire et le nom du fichier et définit les heures d'accès et de modification.  Le serveur attribue un ID de fichier unique au fichier pour garantir qu'aucun autre fichier n'est créé avec le même ID de fichier.
+. Le client envoie un appel pour vérifier les attributs du fichier avant l'opération WRITE.  Si les autorisations le permettent, le client écrit alors le nouveau fichier.  Si le verrouillage est utilisé par le protocole/l'application, le client demande au serveur un verrou pour empêcher d'autres clients d'accéder au fichier lorsqu'il est verrouillé afin d'éviter la corruption des données.
+

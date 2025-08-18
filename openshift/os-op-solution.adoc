@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-op-solution.html 
+keywords: NetApp Solutions, redhat OpenShift, red hat OpenShift, redhat openshift container platform, ocp, openshift container platform, Advanced Cluster Management, ACM, Hub Cluster, containers, container workloads, VMware, customer managed storage, ONTAP 
+summary:  
+---
+= Solution NetApp avec charges de travail de la plateforme de conteneurs Red Hat OpenShift sur VMware
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si les clients ont besoin d’exécuter leurs applications conteneurisées modernes sur l’infrastructure de leurs centres de données privés, ils peuvent le faire.  Ils doivent planifier et déployer la plateforme de conteneurs Red Hat OpenShift (OCP) pour un environnement prêt pour la production afin de déployer leurs charges de travail de conteneurs.  Leurs clusters OCP peuvent être déployés sur VMware ou sur du bare metal.
+
+Le stockage NetApp ONTAP offre une protection des données, une fiabilité et une flexibilité pour les déploiements de conteneurs.  Trident sert de fournisseur de stockage dynamique pour consommer le stockage ONTAP persistant pour les applications avec état des clients.  NetApp Trident Protect peut être utilisé pour les nombreuses exigences de gestion des données des applications avec état telles que la protection des données, la migration et la continuité des activités.
+
+Avec VMware vSphere, les outils NetApp ONTAP fournissent un plug-in vCenter qui peut être utilisé pour provisionner des banques de données.  Appliquez des balises et utilisez-les avec OpenShift pour stocker la configuration et les données du nœud.  Le stockage basé sur NVMe offre une latence plus faible et des performances élevées.
+
+
+
+== Solution de protection et de migration des données pour les charges de travail OpenShift Container à l'aide de Trident Protect
+
+image:rhhc-on-premises.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]

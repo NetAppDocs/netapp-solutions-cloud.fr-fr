@@ -1,0 +1,295 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-aws-vmc-nfs-ds-config.html 
+keywords:  
+summary:  
+---
+= Création d'un magasin de données NFS supplémentaire dans AWS
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Une fois que VMware Cloud est prêt et connecté à AWS VPC, vous devez déployer Amazon FSx ONTAP dans un VPC nouvellement désigné plutôt que dans le VPC par défaut connecté d'origine ou existant.
+
+Pour commencer, déployez un VPC supplémentaire dans la même région et la même zone de disponibilité où réside SDDC, puis déployez Amazon FSx ONTAP dans le nouveau VPC. https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws-networking-security/GUID-C957DBA7-16F5-412B-BB72-15B49B714723.html["Configuration d'un groupe SDDC dans VMware Cloud"^] la console active les options de configuration réseau requises pour se connecter au VPC nouvellement désigné où FSx ONTAP sera déployé.
+
+
+NOTE: Déployez FSx ONTAP dans la même zone de disponibilité que VMware Cloud sur AWS SDDC.
+
+
+NOTE: Vous ne pouvez pas déployer FSx ONTAP dans le VPC connecté.  Au lieu de cela, vous devez le déployer dans un nouveau VPC désigné, puis connecter le VPC à une passerelle de transit gérée VMware (vTGW) via des groupes SDDC.
+
+.Étape 1 : créer Amazon FSx ONTAP dans un nouveau VPC désigné
+[%collapsible%open]
+====
+Pour créer et monter le système de fichiers Amazon FSx ONTAP , procédez comme suit :
+
+. Ouvrez la console Amazon FSx à `https://console.aws.amazon.com/fsx/` et choisissez *Créer un système de fichiers* pour démarrer l'assistant *Création de système de fichiers*.
+. Sur la page Sélectionner le type de système de fichiers, sélectionnez * Amazon FSx ONTAP*, puis cliquez sur *Suivant*.  La page *Créer un système de fichiers* apparaît.
++
+image:fsx-nfs-002.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Pour la méthode de création, choisissez *Création standard*.
++
+image:fsx-nfs-003.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+image:fsx-nfs-004.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+
+NOTE: Les tailles des magasins de données varient considérablement d’un client à l’autre.  Bien que le nombre recommandé de machines virtuelles par banque de données NFS soit subjectif, de nombreux facteurs déterminent le nombre optimal de machines virtuelles pouvant être placées sur chaque banque de données.  Bien que la plupart des administrateurs ne prennent en compte que la capacité, la quantité d’E/S simultanées envoyées aux VMDK est l’un des facteurs les plus importants pour les performances globales.  Utilisez les statistiques de performances locales pour dimensionner les volumes de la banque de données en conséquence.
+
+. Dans la section *Réseau* pour Virtual Private Cloud (VPC), choisissez le VPC approprié et les sous-réseaux préférés ainsi que la table de routage.  Dans ce cas, Demo-FSxforONTAP-VPC est sélectionné dans le menu déroulant.
++
+
+NOTE: Assurez-vous qu’il s’agit d’un nouveau VPC désigné et non du VPC connecté.
+
++
+
+NOTE: Par défaut, FSx ONTAP utilise 198.19.0.0/16 comme plage d'adresses IP de point de terminaison par défaut pour le système de fichiers.  Assurez-vous que la plage d'adresses IP du point de terminaison n'entre pas en conflit avec le VMC sur le SDDC AWS, les sous-réseaux VPC associés et l'infrastructure sur site.  Si vous n’êtes pas sûr, utilisez une plage sans chevauchement et sans conflits.
+
++
+image:fsx-nfs-005.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Dans la section *Sécurité et chiffrement* pour la clé de chiffrement, choisissez la clé de chiffrement AWS Key Management Service (AWS KMS) qui protège les données du système de fichiers au repos.  Pour le *Mot de passe administratif du système de fichiers*, entrez un mot de passe sécurisé pour l'utilisateur fsxadmin.
++
+image:fsx-nfs-006.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Dans la section *Configuration de la machine virtuelle de stockage par défaut*, spécifiez le nom de la SVM.
++
+
+NOTE: À partir de GA, quatre magasins de données NFS sont pris en charge.
+
++
+image:fsx-nfs-007.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Dans la section *Configuration du volume par défaut*, spécifiez le nom du volume et la taille requis pour la banque de données et cliquez sur *Suivant*.  Il doit s’agir d’un volume NFSv3.  Pour *Efficacité du stockage*, choisissez *Activé* pour activer les fonctionnalités d'efficacité du stockage ONTAP (compression, déduplication et compactage).  Après la création, utilisez le shell pour modifier les paramètres du volume en utilisant *_volume modify_* comme suit :
++
+[cols="50%, 50%"]
+|===
+| Paramètre | Configuration 
+
+
+| Garantie de volume (style de garantie d'espace) | Aucun (provisionnement léger) – défini par défaut 
+
+
+| réserve_fractionnelle (réserve-fractionnelle) | 0% – défini par défaut 
+
+
+| snap_reserve (pourcentage d'espace d'instantané) | 0% 
+
+
+| Taille automatique (mode taille automatique) | grandir_rétrécir 
+
+
+| Efficacité du stockage | Activé – défini par défaut 
+
+
+| Suppression automatique | volume / le plus ancien en premier 
+
+
+| Politique de hiérarchisation des volumes | Instantané uniquement – défini par défaut 
+
+
+| essayez_en_premier | Auto-croissance 
+
+
+| Politique d'instantané | Aucune 
+|===
++
+Utilisez la commande SSH suivante pour créer et modifier des volumes :
+
++
+*Commande pour créer un nouveau volume de banque de données à partir du shell :*
+
++
+ volume create -vserver FSxONTAPDatastoreSVM -volume DemoDS002 -aggregate aggr1 -size 1024GB -state online -tiering-policy snapshot-only -percent-snapshot-space 0 -autosize-mode grow -snapshot-policy none -junction-path /DemoDS002
++
+*Remarque :* les volumes créés via le shell prendront quelques minutes pour apparaître dans la console AWS.
+
++
+*Commande pour modifier les paramètres de volume qui ne sont pas définis par défaut :*
+
++
+....
+volume modify -vserver FSxONTAPDatastoreSVM -volume DemoDS002 -fractional-reserve 0
+volume modify -vserver FSxONTAPDatastoreSVM -volume DemoDS002 -space-mgmt-try-first vol_grow
+volume modify -vserver FSxONTAPDatastoreSVM -volume DemoDS002 -autosize-mode grow
+....
++
+image:fsx-nfs-008.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+image:fsx-nfs-009.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+
+NOTE: Lors du scénario de migration initial, la stratégie de snapshot par défaut peut entraîner des problèmes de capacité de stockage de données complète.  Pour y remédier, modifiez la politique de snapshot en fonction des besoins.
+
+. Vérifiez la configuration du système de fichiers affichée sur la page *Créer un système de fichiers*.
+. Cliquez sur *Créer un système de fichiers*.
++
+image:fsx-nfs-010.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+image:fsx-nfs-011.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+
+NOTE: Répétez les étapes précédentes pour créer davantage de machines virtuelles de stockage ou de systèmes de fichiers et les volumes de banque de données en fonction des exigences de capacité et de performances.
+
+
+
+Pour en savoir plus sur les performances Amazon FSx ONTAP , consultez https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/performance.html["Performances Amazon FSx ONTAP"^] .
+
+====
+.Étape 2 : Créer un groupe SDDC
+[%collapsible%open]
+====
+Une fois les systèmes de fichiers et les SVM créés, utilisez VMware Console pour créer un groupe SDDC et configurer VMware Transit Connect.  Pour ce faire, procédez comme suit et n’oubliez pas que vous devez naviguer entre la console VMware Cloud et la console AWS.
+
+. Connectez-vous à la console VMC à `https://vmc.vmware.com` .
+. Sur la page *Inventaire*, cliquez sur *Groupes SDDC*.
+. Dans l'onglet *Groupes SDDC*, cliquez sur *ACTIONS* et sélectionnez *Créer un groupe SDDC*.  À des fins de démonstration, le groupe SDDC est appelé `FSxONTAPDatastoreGrp` .
+. Dans la grille d’adhésion, sélectionnez les SDDC à inclure en tant que membres du groupe.
++
+image:fsx-nfs-012.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Vérifiez que « La configuration de VMware Transit Connect pour votre groupe entraînera des frais par pièce jointe et par transfert de données » est cochée, puis sélectionnez *Créer un groupe*.  Le processus peut prendre quelques minutes.
++
+image:fsx-nfs-013.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+
+
+====
+.Étape 3 : Configurer VMware Transit Connect
+[%collapsible%open]
+====
+. Attachez le VPC désigné nouvellement créé au groupe SDDC.  Sélectionnez l'onglet *VPC externe* et suivez les https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws-networking-security/GUID-A3D03968-350E-4A34-A53E-C0097F5F26A9.html["instructions pour attacher un VPC externe au groupe"^] .  Ce processus peut prendre 10 à 15 minutes.
++
+image:fsx-nfs-014.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Cliquez sur *Ajouter un compte*.
++
+.. Fournissez le compte AWS qui a été utilisé pour provisionner le système de fichiers FSx ONTAP .
+.. Cliquez sur *Ajouter*.
+
+
+. De retour dans la console AWS, connectez-vous au même compte AWS et accédez à la page de service *Resource Access Manager*.  Il y a un bouton pour vous permettre d'accepter le partage de ressources.
++
+image:fsx-nfs-015.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+
+NOTE: Dans le cadre du processus VPC externe, vous serez invité via la console AWS à accéder à une nouvelle ressource partagée via le gestionnaire d'accès aux ressources.  La ressource partagée est la passerelle AWS Transit gérée par VMware Transit Connect.
+
+. Cliquez sur *Accepter le partage de ressources*.
++
+image:fsx-nfs-016.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. De retour dans la console VMC, vous voyez maintenant que le VPC externe est dans un état associé.  Cela peut prendre plusieurs minutes pour apparaître.
+
+
+====
+.Étape 4 : Créer une pièce jointe de passerelle de transit
+[%collapsible%open]
+====
+. Dans la console AWS, accédez à la page du service VPC et accédez au VPC qui a été utilisé pour provisionner le système de fichiers FSx.  Ici, vous créez une pièce jointe de passerelle de transit en cliquant sur *Pièce jointe de passerelle de transit* dans le volet de navigation à droite.
+. Sous *Pièce jointe VPC*, assurez-vous que la prise en charge DNS est cochée et sélectionnez le VPC dans lequel FSx ONTAP a été déployé.
++
+image:fsx-nfs-017.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Cliquez sur *Créer* *une pièce jointe de passerelle de transit*.
++
+image:fsx-nfs-018.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. De retour dans la console VMware Cloud, revenez à l’onglet Groupe SDDC > VPC externe.  Sélectionnez l'ID de compte AWS utilisé pour FSx, cliquez sur le VPC et cliquez sur *Accepter*.
++
+image:fsx-nfs-019.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+image:fsx-nfs-020.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+
+NOTE: Cette option peut prendre plusieurs minutes à apparaître.
+
+. Ensuite, dans l'onglet *VPC externe* de la colonne *Routes*, cliquez sur l'option *Ajouter des routes* et ajoutez les routes requises :
++
+** Un itinéraire pour la plage d'adresses IP flottantes pour les adresses IP flottantes Amazon FSx ONTAP .
+** Un itinéraire pour l’espace d’adressage VPC externe nouvellement créé.
++
+image:fsx-nfs-021.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+image:fsx-nfs-022.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+
+
+
+
+====
+.Étape 5 : Configurer le routage (AWS VPC et SDDC) et les groupes de sécurité
+[%collapsible%open]
+====
+. Dans la console AWS, créez la route de retour vers le SDDC en localisant le VPC dans la page de service VPC et sélectionnez la table de routage *principale* pour le VPC.
+. Accédez au tableau des itinéraires dans le panneau inférieur et cliquez sur *Modifier les itinéraires*.
++
+image:fsx-nfs-023.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Dans le panneau *Modifier les itinéraires*, cliquez sur *Ajouter un itinéraire* et saisissez le CIDR de l'infrastructure SDDC en sélectionnant *Passerelle de transit* et l'ID TGW associé.  Cliquez sur *Enregistrer les modifications*.
++
+image:fsx-nfs-024.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. L’étape suivante consiste à vérifier que le groupe de sécurité dans le VPC associé est mis à jour avec les règles entrantes correctes pour le CIDR du groupe SDDC.
+. Mettez à jour la règle entrante avec le bloc CIDR de l’infrastructure SDDC.
++
+image:fsx-nfs-025.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+
+NOTE: Vérifiez que la table de routage VPC (où réside FSx ONTAP ) est mise à jour pour éviter les problèmes de connectivité.
+
++
+
+NOTE: Mettez à jour le groupe de sécurité pour accepter le trafic NFS.
+
+
+
+Il s’agit de la dernière étape de la préparation de la connectivité au SDDC approprié.  Une fois le système de fichiers configuré, les itinéraires ajoutés et les groupes de sécurité mis à jour, il est temps de monter le ou les magasins de données.
+
+====
+.Étape 6 : attacher un volume NFS en tant que banque de données au cluster SDDC
+[%collapsible%open]
+====
+Une fois le système de fichiers provisionné et la connectivité en place, accédez à VMware Cloud Console pour monter la banque de données NFS.
+
+. Dans la console VMC, ouvrez l’onglet *Stockage* du SDDC.
++
+image:fsx-nfs-027.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Cliquez sur *ATTACH DATASTORE* et remplissez les valeurs requises.
++
+
+NOTE: L'adresse du serveur NFS est l'adresse IP NFS qui se trouve sous l'onglet FSx > Machines virtuelles de stockage > Points de terminaison dans la console AWS.
+
++
+image:fsx-nfs-028.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Cliquez sur *ATTACHER LE STOCK DE DONNÉES* pour attacher le magasin de données au cluster.
++
+image:fsx-nfs-029.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Validez le magasin de données NFS en accédant à vCenter comme indiqué ci-dessous :
++
+image:fsx-nfs-030.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+
+
+====

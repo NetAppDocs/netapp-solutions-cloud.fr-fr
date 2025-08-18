@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-pm-setup.html 
+keywords: NetApp Solutions, redhat OpenShift, red hat OpenShift, redhat openshift container platform, ocp, openshift container platform, Advanced Cluster Management, ACM, Hub Cluster, containers, container workloads, VMware, customer managed storage, ONTAP, ROSA, ROSA clusters 
+summary:  
+---
+= Déployer et configurer la plateforme Managed Red Hat OpenShift Container sur AWS
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cette section décrit un flux de travail de haut niveau pour la configuration des clusters Red Hat OpenShift gérés sur AWS (ROSA).  Il montre l'utilisation d' Amazon FSx for NetApp ONTAP (FSx ONTAP) comme backend de stockage par Trident pour fournir des volumes persistants.  Des détails sont fournis sur le déploiement de FSx ONTAP sur AWS à l'aide de BlueXP.  Des détails sont également fournis sur l'utilisation de BlueXP et d'OpenShift GitOps (Argo CD) pour effectuer des activités de protection et de migration des données pour les applications avec état sur les clusters ROSA.
+
+Voici un diagramme qui illustre les clusters ROSA déployés sur AWS et utilisant FSx ONTAP comme stockage backend.
+
+image:rhhc-rosa-with-fsxn.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+
+NOTE: Cette solution a été vérifiée en utilisant deux clusters ROSA dans deux VPC dans AWS.  Chaque cluster ROSA a été intégré à FSx ONTAP à l'aide de Trident.  Il existe plusieurs façons de déployer des clusters ROSA et FSx ONTAP dans AWS.  Cette description de haut niveau de la configuration fournit des liens de documentation pour la méthode spécifique qui a été utilisée.  Vous pouvez vous référer aux autres méthodes dans les liens pertinents fournis dans lelink:os-solutions-resources.html["section ressources"] .
+
+Le processus de configuration peut être décomposé selon les étapes suivantes :
+
+.Installer les clusters ROSA
+* Créez deux VPC et configurez la connectivité de peering VPC entre les VPC.
+* Référerlink:https://docs.openshift.com/rosa/welcome/index.html["ici"] pour obtenir des instructions sur l'installation des clusters ROSA.
+
+
+.Installer FSx ONTAP
+* Installez FSx ONTAP sur les VPC depuis BlueXP.  Référerlink:https://docs.netapp.com/us-en/cloud-manager-setup-admin/index.html["ici"] pour la création d'un compte BlueXP et pour commencer.  Référerlink:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["ici"] pour l'installation de FSx ONTAP.  Référerlink:https://docs.netapp.com/us-en/cloud-manager-setup-admin/index.html["ici"] pour créer un connecteur dans AWS pour gérer le FSx ONTAP.
+* Déployez FSx ONTAP à l’aide d’AWS.  Référerlink:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/getting-started-step1.html["ici"] pour le déploiement à l'aide de la console AWS.
+
+
+.Installer Trident sur les clusters ROSA (à l'aide du graphique Helm)
+* Utilisez le graphique Helm pour installer Trident sur les clusters ROSA.  Consultez le lien de documentation : https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-helm.html [ici].
+
+
+.Intégration de FSx ONTAP avec Trident pour les clusters ROSA
+video::621ae20d-7567-4bbf-809d-b01200fa7a68[panopto]
+
+NOTE: OpenShift GitOps peut être utilisé pour déployer Trident CSI sur tous les clusters gérés au fur et à mesure qu'ils sont enregistrés sur ArgoCD à l'aide d'ApplicationSet.
+
+image:rhhc-trident-helm.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+.Créer des classes backend et de stockage à l'aide de Trident (pour FSx ONTAP)
+* Référerlink:https://docs.netapp.com/us-en/trident/trident-use/backends.html["ici"] pour plus de détails sur la création d'un backend et d'une classe de stockage.
+* Créez la classe de stockage créée pour FsxN avec Trident CSI par défaut à partir de la console OpenShift.  Voir la capture d'écran ci-dessous :
+
+
+image:rhhc-default-storage-class.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+.Déployer une application à l'aide d'OpenShift GitOps (Argo CD)
+* Installez l’opérateur OpenShift GitOps sur le cluster.  Se référer aux instructionslink:https://docs.openshift.com/container-platform/4.10/cicd/gitops/installing-openshift-gitops.html["ici"] .
+* Configurez une nouvelle instance Argo CD pour le cluster.  Se référer aux instructionslink:https://docs.openshift.com/container-platform/4.10/cicd/gitops/setting-up-argocd-instance.html["ici"] .
+
+
+Ouvrez la console d’Argo CD et déployez une application.  À titre d’exemple, vous pouvez déployer une application Jenkins à l’aide d’Argo CD avec un graphique Helm.  Lors de la création de l'application, les détails suivants ont été fournis : Projet : cluster par défaut :'https://kubernetes.default.svc'[] (sans les guillemets) Espace de noms : Jenkins L'URL du graphique Helm :'https://charts.bitnami.com/bitnami'[] (sans les guillemets)
+
+Paramètres Helm : global.storageClass : fsxn-nas

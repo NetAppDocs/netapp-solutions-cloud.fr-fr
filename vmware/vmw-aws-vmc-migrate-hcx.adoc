@@ -1,0 +1,354 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-aws-vmc-migrate-hcx.html 
+keywords: aws, vmc, hybrid multicloud, migrate, vmware hcx, hcx 
+summary:  
+---
+= TR 4942 : Migration des charges de travail vers la banque de données FSx ONTAP à l'aide de VMware HCX
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un cas d’utilisation courant de VMware Cloud (VMC) sur Amazon Web Services (AWS), avec son magasin de données NFS supplémentaire sur Amazon FSx ONTAP, est la migration des charges de travail VMware.  VMware HCX est une option privilégiée et fournit diverses méthodes de migration pour déplacer des machines virtuelles (VM) sur site et leurs données, exécutées sur n'importe quel magasin de données pris en charge par VMware, vers des magasins de données VMC, qui incluent des magasins de données NFS supplémentaires sur FSx ONTAP.
+
+
+
+== Présentation : Migration de machines virtuelles avec VMware HCX, banques de données supplémentaires FSx ONTAP et VMware Cloud
+
+VMware HCX est principalement une plate-forme de mobilité conçue pour simplifier la migration des charges de travail, le rééquilibrage des charges de travail et la continuité des activités dans les clouds.  Il est inclus dans VMware Cloud sur AWS et offre de nombreuses façons de migrer les charges de travail et peut être utilisé pour les opérations de reprise après sinistre (DR).
+
+Ce document fournit des instructions étape par étape pour le déploiement et la configuration de VMware HCX, y compris tous ses principaux composants, sur site et côté centre de données cloud, ce qui permet divers mécanismes de migration de machines virtuelles.
+
+Pour plus d'informations, voir https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10.html["Guide de l'utilisateur de VMware HCX"^] et https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/getting-started-with-vmware-hcx-4-10/install-checklist-b-hcx-with-a-vmc-sddc-instance.html["Liste de contrôle d'installation B - HCX avec un environnement de destination SDDC VMware Cloud sur AWS"^] .
+
+.Étapes de haut niveau
+[%collapsible%open]
+====
+Cette liste fournit les étapes de haut niveau pour installer et configurer VMware HCX :
+
+. Activez HCX pour le centre de données défini par logiciel (SDDC) VMC via VMware Cloud Services Console.
+. Téléchargez et déployez le programme d’installation OVA du connecteur HCX sur le serveur vCenter local.
+. Activez HCX avec une clé de licence.
+. Associez le connecteur VMware HCX sur site à VMC HCX Cloud Manager.
+. Configurez le profil réseau, le profil de calcul et le maillage de services.
+. (Facultatif) Effectuez une extension de réseau pour étendre le réseau et éviter la ré-IP.
+. Validez l’état de l’appliance et assurez-vous que la migration est possible.
+. Migrer les charges de travail de la machine virtuelle.
+
+
+====
+.Prérequis
+[%collapsible%open]
+====
+Avant de commencer, assurez-vous que les conditions préalables suivantes sont remplies. Pour plus d'informations, consultez la section  https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10/preparing-for-hcx-installations.html["Préparation de l'installation"^] .  Une fois les conditions préalables en place, y compris la connectivité, configurez et activez HCX en générant une clé de licence à partir de la console VMware HCX sur VMC.  Une fois HCX activé, le plug-in vCenter est déployé et est accessible à l'aide de la console vCenter pour la gestion.
+
+Les étapes d'installation suivantes doivent être effectuées avant de procéder à l'activation et au déploiement de HCX :
+
+. Utilisez un SDDC VMC existant ou créez un nouveau SDDC en suivant cecilink:vmw-aws-vmc-setup.html["Lien NetApp"^] ou ceci https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws.getting-started/GUID-EF198D55-03E3-44D1-AC48-6E2ABA31FF02.html["Lien VMware"^] .
+. Le chemin réseau de l’environnement vCenter local vers le SDDC VMC doit prendre en charge la migration des machines virtuelles à l’aide de vMotion.
+. Assurez-vous que les informations requises https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10/preparing-for-hcx-installations/network-port-and-protocol-requirements.html["règles et ports du pare-feu"^] sont autorisés pour le trafic vMotion entre le vCenter Server local et le vCenter SDDC.
+. Le volume NFS FSx ONTAP doit être monté en tant que banque de données supplémentaire dans le SDDC VMC.  Pour attacher les banques de données NFS au cluster approprié, suivez les étapes décrites dans celink:vmw-aws-vmc-nfs-ds-overview.html["Lien NetApp"^] ou ceci https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws-operations/GUID-D55294A3-7C40-4AD8-80AA-B33A25769CCA.html["Lien VMware"^] .
+
+
+====
+.Architecture de haut niveau
+[%collapsible%open]
+====
+À des fins de test, l'environnement de laboratoire sur site utilisé pour cette validation a été connecté via un VPN site à site à AWS VPC, ce qui a permis la connectivité sur site à AWS et au SDDC cloud VMware via une passerelle de transit externe.  Le trafic de migration HCX et d'extension de réseau circule sur Internet entre le SDDC de destination cloud VMware et sur site.  Cette architecture peut être modifiée pour utiliser des interfaces virtuelles privées Direct Connect.
+
+L'image suivante illustre l'architecture de haut niveau.
+
+image:fsx-hcx-001.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+====
+
+
+== Déploiement de la solution
+
+Suivez la série d’étapes pour terminer le déploiement de cette solution :
+
+.Étape 1 : Activez HCX via VMC SDDC à l'aide de l'option Modules complémentaires
+[%collapsible%open]
+====
+Pour effectuer l'installation, procédez comme suit :
+
+. Connectez-vous à la console VMC à l'adresse https://vmc.vmware.com/home["vmc.vmware.com"^] et accéder à l'inventaire.
+. Pour sélectionner le SDDC approprié et accéder aux modules complémentaires, cliquez sur Afficher les détails sur le SDDC et sélectionnez l'onglet Modules complémentaires.
+. Cliquez sur Activer pour VMware HCX.
++
+
+NOTE: Cette étape prend jusqu’à 25 minutes.
+
++
+image:fsx-hcx-002.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Une fois le déploiement terminé, validez le déploiement en confirmant que HCX Manager et ses plug-ins associés sont disponibles dans la console vCenter.
+. Créez les pare-feu de passerelle de gestion appropriés pour ouvrir les ports nécessaires à l'accès à HCX Cloud Manager. HCX Cloud Manager est maintenant prêt pour les opérations HCX.
+
+
+====
+.Étape 2 : Déployer le programme d'installation OVA sur le serveur vCenter local
+[%collapsible%open]
+====
+Pour que le connecteur sur site communique avec HCX Manager dans VMC, assurez-vous que les ports de pare-feu appropriés sont ouverts dans l'environnement sur site.
+
+. Depuis la console VMC, accédez au tableau de bord HCX, accédez à Administration et sélectionnez l’onglet Mise à jour des systèmes.  Cliquez sur Demander un lien de téléchargement pour l'image OVA du connecteur HCX.
+. Une fois le connecteur HCX téléchargé, déployez l’OVA sur le serveur vCenter local.  Cliquez avec le bouton droit sur vSphere Cluster et sélectionnez l’option Déployer le modèle OVF.
++
+image:fsx-hcx-005.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Saisissez les informations requises dans l’assistant Déployer le modèle OVF, cliquez sur Suivant, puis sur Terminer pour déployer le connecteur VMware HCX OVA.
+. Allumez l'appliance virtuelle manuellement. Pour obtenir des instructions étape par étape, accédez à https://docs.vmware.com/en/VMware-HCX/services/user-guide/GUID-BFD7E194-CFE5-4259-B74B-991B26A51758.html["Guide de l'utilisateur de VMware HCX"^] .
+
+
+====
+.Étape 3 : Activer HCX Connector avec la clé de licence
+[%collapsible%open]
+====
+Après avoir déployé VMware HCX Connector OVA sur site et démarré l’appliance, procédez comme suit pour activer HCX Connector.  Générez la clé de licence à partir de la console VMware HCX sur VMC et saisissez la licence lors de la configuration de VMware HCX Connector.
+
+. Depuis la console VMware Cloud, accédez à Inventaire, sélectionnez le SDDC et cliquez sur Afficher les détails.  Dans l’onglet Modules complémentaires, dans la mosaïque VMware HCX, cliquez sur Ouvrir HCX.
+. Dans l’onglet Clés d’activation, cliquez sur Créer une clé d’activation.  Sélectionnez le type de système comme connecteur HCX et cliquez sur Confirmer pour générer la clé.  Copiez la clé d'activation.
++
+image:fsx-hcx-007.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+
+NOTE: Une clé distincte est requise pour chaque connecteur HCX déployé sur site.
+
+. Connectez-vous au connecteur VMware HCX sur site à l'adresse `"https://hcxconnectorIP:9443"` en utilisant les informations d'identification de l'administrateur.
++
+
+NOTE: Utilisez le mot de passe défini lors du déploiement OVA.
+
+. Dans la section Licence, saisissez la clé d’activation copiée à l’étape 2 et cliquez sur Activer.
++
+
+NOTE: Le connecteur HCX sur site doit disposer d'un accès Internet pour que l'activation se termine avec succès.
+
+. Sous Emplacement du centre de données, indiquez l’emplacement souhaité pour l’installation de VMware HCX Manager sur site.  Cliquez sur Continuer.
+. Sous Nom du système, mettez à jour le nom et cliquez sur Continuer.
+. Sélectionnez Oui, puis Continuer.
+. Sous Connecter votre vCenter, indiquez l’adresse IP ou le nom de domaine complet (FQDN) et les informations d’identification du serveur vCenter, puis cliquez sur Continuer.
++
+
+NOTE: Utilisez le FQDN pour éviter les problèmes de communication ultérieurs.
+
+. Sous Configurer SSO/PSC, indiquez le nom de domaine complet ou l'adresse IP du Platform Services Controller et cliquez sur Continuer.
++
+
+NOTE: Saisissez l’adresse IP ou le nom de domaine complet du serveur vCenter.
+
+. Vérifiez que les informations sont correctement saisies et cliquez sur Redémarrer.
+. Une fois terminé, le serveur vCenter s'affiche en vert.  Le serveur vCenter et SSO doivent tous deux disposer des paramètres de configuration corrects, qui doivent être identiques à ceux de la page précédente.
++
+
+NOTE: Ce processus devrait prendre environ 10 à 20 minutes pour que le plug-in soit ajouté au serveur vCenter.
+
+
+
+image:fsx-hcx-008.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+====
+.Étape 4 : Associez le connecteur VMware HCX sur site à VMC HCX Cloud Manager
+[%collapsible%open]
+====
+. Pour créer une paire de sites entre le serveur vCenter local et le SDDC VMC, connectez-vous au serveur vCenter local et accédez au plug-in HCX vSphere Web Client.
++
+image:fsx-hcx-009.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Sous Infrastructure, cliquez sur Ajouter un appariement de sites.  Pour authentifier le site distant, saisissez l’URL ou l’adresse IP de VMC HCX Cloud Manager et les informations d’identification du rôle CloudAdmin.
++
+image:fsx-hcx-010.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+
+NOTE: Les informations HCX peuvent être récupérées à partir de la page Paramètres SDDC.
+
++
+image:fsx-hcx-011.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+image:fsx-hcx-012.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Pour lancer l’appairage du site, cliquez sur Connecter.
++
+
+NOTE: VMware HCX Connector doit pouvoir communiquer avec l'adresse IP de HCX Cloud Manager via le port 443.
+
+. Une fois le couplage créé, le couplage de sites nouvellement configuré est disponible sur le tableau de bord HCX.
+
+
+====
+.Étape 5 : Configurer le profil réseau, le profil de calcul et le maillage de services
+[%collapsible%open]
+====
+L'appliance VMware HCX Interconnect (HCX-IX) fournit des fonctionnalités de tunnel sécurisé sur Internet et des connexions privées au site cible qui permettent la réplication et les fonctionnalités basées sur vMotion.  L'interconnexion fournit le cryptage, l'ingénierie du trafic et un SD-WAN.  Pour créer l’appliance d’interconnexion HCI-IX, procédez comme suit :
+
+. Sous Infrastructure, sélectionnez Interconnexion > Maillage de services multisites > Profils de calcul > Créer un profil de calcul.
++
+
+NOTE: Les profils de calcul contiennent les paramètres de calcul, de stockage et de déploiement réseau requis pour déployer une appliance virtuelle d'interconnexion.  Ils précisent également quelle partie du centre de données VMware sera accessible au service HCX.
+
++
+Pour des instructions détaillées, voir https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10/configuring-and-managing-the-hcx-interconnect/configuring-the-hcx-service-mesh/create-a-compute-profile.html["Création d'un profil de calcul"^] .
+
++
+image:fsx-hcx-013.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Une fois le profil de calcul créé, créez le profil réseau en sélectionnant Multi-Site Service Mesh > Profils réseau > Créer un profil réseau.
+. Le profil réseau définit une plage d’adresses IP et de réseaux qui seront utilisés par HCX pour ses appliances virtuelles.
++
+
+NOTE: Cela nécessitera deux adresses IP ou plus.  Ces adresses IP seront attribuées à partir du réseau de gestion aux appliances virtuelles.
+
++
+image:fsx-hcx-014.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+Pour des instructions détaillées, voir https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10/configuring-and-managing-the-hcx-interconnect/configuring-the-hcx-service-mesh/create-a-network-profile.html["Création d'un profil réseau"^] .
+
++
+
+NOTE: Si vous vous connectez à un SD-WAN via Internet, vous devez réserver des adresses IP publiques dans la section Réseau et sécurité.
+
+. Pour créer un maillage de services, sélectionnez l’onglet Maillage de services dans l’option Interconnexion et sélectionnez les sites SDDC locaux et VMC.
++
+Le maillage de services établit une paire de profils de calcul et de réseau locaux et distants.
+
++
+image:fsx-hcx-015.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+
+NOTE: Une partie de ce processus implique le déploiement d’appliances HCX qui seront automatiquement configurées sur les sites source et cible, créant ainsi une structure de transport sécurisée.
+
+. Sélectionnez les profils de calcul source et distant et cliquez sur Continuer.
++
+image:fsx-hcx-016.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Sélectionnez le service à activer et cliquez sur Continuer.
++
+image:fsx-hcx-017.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
++
+
+NOTE: Une licence HCX Enterprise est requise pour la migration vMotion assistée par réplication, l'intégration SRM et la migration assistée par système d'exploitation.
+
+. Créez un nom pour le maillage de services et cliquez sur Terminer pour commencer le processus de création.  Le déploiement devrait prendre environ 30 minutes.  Une fois le maillage de services configuré, l’infrastructure virtuelle et le réseau nécessaires à la migration des machines virtuelles de charge de travail ont été créés.
++
+image:fsx-hcx-018.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+
+
+====
+.Étape 6 : Migration des charges de travail
+[%collapsible%open]
+====
+HCX fournit des services de migration bidirectionnelle entre deux ou plusieurs environnements distincts tels que les SDDC sur site et VMC.  Les charges de travail des applications peuvent être migrées vers et depuis les sites activés par HCX à l'aide de diverses technologies de migration telles que la migration en masse HCX, HCX vMotion, la migration à froid HCX, HCX Replication Assisted vMotion (disponible avec l'édition HCX Enterprise) et la migration assistée par le système d'exploitation HCX (disponible avec l'édition HCX Enterprise).
+
+Pour en savoir plus sur les technologies de migration HCX disponibles, consultez https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10/migrating-virtual-machines-with-vmware-hcx/vmware-hcx-migration-types.html["Types de migration VMware HCX"^]
+
+L'appliance HCX-IX utilise le service Mobility Agent pour effectuer des migrations vMotion, Cold et Replication Assisted vMotion (RAV).
+
+
+NOTE: L'appliance HCX-IX ajoute le service Mobility Agent en tant qu'objet hôte dans vCenter Server.  Les ressources de processeur, de mémoire, de stockage et de réseau affichées sur cet objet ne représentent pas la consommation réelle sur l'hyperviseur physique hébergeant l'appliance IX.
+
+image:fsx-hcx-019.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+.VMware HCX vMotion
+[%collapsible%open]
+=====
+Cette section décrit le mécanisme HCX vMotion.  Cette technologie de migration utilise le protocole VMware vMotion pour migrer une machine virtuelle vers VMC SDDC.  L'option de migration vMotion est utilisée pour migrer l'état de la machine virtuelle d'une seule machine virtuelle à la fois.  Il n’y a aucune interruption de service pendant cette méthode de migration.
+
+
+NOTE: L'extension réseau doit être en place (pour le groupe de ports auquel la machine virtuelle est connectée) afin de migrer la machine virtuelle sans avoir besoin de modifier l'adresse IP.
+
+. À partir du client vSphere sur site, accédez à Inventaire, cliquez avec le bouton droit sur la machine virtuelle à migrer et sélectionnez Actions HCX > Migrer vers le site cible HCX.
++
+image:fsx-hcx-020.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Dans l’assistant Migrer la machine virtuelle, sélectionnez la connexion au site distant (SDDC VMC cible).
++
+image:fsx-hcx-021.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Ajoutez un nom de groupe et sous Transfert et placement, mettez à jour les champs obligatoires (Cluster, Stockage et Réseau de destination), cliquez sur Valider.
++
+image:fsx-hcx-022.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+. Une fois les vérifications de validation terminées, cliquez sur Aller pour lancer la migration.
++
+
+NOTE: Le transfert vMotion capture la mémoire active de la machine virtuelle, son état d'exécution, son adresse IP et son adresse MAC.  Pour plus d'informations sur les exigences et les limitations de HCX vMotion, consultez https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10/migrating-virtual-machines-with-vmware-hcx/understanding-vmware-hcx-vmotion-and-cold-migration.html#GUID-517866F6-AF06-4EFC-8FAE-DA067418D584-en["Comprendre VMware HCX vMotion et la migration à froid"^] .
+
+. Vous pouvez surveiller la progression et l’achèvement du vMotion à partir du tableau de bord HCX > Migration.
++
+image:fsx-hcx-023.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+
+
+=====
+.Réplication assistée par VMware vMotion
+[%collapsible%open]
+=====
+Comme vous l’avez peut-être remarqué dans la documentation VMware, VMware HCX Replication Assisted vMotion (RAV) combine les avantages de la migration en masse et de vMotion.  La migration en masse utilise vSphere Replication pour migrer plusieurs machines virtuelles en parallèle : la machine virtuelle est redémarrée lors du basculement.  HCX vMotion migre sans temps d’arrêt, mais il est exécuté en série, une machine virtuelle à la fois dans un groupe de réplication.  RAV réplique la VM en parallèle et la maintient synchronisée jusqu'à la fenêtre de basculement.  Pendant le processus de basculement, il migre une machine virtuelle à la fois sans aucun temps d'arrêt pour la machine virtuelle.
+
+La capture d'écran suivante montre le profil de migration en tant que Replication Assisted vMotion.
+
+image:fsx-hcx-024.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+La durée de la réplication peut être plus longue par rapport au vMotion d'un petit nombre de machines virtuelles.  Avec RAV, synchronisez uniquement les deltas et incluez le contenu de la mémoire.  Voici une capture d’écran de l’état de la migration : elle montre que l’heure de début de la migration est la même et que l’heure de fin est différente pour chaque machine virtuelle.
+
+image:fsx-hcx-025.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+=====
+Pour plus d'informations sur les options de migration HCX et sur la façon de migrer les charges de travail des locaux vers VMware Cloud sur AWS à l'aide de HCX, consultez le https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10/migrating-virtual-machines-with-vmware-hcx.html["Guide de l'utilisateur de VMware HCX"^] .
+
+
+NOTE: VMware HCX vMotion nécessite une capacité de débit de 100 Mbit/s ou plus.
+
+
+NOTE: La banque de données VMC FSx ONTAP cible doit disposer de suffisamment d’espace pour prendre en charge la migration.
+
+====
+
+
+== Conclusion
+
+Que vous cibliez un cloud entièrement ou un cloud hybride et des données résidant sur n'importe quel type/fournisseur de stockage sur site, Amazon FSx ONTAP ainsi que HCX offrent d'excellentes options pour déployer et migrer les charges de travail tout en réduisant le coût total de possession en rendant les exigences de données transparentes pour la couche applicative.  Quel que soit le cas d'utilisation, choisissez VMC avec la banque de données FSx ONTAP pour une réalisation rapide des avantages du cloud, une infrastructure et des opérations cohérentes sur site et sur plusieurs clouds, une portabilité bidirectionnelle des charges de travail et une capacité et des performances de niveau entreprise.  Il s’agit du même processus et des mêmes procédures familiers utilisés pour connecter le stockage et migrer les machines virtuelles à l’aide de la réplication VMware vSphere, de VMware vMotion ou même de la copie NFC.
+
+
+
+== Plats à emporter
+
+Les points clés de ce document comprennent :
+
+* Vous pouvez désormais utiliser Amazon FSx ONTAP comme banque de données avec VMC SDDC.
+* Vous pouvez facilement migrer des données depuis n'importe quel centre de données local vers VMC exécuté avec la banque de données FSx ONTAP
+* Vous pouvez facilement développer et réduire la banque de données FSx ONTAP pour répondre aux exigences de capacité et de performances pendant l'activité de migration.
+
+
+
+
+== Où trouver des informations supplémentaires
+
+Pour en savoir plus sur les informations décrites dans ce document, reportez-vous aux liens Web suivants :
+
+* Documentation VMware Cloud
++
+https://docs.vmware.com/en/VMware-Cloud-on-AWS/["https://docs.vmware.com/en/VMware-Cloud-on-AWS/"^]
+
+* Documentation Amazon FSx ONTAP
++
+https://docs.aws.amazon.com/fsx/latest/ONTAPGuide["https://docs.aws.amazon.com/fsx/latest/ONTAPGuide"^]
+
++
+Guide de l'utilisateur de VMware HCX
+
+* https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10.html["https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-10/vmware-hcx-user-guide-4-10.html"^]
+

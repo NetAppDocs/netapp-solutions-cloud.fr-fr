@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-azure-avs-solutions.html 
+keywords: NetApp Solutions, microsoft azure, avs, vmware managed cloud, enterprise, hybrid, cloud, migrate, migration, disaster recovery, dr 
+summary:  
+---
+= Solutions NetApp pour Azure VMware Solution (AVS)
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Découvrez-en plus sur les solutions que NetApp apporte à Azure.
+
+VMware définit les charges de travail cloud dans l’une des trois catégories suivantes :
+
+* Protéger (y compris la reprise après sinistre et la sauvegarde/restauration)
+* Émigrer
+* Étendre
+
+
+Parcourez les solutions disponibles dans les sections suivantes.
+
+[role="tabbed-block"]
+====
+.Protéger
+--
+* link:vmw-azure-avs-dr-jetstream.html["Reprise après sinistre avec ANF et JetStream (banque de données NFS supplémentaire)"]
+* link:vmw-azure-avs-guest-storage-dr.html["Reprise après sinistre avec ANF et CVO (stockage connecté en invité)"]
+* link:vmw-azure-avs-dro.html["Reprise après sinistre (DRO) avec ANF et AVS"]
+* link:vmw-azure-anf-avs-ds-dr-veeam.html["Utilisation de Veeam Replication et du datastore Azure NetApp Files pour la reprise après sinistre vers Azure VMware Solution"]
+
+
+--
+.Émigrer
+--
+* link:vmw-azure-avs-migrate-hcx.html["Migrer les charges de travail vers la banque de données Azure NetApp Files à l'aide de VMware HCX"]
+
+
+--
+.Étendre
+--
+À VENIR!!
+
+--
+====

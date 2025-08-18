@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-hybrid-dr-overview.html 
+keywords: dr, draas, bluexp, disaster recovery, vmfs datastore, nfs datastore, overview 
+summary: Cette section du document décrit la configuration de BlueXP DRaaS pour configurer la reprise après sinistre des machines virtuelles VMware sur site vers un autre site désigné. 
+---
+= Aperçu
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+La reprise après sinistre est une priorité pour chaque administrateur VMware.  Étant donné que VMware encapsule des serveurs entiers dans une série de fichiers qui composent la machine virtuelle, les administrateurs tirent parti des techniques basées sur le stockage en bloc telles que les clones, les instantanés et les répliques pour protéger ces machines virtuelles.  Les baies ONTAP offrent une réplication intégrée pour transférer les données de volume, et donc les machines virtuelles résidant sur les LUN de banque de données désignés, d'un site à un autre.  BlueXP DRaaS s'intègre à vSphere et automatise l'ensemble du flux de travail pour un basculement et une restauration transparents en cas de sinistre.  En combinant la réplication du stockage avec l’automatisation intelligente, les administrateurs disposent désormais d’un moyen gérable non seulement de configurer, d’automatiser et de tester les plans de reprise après sinistre, mais également des moyens de les exécuter facilement en cas de sinistre.
+
+Les étapes les plus chronophages d'un basculement DR dans un environnement VMware vSphere sont l'exécution des étapes nécessaires à l'inventaire, à l'enregistrement, à la reconfiguration et à la mise sous tension des machines virtuelles sur le site DR.  Une solution idéale présente à la fois un faible RPO (mesuré en minutes) et un faible RTO (mesuré en minutes à heures).  Un facteur souvent négligé dans une solution DR est la capacité à tester efficacement la solution DR à intervalle périodique.
+
+Pour concevoir une solution de reprise après sinistre, gardez à l’esprit les facteurs suivants :
+
+* L'objectif de temps de récupération (RTO).  Le RTO correspond à la rapidité avec laquelle une entreprise peut se remettre d'une catastrophe ou, plus précisément, au temps nécessaire pour exécuter le processus de récupération afin de rendre les services commerciaux à nouveau disponibles.
+* L'objectif de point de récupération (RPO).  Le RPO correspond à l'âge des données récupérées après leur mise à disposition, par rapport au moment où la catastrophe s'est produite.
+* Évolutivité et adaptabilité.  Ce facteur inclut la capacité à augmenter progressivement les ressources de stockage à mesure que la demande augmente.
+
+
+Pour plus d'informations techniques sur les solutions disponibles, veuillez consulter :
+
+* link:vmw-hybrid-dr-nfs.html["DR avec BlueXP DRaaS pour les banques de données NFS"]
+* link:vmw-hybrid-dr-vmfs.html["DR avec BlueXP DRaaS pour les banques de données VMFS"]
+

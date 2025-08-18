@@ -1,0 +1,29 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-sm-solution.html 
+keywords: NetApp Solutions, redhat OpenShift, red hat OpenShift, redhat openshift container platform, ocp, openshift container platform, Advanced Cluster Management, ACM, Hub Cluster, containers, container workloads, VMware, customer managed storage, ONTAP 
+summary:  
+---
+= Solution NetApp avec charges de travail de la plateforme de conteneurs Red Hat OpenShift dans le cloud hybride
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les clients peuvent être à un stade de leur parcours de modernisation où ils sont prêts à déplacer certaines charges de travail sélectionnées ou toutes les charges de travail de leurs centres de données vers le cloud.  Ils peuvent choisir d’utiliser des conteneurs OpenShift autogérés et un stockage NetApp autogéré dans le cloud pour diverses raisons.  Ils doivent planifier et déployer la plateforme de conteneurs Red Hat OpenShift (OCP) dans le cloud pour un environnement prêt pour la production afin de migrer leurs charges de travail de conteneurs depuis leurs centres de données.  Leurs clusters OCP peuvent être déployés sur VMware ou Bare Metal dans leurs centres de données et sur AWS, Azure ou Google Cloud dans l'environnement cloud.
+
+Le stockage NetApp Cloud Volumes ONTAP offre une protection des données, une fiabilité et une flexibilité pour les déploiements de conteneurs dans AWS, Azure et Google Cloud.  Trident sert de fournisseur de stockage dynamique pour consommer le stockage persistant Cloud Volumes ONTAP pour les applications avec état des clients.  Trident Protect peut être utilisé pour les besoins de gestion des données des applications avec état telles que la protection des données, la migration et la continuité des activités.
+
+
+
+== Solution de protection et de migration des données pour les charges de travail OpenShift Container dans un cloud hybride à l'aide de Trident Protect
+
+Sur site et AWSimage:rhhc-self-managed-aws.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+Sur site et Google Cloudimage:rhhc-self-managed-gcp.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+Sur site et Cloud Azureimage:rhhc-self-managed-azure.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]

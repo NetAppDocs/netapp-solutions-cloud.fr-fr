@@ -1,0 +1,45 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-dp-velero-delete.html 
+keywords: OpenShift, OCP, Trident, NetApp ONTAP, Red Hat OpenShift, OADP operator, Openshift Data Protection Application operator, Velero 
+summary: Protection des données des applications conteneurisées Red Hat OpenShift avec NetApp ONTAP 
+---
+= Suppression des sauvegardes et des restaurations lors de l'utilisation de Velero
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cette section décrit comment supprimer les sauvegardes et les restaurations d'applications dans la plateforme de conteneurs OpenShift à l'aide de Velero.
+
+
+
+== Lister toutes les sauvegardes
+
+Vous pouvez répertorier tous les CR de sauvegarde à l'aide de l'outil OC CLI ou de l'outil Velero CLI.  Téléchargez le Velero CLI comme indiqué dans les instructions dulink:https://velero.io/docs/v1.3.0/basic-install/#install-the-cli["Documentation Velero"] .
+
+image:redhat-openshift-oadp-delete-001.png["sauvegarde de la liste"]
+
+
+
+== Supprimer une sauvegarde
+
+Vous pouvez supprimer un CR de sauvegarde sans supprimer les données de stockage d'objets à l'aide de l'outil OC CLI.  La sauvegarde sera supprimée de la sortie CLI/Console.  Cependant, comme la sauvegarde correspondante n'est pas supprimée du stockage d'objets, elle réapparaîtra dans la sortie CLI/console.
+
+image:redhat-openshift-oadp-delete-002.png["supprimer la sauvegarde"]
+
+**Si vous souhaitez supprimer le CR de sauvegarde ET les données de stockage d'objets associées, vous pouvez le faire à l'aide de l'outil CLI Velero.**
+
+image:redhat-openshift-oadp-delete-003.png["supprimer la sauvegarde ET le stockage d'objets associé"]
+
+
+
+== Suppression de la restauration
+
+Vous pouvez supprimer l'objet CR de restauration en utilisant l'interface de ligne de commande OC ou l'interface de ligne de commande Velero.
+
+image:redhat-openshift-oadp-delete-004.png["supprimer Restaurer"]

@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-aws-vmc-solutions.html 
+keywords: NetApp Solutions, amazon, vmc, vmware managed cloud, enterprise, hybrid, cloud, migrate, migration, disaster recovery, dr 
+summary:  
+---
+= Solutions NetApp pour Amazon VMware Managed Cloud (VMC)
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Découvrez-en plus sur les solutions que NetApp apporte à AWS.
+
+VMware définit les charges de travail cloud dans l’une des trois catégories suivantes :
+
+* Protéger (y compris la reprise après sinistre et la sauvegarde/restauration)
+* Émigrer
+* Étendre
+
+
+Parcourez les solutions disponibles dans les sections suivantes.
+
+[role="tabbed-block"]
+====
+.Protéger
+--
+* link:vmw-aws-vmc-guest-storage-dr.html["Reprise après sinistre avec VMC sur AWS (connecté en tant qu'invité)"]
+* link:vmw-aws-vmc-backup-restore-veeam.html["Veeam Backup  Restore dans VMC avec FSx ONTAP"]
+* link:vmw-aws-vmc-dro.html["Reprise après sinistre (DRO) avec FSx ONTAP et VMC"]
+* link:vmw-aws-fsxn-vmc-ds-dr-veeam.html["Utilisation de Veeam Replication et de FSx ONTAP pour la reprise après sinistre sur VMware Cloud sur AWS"]
+
+
+--
+.Émigrer
+--
+* link:vmw-aws-vmc-migrate-hcx.html["Migrer les charges de travail vers la banque de données FSx ONTAP à l'aide de VMware HCX"]
+
+
+--
+.Étendre
+--
+À VENIR!!
+
+--
+====

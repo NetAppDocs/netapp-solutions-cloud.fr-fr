@@ -1,0 +1,70 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-hybrid-compute-config.html 
+keywords: NetApp Solutions, amazon, vmc, aws, microsoft azure, avs, azure, google cloud, gcp, gcve, vmware managed cloud, enterprise, hybrid, cloud, config, configuration 
+summary:  
+---
+= Configuration de l'environnement de virtualisation chez le fournisseur de cloud
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les détails sur la façon de configurer l’environnement de virtualisation dans chacun des hyperscalers pris en charge sont traités ici.
+
+[role="tabbed-block"]
+====
+.AWS / VMC
+--
+Cette section décrit comment configurer et gérer VMware Cloud sur AWS SDDC et l'utiliser en combinaison avec les options disponibles pour la connexion au stockage NetApp .
+
+
+NOTE: Le stockage en invité est la seule méthode prise en charge pour connecter Cloud Volumes ONTAP à AWS VMC.
+
+Le processus de configuration peut être décomposé selon les étapes suivantes :
+
+* Déployer et configurer VMware Cloud pour AWS
+* Connectez VMware Cloud à FSx ONTAP
+
+
+Voir le détaillink:../vmware/vmw-aws-vmc-setup.html["étapes de configuration pour VMC"] .
+
+--
+.Azure / AVS
+--
+Cette section décrit comment configurer et gérer Azure VMware Solution et l’utiliser en combinaison avec les options disponibles pour la connexion au stockage NetApp .
+
+
+NOTE: Le stockage en invité est la seule méthode prise en charge pour connecter Cloud Volumes ONTAP à Azure VMware Solution.
+
+Le processus de configuration peut être décomposé selon les étapes suivantes :
+
+* Enregistrez le fournisseur de ressources et créez un cloud privé
+* Connectez-vous à une passerelle de réseau virtuel ExpressRoute nouvelle ou existante
+* Valider la connectivité réseau et accéder au cloud privé
+
+
+Voir le détaillink:azure-setup.html["étapes de configuration pour AVS"] .
+
+--
+.GCP / GCVE
+--
+Cette section décrit comment configurer et gérer GCVE et l'utiliser en combinaison avec les options disponibles pour la connexion au stockage NetApp .
+
+
+NOTE: Le stockage en invité est la seule méthode prise en charge pour connecter Cloud Volumes ONTAP et Google Cloud NetApp Volumes à GCVE.
+
+Le processus de configuration peut être décomposé selon les étapes suivantes :
+
+* Déployer et configurer GCVE
+* Activer l'accès privé à GCVE
+
+
+Voir le détaillink:gcp-setup.html["étapes de configuration pour GCVE"] .
+
+--
+====

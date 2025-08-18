@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-solutions-value-prop.html 
+keywords: NetApp Solutions, hybrid cloud, container workloads, containers, Red Hat OpenShift, RedHat OpenShift, VMware, ROSA, ACC, Trident Protect, Advanced Cluster Management, ACM, Hub Cluster 
+summary:  
+---
+= Propositions de valeur des solutions NetApp Hybrid Multicloud pour les charges de travail Red Hat OpenShift Container
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+La plupart des clients ne se contentent pas de créer des environnements basés sur Kubernetes sans aucune infrastructure existante.  Il s’agit peut-être d’un magasin informatique traditionnel exécutant la plupart de ses applications d’entreprise sur des machines virtuelles (dans de grands environnements VMware par exemple).  Ils commencent ensuite à créer de petits environnements basés sur des conteneurs pour répondre aux besoins de leurs équipes de développement d’applications modernes.  Ces initiatives commencent généralement à petite échelle et deviennent plus répandues à mesure que les équipes apprennent ces nouvelles technologies et compétences et commencent à reconnaître les nombreux avantages de leur adoption.  La bonne nouvelle pour les clients est que NetApp peut répondre aux besoins des deux environnements.  Cet ensemble de solutions pour le multicloud hybride avec Red Hat OpenShift permettra aux clients NetApp d'adopter des technologies et des services cloud modernes sans avoir à réorganiser l'ensemble de leur infrastructure et de leur organisation.  Que les applications et les données des clients soient hébergées sur site, dans le cloud, exécutées sur des machines virtuelles ou sur des conteneurs, NetApp peut fournir une gestion, une protection, une sécurité et une portabilité cohérentes des données.  Grâce à ces nouvelles solutions, la même valeur que NetApp a fournie dans les environnements de centres de données sur site pendant des décennies sera disponible sur l'ensemble de l'horizon de données de l'entreprise, sans nécessiter d'investissement important pour se réorganiser, acquérir de nouvelles compétences ou constituer de nouvelles équipes.  NetApp est bien placé pour aider les clients à résoudre ces défis commerciaux, quelle que soit la phase de leur parcours vers le cloud.
+
+NetApp Hybrid Multi-Cloud avec Red Hat Openshift :
+
+* Fournit aux clients des conceptions et des pratiques validées qui démontrent les meilleures façons pour les clients de gérer, protéger, sécuriser et migrer leurs données et applications lors de l'utilisation de Red Hat OpenShift avec des solutions de stockage basées sur NetApp .
+* Présentez les meilleures pratiques pour les clients exécutant Red Hat OpenShift avec le stockage NetApp dans des environnements VMware, une infrastructure bare metal ou une combinaison des deux.
+* Démontrer des stratégies et des options pour les environnements sur site et dans le cloud, ainsi que pour les environnements hybrides où les deux sont utilisés.
+

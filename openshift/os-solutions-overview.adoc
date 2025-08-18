@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-solutions-overview.html 
+keywords: NetApp Solutions, hybrid cloud, container workloads, containers, Red Hat OpenShift, RedHat OpenShift, VMware, ROSA, ACC, Trident Protect, Advanced Cluster Management, ACM, Hub Cluster 
+summary:  
+---
+= Solutions multicloud hybrides NetApp pour les charges de travail des conteneurs Red Hat OpenShift
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp constate une augmentation significative du nombre de clients modernisant leurs applications d'entreprise existantes et créant de nouvelles applications à l'aide de conteneurs et de plates-formes d'orchestration construites autour de Kubernetes.  Red Hat OpenShift Container Platform est un exemple que nous voyons adopté par bon nombre de nos clients.
+
+
+
+== Aperçu
+
+Alors que de plus en plus de clients commencent à adopter des conteneurs au sein de leurs entreprises, NetApp est parfaitement positionné pour répondre aux besoins de stockage persistant de leurs applications avec état et aux besoins de gestion des données classiques tels que la protection des données, la sécurité des données et la migration des données.  Cependant, ces besoins sont satisfaits à l’aide de stratégies, d’outils et de méthodes différentes.
+
+Les options de stockage basées sur ** NetApp ONTAP** répertoriées ci-dessous offrent sécurité, protection des données, fiabilité et flexibilité pour les conteneurs et les déploiements Kubernetes.
+
+* Stockage autogéré sur site :
++
+** Stockage en réseau NetApp (FAS), baies NetApp All Flash FAS (AFF), baies NetApp All SAN (ASA) et ONTAP Select
+
+
+* Stockage géré par le fournisseur sur site :
++
+** NetApp Keystone fournit du stockage en tant que service (STaaS)
+
+
+* Stockage autogéré dans le cloud :
++
+** NetApp Cloud Volumes ONTAP(CVO) fournit un stockage autogéré dans les hyperscalers
+
+
+* Stockage géré par le fournisseur dans le cloud :
++
+** Amazon FSx for NetApp ONTAP, Azure NetApp Files et Google Cloud NetApp Volumes fournissent un stockage basé sur des fichiers dans le cloud.
+
+
+
+
+image:rhhc-ontap-features.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+** NetApp BlueXP** vous permet de gérer tous vos actifs de stockage et de données à partir d'un seul plan de contrôle/interface.
+
+Vous pouvez utiliser BlueXP pour créer et administrer le stockage cloud (par exemple, Cloud Volumes ONTAP et Azure NetApp Files), pour déplacer, protéger et analyser des données, et pour contrôler de nombreux périphériques de stockage sur site et en périphérie.
+
+** NetApp Trident** est un orchestrateur de stockage conforme CSI qui permet une consommation rapide et facile du stockage persistant soutenu par une variété d'options de stockage NetApp mentionnées ci-dessus.  Il s'agit d'un logiciel open source maintenu et pris en charge par NetApp.
+
+image:rhhc-trident-features.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+Les charges de travail critiques des conteneurs nécessitent plus que de simples volumes persistants.  Leurs exigences en matière de gestion des données nécessitent également la protection et la migration des objets Kubernetes de l’application.
+
+
+NOTE: Les données d'application incluent les objets Kubernetes en plus des données utilisateur : Voici quelques exemples : - objets Kubernetes tels que les spécifications des pods, les PVC, les déploiements, les services - objets de configuration personnalisés tels que les cartes de configuration et les secrets - données persistantes telles que les copies Snapshot, les sauvegardes, les clones - ressources personnalisées telles que les CR et les CRD
+
+** NetApp Trident Protect**, disponible en tant que logiciel open source gratuit maintenu par NetApp, offre des fonctionnalités avancées de gestion des données d'application qui améliorent la fonctionnalité et la disponibilité des applications Kubernetes avec état prises en charge par les systèmes de stockage NetApp ONTAP et le provisionneur de stockage NetApp Trident CSI.  Trident Protect simplifie la gestion, la protection et le déplacement des charges de travail conteneurisées dans les clouds publics et les environnements sur site.  Il offre également des capacités d'automatisation via son API et sa CLI.
+
+Cette documentation de référence fournit la validation de la protection des données des applications basées sur des conteneurs, déployées sur la plate-forme RedHat OpenShift à l'aide de Trident Protect.  De plus, la solution fournit des détails de haut niveau pour le déploiement et l’utilisation de Red Hat Advanced Cluster Management (ACM) pour la gestion des plates-formes de conteneurs.  Le document met également en évidence les détails de l'intégration du stockage NetApp avec les plates-formes de conteneurs Red Hat OpenShift à l'aide du provisionneur Trident CSI.

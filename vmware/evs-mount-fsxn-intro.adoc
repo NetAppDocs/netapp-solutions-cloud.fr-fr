@@ -1,0 +1,57 @@
+---
+sidebar: sidebar 
+permalink: vmware/evs-mount-fsxn-intro.html 
+keywords: Amazon, AWS, EVS, Elastic VMware Service, ONTAP, FSx 
+summary: 'Ce document présente les étapes détaillées pour créer un système de fichiers FSx pour ONTAP et le joindre pour l"utiliser comme banque de données Internet Small Computer System Interface (iSCSI) ou Network File System (NFS) à utiliser avec Amazon EVS.' 
+---
+= Comment monter Amazon FSx for NetApp ONTAP en tant que banque de données externe pour Amazon Elastic VMware Service
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce document présente les étapes détaillées pour créer un système de fichiers FSx pour ONTAP et le joindre pour l'utiliser comme banque de données Internet Small Computer System Interface (iSCSI) ou Network File System (NFS) à utiliser avec Amazon EVS.
+
+
+
+== Introduction
+
+Les organisations disposant d'investissements VMware sur site existants et recherchant des moyens efficaces et rentables pour moderniser leurs déploiements en migrant, en explosant, en étendant ou en protégeant (sauvegarde, reprise après sinistre) des copies sur AWS ont été confrontées à plusieurs défis.  Avec la sortie d'Amazon Elastic VMware Service (Amazon EVS), il existe désormais un service AWS natif qui permet d'exécuter VMware Cloud Foundation (VCF) directement dans un Amazon Virtual Private Cloud (VPC).
+
+Amazon EVS permet d'étendre les déploiements VCF existants vers AWS, de s'intégrer à AWS pour étendre les performances pendant les pics d'utilisation et d'exécuter entièrement les charges de travail VCF sur AWS pour faciliter les modernisations, les sorties de centres de données, les consolidations et d'autres cas d'utilisation.
+
+Bien qu'Amazon EVS offre de solides avantages, l'architecture hyperconvergée par défaut associe le calcul et le stockage, empêchant ainsi une mise à l'échelle indépendante de l'un ou de l'autre en fonction des besoins de l'entreprise.  Dans le monde actuel centré sur les données, les besoins en stockage de nombreuses organisations sont supérieurs à ceux en matière de calcul.  Cependant, avec l’architecture hyperconvergée de VMware, les ressources de stockage sont couplées aux ressources de calcul.  Cela signifie que la mise à l’échelle du stockage ne peut être effectuée qu’en ajoutant des hôtes de calcul qui ne seront jamais utilisés.  C'est une situation qui peut augmenter considérablement les coûts, en particulier dans les charges de travail nécessitant beaucoup de stockage.
+
+Pour résoudre ce problème, AWS et NetApp proposent Amazon FSx for NetApp ONTAP (FSx pour ONTAP) comme service de stockage externe pour Amazon EVS.  FSx for ONTAP est un service de stockage natif AWS qui offre les fonctionnalités de hautes performances, de résilience des données et de rentabilité du logiciel NetApp ONTAP .  En utilisant FSx pour ONTAP comme stockage externe, les utilisateurs d'Amazon EVS peuvent faire évoluer les ressources de calcul et de stockage de manière indépendante, permettant ainsi un coût total de possession (TCO) optimal.
+
+
+
+== Aperçu
+
+Ce document présente les étapes détaillées pour créer un système de fichiers FSx pour ONTAP et le joindre pour l'utiliser comme banque de données Internet Small Computer System Interface (iSCSI) ou Network File System (NFS) à utiliser avec Amazon EVS.
+
+
+
+== Objectif de ce guide
+
+Ce guide fournit des instructions sur la configuration d'une banque de données FSx pour ONTAP pour Amazon EVS, ainsi que les meilleures pratiques, les exigences de prise en charge, les considérations de dimensionnement et d'autres informations pour vous aider à planifier, concevoir et mettre en œuvre l'intégration.
+
+
+
+== Public
+
+Ce didacticiel est destiné aux architectes et administrateurs Cloud familiarisés avec VMware vSphere, Amazon EVS, la console AWS et FSx pour ONTAP.
+
+
+
+== Architecture de haut niveau
+
+Dans cette section, nous donnerons un aperçu de l’architecture de la solution permettant d’utiliser FSx pour ONTAP comme banque de données pour Amazon EVS.
+
+Ci-dessous, vous pouvez voir une vue d'ensemble de l'architecture du magasin de données FSx for ONTAP avec un environnement Amazon EVS au sein d'un AWS VPC.
+
+image:evs-mount-fsxn-001.png["Figure représentant l'architecture de haut niveau pour cette solution"]

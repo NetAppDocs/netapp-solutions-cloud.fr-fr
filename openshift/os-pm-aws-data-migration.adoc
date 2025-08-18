@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-pm-aws-data-migration.html 
+keywords: NetApp Solutions, redhat OpenShift, red hat OpenShift, redhat openshift container platform, ocp, openshift container platform, Advanced Cluster Management, ACM, Hub Cluster, containers, container workloads, VMware, customer managed storage, ONTAP, Ansible Automation Platform, BlueXP 
+summary:  
+---
+= Migration des données
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cette page présente les options de migration de données pour les charges de travail de conteneurs sur les clusters Red Hat OpenShift gérés à l'aide de FSx ONTAP pour le stockage persistant.
+
+
+
+== Migration des données
+
+Le service Red Hat OpenShift sur AWS ainsi qu'Amazon Amazon FSx for NetApp ONTAP (FSx ONTAP) font partie de leur portefeuille de services par AWS.  FSx ONTAP est disponible sur les options Single AZ ou Multi-AZ.  L'option Multi-Az offre une protection des données contre les pannes de zone de disponibilité.  FSx ONTAP peut être intégré à Trident pour fournir un stockage persistant pour les applications sur les clusters ROSA.
+
+
+
+=== Intégration de FSx ONTAP avec Trident à l'aide de la carte Helm
+
+.Intégration du cluster ROSA avec Amazon FSx ONTAP
+video::621ae20d-7567-4bbf-809d-b01200fa7a68[panopto]
+La migration des applications conteneurisées implique :
+
+* Volumes persistants : cela peut être réalisé à l'aide de BlueXP.  Une autre option consiste à utiliser Trident Protect pour gérer les migrations d’applications de conteneurs depuis l’environnement local vers l’environnement cloud.  L’automatisation peut être utilisée dans le même but.
+* Métadonnées d'application : cela peut être réalisé à l'aide d'OpenShift GitOps (Argo CD).
+
+
+
+
+=== Basculement et restauration d'applications sur un cluster ROSA à l'aide de FSx ONTAP pour le stockage persistant
+
+La vidéo suivante est une démonstration des scénarios de basculement et de restauration d'applications à l'aide de BlueXP et d'Argo CD.
+
+.Basculement et restauration des applications sur le cluster ROSA
+video::e9a07d79-42a1-4480-86be-b01200fa62f5[panopto]
+
+
+=== Solution de protection et de migration des données pour les charges de travail des conteneurs OpenShift
+
+image:rhhc-rosa-with-fsxn.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]

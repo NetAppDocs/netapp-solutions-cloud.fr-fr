@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-azure-avs-overview.html 
+keywords: NetApp Solutions, hyperscalers, azure, avs, enterprise, hybrid, cloud, migrate, migration, disaster recovery, dr 
+summary:  
+---
+= Fonctionnalités NetApp pour Azure AVS
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Découvrez-en plus sur les fonctionnalités que NetApp apporte à la solution Azure VMware (AVS) : de NetApp en tant que périphérique de stockage connecté en tant qu'invité ou banque de données NFS supplémentaire à la migration des flux de travail, à l'extension/à l'éclatement vers le cloud, à la sauvegarde/restauration et à la reprise après sinistre.
+
+Accédez à la section du contenu souhaité en sélectionnant parmi les options suivantes :
+
+* link:#config["Configuration d'AVS dans Azure"]
+* link:#datastore["Options de stockage NetApp pour AVS"]
+* link:#solutions["Solutions cloud NetApp / VMware"]
+
+
+
+
+== Configuration d'AVS dans Azure
+
+Comme pour les environnements locaux, la planification d’un environnement de virtualisation basé sur le cloud est essentielle pour un environnement prêt pour la production et la création de machines virtuelles et la migration.
+
+Cette section décrit comment configurer et gérer Azure VMware Solution et l’utiliser en combinaison avec les options disponibles pour la connexion au stockage NetApp .
+
+
+NOTE: Le stockage en invité est la seule méthode prise en charge pour connecter Cloud Volumes ONTAP à Azure VMware Solution.
+
+Le processus de configuration peut être décomposé selon les étapes suivantes :
+
+* Enregistrez le fournisseur de ressources et créez un cloud privé
+* Connectez-vous à une passerelle de réseau virtuel ExpressRoute nouvelle ou existante
+* Valider la connectivité réseau et accéder au cloud privé
+
+
+Voir le détaillink:azure-setup.html["étapes de configuration pour AVS"] .
+
+
+
+== Options de stockage NetApp pour AVS
+
+Le stockage NetApp peut être utilisé de plusieurs manières, soit en tant que stockage de données connecté, soit en tant que banque de données NFS supplémentaire, dans Azure AVS.
+
+S'il vous plaît visitezlink:vmw-hybrid-support-configs.html["Options de stockage NetApp prises en charge"] pour plus d'informations.
+
+Azure prend en charge le stockage NetApp dans les configurations suivantes :
+
+* Azure NetApp Files (ANF) en tant que stockage connecté invité
+* Cloud Volumes ONTAP (CVO) en tant que stockage connecté aux invités
+* Azure NetApp Files (ANF) comme banque de données NFS supplémentaire
+
+
+Voir le détaillink:azure-guest.html["options de stockage de connexion invité pour AVS"] .  Voir le détaillink:azure-native-nfs-datastore-option.html["options de banque de données NFS supplémentaires pour AVS"] .
+
+
+
+== Cas d'utilisation de solutions
+
+Avec les solutions cloud NetApp et VMware, de nombreux cas d'utilisation sont simples à déployer dans Azure AVS. Ces cas sont définis pour chacune des zones cloud définies par VMware :
+
+* Protéger (comprend à la fois la reprise après sinistre et la sauvegarde/restauration)
+* Étendre
+* Émigrer
+
+
+link:vmw-azure-avs-solutions.html["Parcourez les solutions NetApp pour Azure AVS"]

@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-hybrid-summary.html 
+keywords: NetApp Solutions, hybrid, Multicloud, enterprise hybrid cloud, hyperscalers, vmware 
+summary:  
+---
+= Résumé et conclusion : Pourquoi choisir NetApp Hybrid Multicloud avec VMware ?
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp Cloud Volumes ainsi que les solutions VMware pour les principaux hyperscalers offrent un grand potentiel aux organisations qui cherchent à tirer parti du cloud hybride.  Le reste de cette section fournit les cas d’utilisation qui montrent que l’intégration de NetApp Cloud Volumes permet de véritables capacités multicloud hybrides.
+
+
+
+== Cas d'utilisation n°1 : Optimisation du stockage
+
+Lors de l'exécution d'un exercice de dimensionnement à l'aide de la sortie RVtools, il est toujours évident que l'échelle de puissance (vCPU/vMem) est parallèle au stockage.  Souvent, les organisations se retrouvent dans une situation où l'espace de stockage requis augmente la taille du cluster bien au-delà de ce qui est nécessaire en termes de puissance.
+
+En intégrant NetApp Cloud Volumes, les organisations peuvent réaliser une solution cloud basée sur vSphere avec une approche de migration simple, sans changement de plate-forme, sans changement d'IP et sans changement d'architecture.  De plus, cette optimisation vous permet de faire évoluer l'empreinte de stockage tout en conservant le nombre d'hôtes au minimum requis dans vSphere, mais sans modifier la hiérarchie de stockage, la sécurité ou les fichiers mis à disposition.  Cela vous permet d’optimiser le déploiement et de réduire le coût total de possession global de 35 à 45 %.  Cette intégration vous permet également de faire évoluer le stockage du stockage à chaud vers des performances de niveau production en quelques secondes.
+
+
+
+== Cas d'utilisation n° 2 : Migration vers le cloud
+
+Les organisations sont soumises à la pression de migrer des applications des centres de données sur site vers le cloud public pour de multiples raisons : une expiration de bail imminente ; une directive financière visant à passer des dépenses d'investissement (capex) aux dépenses opérationnelles (opex) ; ou simplement un mandat descendant visant à tout déplacer vers le cloud.
+
+Lorsque la vitesse est essentielle, seule une approche de migration rationalisée est envisageable, car la refonte et la refactorisation des applications pour s'adapter à la plateforme IaaS particulière du cloud sont lentes et coûteuses, prenant souvent des mois.  En combinant NetApp Cloud Volumes avec la réplication SnapMirror à faible consommation de bande passante pour le stockage connecté aux invités (y compris les RDM en conjonction avec des copies Snapshot cohérentes avec les applications et HCX, la migration spécifique au cloud (par exemple Azure Migrate) ou des produits tiers pour la réplication des machines virtuelles), cette transition est encore plus simple que de s'appuyer sur des mécanismes de filtres d'E/S chronophages.
+
+
+
+== Cas d'utilisation n° 3 : extension du centre de données
+
+Lorsqu'un centre de données atteint ses limites de capacité en raison de pics de demande saisonniers ou simplement d'une croissance organique constante, le passage à VMware hébergé dans le cloud avec NetApp Cloud Volumes est une solution simple.  L'utilisation de NetApp Cloud Volumes permet de créer, de répliquer et d'étendre le stockage très facilement en offrant une haute disponibilité dans toutes les zones de disponibilité et des capacités de mise à l'échelle dynamique.  L'utilisation de NetApp Cloud Volumes permet de minimiser la capacité du cluster hôte en surmontant le besoin de clusters extensibles.
+
+
+
+== Cas d'utilisation n° 4 : Reprise après sinistre dans le cloud
+
+Dans une approche traditionnelle, en cas de sinistre, les machines virtuelles répliquées dans le cloud nécessiteraient une conversion vers la propre plateforme d'hyperviseur du cloud avant de pouvoir être restaurées – une tâche qui ne doit pas être gérée en cas de crise.
+
+En utilisant NetApp Cloud Volumes pour le stockage connecté aux invités à l'aide de la réplication SnapCenter et SnapMirror sur site ainsi que des solutions de virtualisation de cloud public, une meilleure approche de reprise après sinistre peut être conçue, permettant aux répliques de machines virtuelles d'être récupérées sur une infrastructure VMware SDDC entièrement cohérente avec des outils de récupération spécifiques au cloud (par exemple, Azure Site Recovery) ou des outils tiers équivalents tels que Veeam.  Cette approche vous permet également d’effectuer rapidement des exercices de reprise après sinistre et de récupération après un ransomware.  Cela vous permet également de passer à une production complète pour les tests ou en cas de sinistre en ajoutant des hôtes à la demande.
+
+
+
+== Cas d'utilisation n° 5 : Modernisation des applications
+
+Une fois les applications dans le cloud public, les organisations voudront profiter des centaines de services cloud puissants pour les moderniser et les étendre.  Avec l’utilisation de NetApp Cloud Volumes, la modernisation est un processus simple car les données d’application ne sont pas verrouillées dans vSAN et permettent la mobilité des données pour un large éventail de cas d’utilisation, y compris Kubernetes.
+
+
+
+== Conclusion
+
+Que vous cibliez un cloud entièrement cloud ou hybride, NetApp Cloud Volumes offre d'excellentes options pour déployer et gérer les charges de travail des applications ainsi que les services de fichiers et les protocoles de blocs tout en réduisant le coût total de possession en rendant les exigences de données transparentes pour la couche applicative.
+
+Quel que soit le cas d'utilisation, choisissez votre cloud/hyperscaler préféré avec NetApp Cloud Volumes pour une réalisation rapide des avantages du cloud, une infrastructure et des opérations cohérentes sur site et sur plusieurs clouds, une portabilité bidirectionnelle des charges de travail et une capacité et des performances de niveau entreprise.
+
+Il s’agit du même processus et des mêmes procédures familiers qui sont utilisés pour connecter le stockage.  N'oubliez pas que c'est simplement la position des données qui a changé avec les nouveaux noms ; les outils et les processus restent tous les mêmes et NetApp Cloud Volumes aide à optimiser le déploiement global.

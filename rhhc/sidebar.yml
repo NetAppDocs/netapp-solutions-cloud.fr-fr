@@ -1,0 +1,84 @@
+---
+section: rhhc
+title: Multicloud hybride NetApp avec Red Hat OpenShift
+url: "/rhhc/index.html"
+entries:
+- title: Commencer
+  pdf-filename: Red Hat Openshift pour le multicloud hybride
+  entries:
+  - title: Présentation de la solution
+    url: "/openshift/os-solutions-overview.html"
+  - title: Propositions de valeur
+    url: "/openshift/os-solutions-value-prop.html"
+  - title: Solutions validées
+    url: "/openshift/os-solutions-validated.html"
+  - title: Versions validées
+    url: "/openshift/os-solutions-versions.html"
+  - title: Options de stockage prises en charge
+    url: "/openshift/os-solutions-storage-options.html"
+  - title: Ressources supplémentaires
+    url: "/openshift/os-solutions-resources.html"
+- title: Openshift pour sur site
+  pdf-filename: Red Hat Openshift pour les environnements locaux
+  entries:
+  - title: Présentation de la solution
+    url: "/openshift/os-op-solution.html"
+  - title: Configurer les charges de travail des conteneurs OpenShift sur VMware
+    url: "/openshift/os-op-setup.html"
+  - title: Protégez les charges de travail des conteneurs sur VMware
+    url: "/openshift/os-op-data-protection.html"
+  - title: Migrer les charges de travail des conteneurs sur VMware
+    url: "/openshift/os-op-data-migration.html"
+- title: Cloud hybride avec composants autogérés
+  pdf-filename: Cloud hybride avec composants autogérés Red Hat OpenShift (sur site/AWS/GCP/Azure)
+  entries:
+  - title: Présentation de la solution
+    url: "/openshift/os-sm-solution.html"
+  - title: Configurer les charges de travail des conteneurs OpenShift sur AWS
+    url: "/openshift/os-sm-setup.html"
+  - title: Configurer les charges de travail des conteneurs OpenShift sur GCP
+    url: "/openshift/os-sm-gcp-setup.html"
+  - title: Configurer les charges de travail des conteneurs OpenShift sur Azure
+    url: "/openshift/os-sm-azure-setup.html"
+  - title: Protégez les charges de travail des conteneurs sur AWS/GCP/Azure
+    url: "/openshift/os-sm-data-protection.html"
+  - title: Migrer les charges de travail des conteneurs vers AWS/GCP/Azure
+    url: "/openshift/os-sm-data-migration.html"
+- title: Cloud hybride avec composants gérés par le fournisseur
+  pdf-filename: Cloud hybride avec composants gérés par le fournisseur Red Hat OpenShift
+  entries:
+  - title: Présentation de la solution
+    url: "/openshift/os-pm-solution.html"
+  - title: Configurer les charges de travail des conteneurs OpenShift sur AWS
+    url: "/openshift/os-pm-setup.html"
+  - title: Configurer OpenShift Dedicated sur Google Cloud
+    url: "/openshift/os-pm-gcnv-setup.html"
+  - title: Protégez les charges de travail des conteneurs sur AWS
+    url: "/openshift/os-pm-aws-dp.html"
+  - title: Migrer les charges de travail des conteneurs sur AWS
+    url: "/openshift/os-pm-aws-data-migration.html"
+  - title: Solutions ROSA supplémentaires pour les conteneurs et la virtualisation
+    url: "/openshift/os-pm-rosa-additional.html"
+- title: Protégez vos données avec Trident Protect
+  pdf-filename: Protection des données avec Trident Protect
+  entries:
+  - title: Protégez les applications conteneurisées à l'aide de Trident Protect
+    url: "/openshift/os-dp-tp-solution.html"
+  - title: Protégez les machines virtuelles à l'aide de Trident Protect
+    url: "/openshift/osv-vm-dp-using-tp.html"
+- title: Protégez les applications conteneurisées à l'aide d'outils tiers
+  pdf-filename: Protection des données des applications conteneurisées à l'aide d'outils
+    tiers
+  entries:
+  - title: Présentation de la solution
+    url: "/openshift/os-dp-velero-solution.html"
+  - title: Installer OADP
+    url: "/openshift/os-dp-velero-installation.html"
+  - title: Sauvegarder les applications de conteneur à l'aide de Velero
+    url: "/openshift/os-dp-velero-backup.html"
+  - title: Migrer les applications
+    url: "/openshift/os-dp-velero-migrate.html"
+  - title: Restaurer à partir d'une sauvegarde à l'aide de Velero
+    url: "/openshift/os-dp-velero-restore.html"
+  - title: Supprimer les sauvegardes et les restaurations
+    url: "/openshift/os-dp-velero-delete.html"
