@@ -57,7 +57,7 @@ AWS prend en charge le stockage NetApp dans les configurations suivantes :
 * FSx ONTAP comme banque de données NFS supplémentaire
 
 
-Voir le détaillink:aws-guest.html["options de stockage de connexion invité pour VMC"] .  Voir le détaillink:aws-native-nfs-datastore-option.html["options de banque de données NFS supplémentaires pour VMC"] .
+Voir le détaillink:../vmware/vmw-aws-vmc-guest-storage.html["options de stockage de connexion invité pour VMC"] . Voir le détaillink:../vmware/vmw-aws-vmc-nfs-ds-config.html["options de banque de données NFS supplémentaires pour VMC"] .
 
 
 
