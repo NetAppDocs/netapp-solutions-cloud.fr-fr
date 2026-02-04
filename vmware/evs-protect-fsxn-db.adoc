@@ -1,0 +1,143 @@
+---
+sidebar: sidebar 
+permalink: vmware/evs-protect-fsxn-db.html 
+keywords: Amazon, AWS, EVS, Elastic VMware Service, ONTAP, FSx, iscsi 
+summary: 'Cette section décrit les étapes à suivre pour protéger les bases de données exécutées sur des VMDK VMware avec SnapCenter pour SQL (SCSQL).' 
+---
+= Procédures de protection pour les bases de données exécutées sur des VMDK VMware avec SnapCenter pour SQL (SCSQL)
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+La section suivante explique comment protéger les bases de données exécutées sur des VMDK VMware avec SnapCenter pour SQL (SCSQL).
+
+
+
+== Configuration de SCSQL
+
+La configuration requise pour utiliser SCSQL afin de protéger les bases de données sur les VMDK est la suivante :
+
+. link:https://docs.netapp.com/us-en/snapcenter/install/task_install_the_snapcenter_server_using_the_install_wizard.html["Installer et configurer"] Serveur SnapCenter.
+. Connectez-vous à SnapCenter.
+. Configurez l’environnement SnapCenter :
++
+** link:https://docs.netapp.com/us-en/snapcenter/install/task_add_storage_systems.html["Ajouter ou affecter"] Connexions du système de stockage.
+** link:https://docs.netapp.com/us-en/snapcenter/install/concept_svm_connections_and_credentials.html["Créer"] informations d'identification.
+
+
+. Pour les bases de données Microsoft SQL Server sur les VMDK VMware :
++
+** link:https://docs.netapp.com/us-en/snapcenter/install/concept_svm_connections_and_credentials.html["Déployer SCV"] (déjà abordé dans la section configuration).
+** Enregistrez le plug-in avec SnapCenter.
+
+
+. Ajouter link:https://docs.netapp.com/us-en/snapcenter/protect-scsql/task_add_hosts_and_install_snapcenter_plug_ins_package_for_windows.html["Hôtes SQL server et installation des plug-ins"] :
++
+** link:https://docs.netapp.com/us-en/snapcenter/protect-scsql/task_add_hosts_and_install_snapcenter_plug_ins_package_for_windows.html["Configurer les plug-ins SQL"].
+** link:https://docs.netapp.com/us-en/snapcenter/protect-scsql/task_create_backup_policies_for_sql_server_databases.html["Configurez le plan de protection et les horaires pour la base de données et les journaux"].
++
+image:evs-protect-fsxn-027.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+
+
+
+
+
+
+== Mise en place d'une règle de sauvegarde
+
+Les étapes suivantes vous montreront comment configurer une règle de sauvegarde.
+
+. Sélectionnez la base de données dans l'onglet Ressources et sélectionnez "Protéger" dans le coin supérieur droit.
++
+
+NOTE: Les validations sont effectuées sur une base de données SQL Server exécutée sur la machine virtuelle invitée.
+
++
+image:evs-protect-fsxn-028.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+. Cliquez sur l'icône du signe plus pour configurer une règle de sauvegarde SQL Server.
++
+image:evs-protect-fsxn-029.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+. Dans cette démonstration, l'option « Sauvegarde complète » est sélectionnée. Sélectionnez « Suivant » pour continuer.
++
+image:evs-protect-fsxn-030.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+. Sur la page Résumé, sélectionnez "Terminer".
++
+image:evs-protect-fsxn-031.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+. Passez à « Finish ».
++
+image:evs-protect-fsxn-032.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+
+
+
+
+== Surveillance d'une sauvegarde
+
+Une fois que vous avez défini une règles de sauvegarde, vous pouvez surveiller vos opérations de sauvegarde au fur et à mesure qu'elles ont lieu. Vous pouvez le faire soit en cliquant sur Backup now pour déclencher une opération de sauvegarde à la demande, soit en attendant que votre règles de sauvegarde planifiée s'exécute.
+
+. Surveillez la progression du travail à l'aide de « Monitor > Jobs ».
+. Sélectionnez la tâche de sauvegarde, puis cliquez sur "Détails" pour afficher les détails de la tâche comme ci-dessous.
++
+image:evs-protect-fsxn-033.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+
+
+
+
+== Restauration des bases de données résidant sur les VMDKs
+
+La base de données sur le VMDK peut être restaurée à un point spécifique dans le temps.
+
+Nous pouvons simuler l'importance de ceci en supprimant certaines tables de votre base de données, qui seront ensuite corrigées par une restauration à un instant précis.
+
+Vous pouvez constater ci-dessous que plusieurs tables de notre base de données affichées dans la première capture d'écran ont été supprimées dans la seconde capture d'écran :
+
+image:evs-protect-fsxn-034.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+image:evs-protect-fsxn-035.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+Les étapes suivantes montrent comment effectuer une restauration pour récupérer les tables supprimées :
+
+. Sélectionnez la base de données dans le groupe de ressources.
++
+image:evs-protect-fsxn-036.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+. Sur la page Restaurer, sélectionnez l'option "Restaurer la base de données sur le même hôte où la sauvegarde a été créée".
++
+image:evs-protect-fsxn-037.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+. Sélectionnez l'option pour utiliser une sauvegarde du journal jusqu'à un point dans le temps.
++
+image:evs-protect-fsxn-038.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+. Sélectionnez « Overwrite database with same name during restore, Create transaction log backup before restore », puis sélectionnez « Next ».
++
+image:evs-protect-fsxn-039.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+. Sélectionnez l'état post-restauration que vous souhaitez que la base de données adopte dans les options de la liste, puis sélectionnez « Suivant ».
++
+image:evs-protect-fsxn-040.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+. Sur la page récapitulative, sélectionnez "Terminer".
++
+image:evs-protect-fsxn-041.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+. Surveillez le job jusqu'à son achèvement.
++
+image:evs-protect-fsxn-042.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+. Vérifiez que les tables supprimées ont bien été restaurées.
++
+image:evs-protect-fsxn-043.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+

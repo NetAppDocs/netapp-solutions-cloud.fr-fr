@@ -23,15 +23,15 @@ Lisez les blogs qui offrent des conseils pratiques et des bonnes pratiques pour 
 * link:https://bluexp.netapp.com/blog/aws-fsxn-blg-migrate-vmware-to-amazon-ec2-iscsi-based-fsx-for-ontap["Migrer des machines virtuelles VMware vers AWS à l'aide du protocole iSCSI Amazon EC2 et Amazon FSx ONTAP"]
 * link:https://aws.amazon.com/about-aws/whats-new/2025/06/amazon-elastic-vmware-service-fsx-netapp-ontap/["Amazon EVS s'intègre désormais à FSx pour ONTAP"]
 * link:https://www.netapp.com/blog/amazon-elastic-vmware-service-fsx-ontap/["Amazon EVS annonce la prise en charge de FSx pour ONTAP"]
-* link:https://cloud.netapp.com/blog/aws-fsxo-blg-configure-hybrid-cloud-with-fsx-for-netapp-ontap-and-vmware-cloud-on-aws-sddc-using-vmware-hcx["Configurer un cloud hybride avec FSx ONTAP et VMware Cloud sur AWS SDDC à l'aide de VMware HCX"]
+* link:https://www.netapp.com/blog/aws-fsxo-blg-configure-hybrid-cloud-with-fsx-for-netapp-ontap-and-vmware-cloud-on-aws-sddc-using-vmware-hcx/["Configurer un cloud hybride avec FSx ONTAP et VMware Cloud sur AWS SDDC à l'aide de VMware HCX"]
 
 
 
 
 == Solution Azure VMware
 
-* link:https://cloud.netapp.com/blog/azure-blg-optimize-storage-for-cloud-based-vmware-deployments["Optimiser le stockage pour les déploiements VMware basés sur le cloud"]
-* link:https://cloud.netapp.com/blog/azure-blg-netapp-cloud-offerings-with-azure-vmware-solution["Démarrez avec la solution Azure VMware en utilisant les offres cloud basées sur NetApp"]
+* link:https://www.netapp.com/blog/vmware-optimize-storage-workloads/["Optimisez le stockage et les charges de travail VMware gourmandes en données dans n'importe quel cloud"]
+* link:https://www.netapp.com/blog/vmware-migrate-workloads-azure/["Charges de travail VMware vers Azure VMware Solution ? Lisez ceci en premier."]
 
 
 
@@ -47,15 +47,15 @@ Lisez les blogs qui offrent des conseils pratiques et des bonnes pratiques pour 
 
 == Protection et gestion des données
 
-* link:https://community.netapp.com/t5/Tech-ONTAP-Blogs/3-2-1-Data-Protection-for-VMware-with-SnapCenter-Plug-in-and-BlueXP-Backup-and/ba/p/446180["Protection des données 3-2-1 pour VMware avec le plug-in SnapCenter et la sauvegarde et la récupération BlueXP pour les machines virtuelles"]
-* link:https://community.netapp.com/t5/Tech-ONTAP-Blogs/Observability-for-the-Modern-Datacenter-with-NetApp-Cloud-Insights/ba/p/447495["Observabilité pour le centre de données moderne avec NetApp Cloud Insights"]
+* link:https://community.netapp.com/t5/Tech-ONTAP-Blogs/3-2-1-Data-Protection-for-VMware-with-SnapCenter-Plug-in-and-BlueXP-backup-and/ba-p/446180["Protection des données 3-2-1 pour VMware avec le plug-in SnapCenter et la sauvegarde et la récupération BlueXP pour les machines virtuelles"]
+* link:https://community.netapp.com/t5/Tech-ONTAP-Blogs/Observability-for-the-Modern-Datacenter-with-NetApp-Cloud-Insights/ba-p/447495["Observabilité pour le centre de données moderne avec NetApp Cloud Insights"]
 
 
 
 
 == Charges de travail de conteneurs NetApp pour OpenShift
 
-* link:https://community.netapp.com/t5/Tech-ONTAP-Blogs/NetApp-ONTAP-doubles-up-as-storage-for-logs-in-Red-Hat-OpenShift-Container/ba/p/449280["NetApp ONTAP sert également de stockage pour les journaux dans la plateforme de conteneurs Red Hat OpenShift"]
+* link:https://community.netapp.com/t5/Tech-ONTAP-Blogs/NetApp-ONTAP-doubles-up-as-storage-for-logs-in-Red-Hat-OpenShift-Container/ba-p/449280["NetApp ONTAP sert également de stockage pour les journaux dans la plateforme de conteneurs Red Hat OpenShift"]
 
 
 

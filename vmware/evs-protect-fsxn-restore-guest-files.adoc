@@ -1,0 +1,55 @@
+---
+sidebar: sidebar 
+permalink: vmware/evs-protect-fsxn-restore-guest-files.html 
+keywords: Amazon, AWS, EVS, Elastic VMware Service, ONTAP, FSx, iscsi 
+summary: Cette section décrit les étapes à suivre pour restaurer les fichiers et dossiers invités protégés par le SnapCenter Plug-in pour VMware. 
+---
+= Procédure de restauration des fichiers et dossiers invités protégés par le SnapCenter Plug-in pour VMware
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+La section suivante explique comment restaurer les fichiers et dossiers invités à partir de VMDK.
+
+
+NOTE: SnapCenter prend en charge la restauration des fichiers et des dossiers à partir de VMDK uniquement lorsque le système d'exploitation invité est Windows.
+
+Considérations relatives à la restauration des fichiers et dossiers invités avec SCV :
+
+* Les outils VMware doivent être en cours d'exécution sur la VM.
+* Le fichier VMDK joint est accessible pendant 24 heures par défaut.
+* Une seule opération de restauration ou d’attachement peut être effectuée sur une machine virtuelle à la fois.
+* Les fichiers système, cachés et chiffrés peuvent être restaurés ; cependant, leurs attributs d'origine ne seront pas préservés.
+* Évitez de restaurer des fichiers chiffrés dans des dossiers chiffrés ou d’écraser des fichiers système.
+
+
+Étapes pour la restauration des fichiers et dossiers invités :
+
+. Cliquez avec le bouton droit sur la machine virtuelle cible et sélectionnez « NetApp SnapCenter > Restauration des fichiers invités ».
++
+image:evs-protect-fsxn-022.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+. Choisissez la sauvegarde contenant le VMDK requis. Spécifiez le VMDK et son emplacement (primaire ou secondaire).
++
+image:evs-protect-fsxn-023.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+. Choisissez « Disk Attachment Method ».
++
+image:evs-protect-fsxn-024.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
++
+** Option de machine virtuelle invitée : Attachez le disque à la machine virtuelle d’origine (nécessite des informations d’identification préconfigurées). C’est l’option utilisée dans cette démonstration.
+** Option Proxy VM : Attachez le disque à une Proxy VM désignée (doit être configurée au préalable).
+
+
+. Veuillez patienter jusqu'à la fin de l'opération de rattachement avant de parcourir et de restaurer les fichiers. Une fois l'opération terminée, SnapCenter crée automatiquement une session de restauration de fichiers invité. image:evs-protect-fsxn-025.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
++
+image:evs-protect-fsxn-026.png["Figure représentant la boîte de dialogue pour l'étape ci-dessus"]
+
+. Accédez au VMDK dans la session de restauration de fichiers invités, sélectionnez les fichiers ou dossiers requis et restaurez-les à l'emplacement spécifié.
+

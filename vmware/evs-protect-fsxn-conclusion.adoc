@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: vmware/evs-protect-fsxn-conclusion.html 
+keywords: Amazon, AWS, EVS, Elastic VMware Service, ONTAP, FSx 
+summary: 'Ce document fournit des étapes détaillées utilisant SCV et le SnapCenter Plug-in for SQL Server (SCSQL) tout en utilisant FSx pour ONTAP comme datastore supplémentaire avec les clusters Amazon EVS.' 
+---
+= Conclusion
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dans ce document, nous avons fourni des instructions détaillées étape par étape sur le déploiement, la configuration et l'utilisation de SCV et link:https://docs.netapp.com/us-en/snapcenter/protect-scsql/concept_snapcenter_plug_in_for_microsoft_sql_server_overview.html["SnapCenter Plug-in for SQL Server (SCSQL)"] tout en utilisant FSx for ONTAP comme datastore supplémentaire avec les clusters Amazon EVS.
+
+
+
+== Conclusion
+
+En résumé, lors de l'utilisation de FSx for ONTAP pour optimiser le TCO d'un déploiement Amazon EVS, SCV offre une méthode simple et efficace pour sauvegarder les machines virtuelles. Il peut sauvegarder et restaurer les machines virtuelles de manière transparente et rapide puisqu'il s'appuie sur des copies Snapshot, qui ne prennent littéralement que quelques secondes à s'exécuter.
+
+link:https://mysupport.netapp.com/site/products/all/details/scv/downloads-tab["Essayez le plug-in SnapCenter pour VMware dès maintenant gratuitement"].

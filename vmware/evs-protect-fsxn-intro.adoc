@@ -1,0 +1,60 @@
+---
+sidebar: sidebar 
+permalink: vmware/evs-protect-fsxn-intro.html 
+keywords: Amazon, AWS, EVS, Elastic VMware Service, ONTAP, FSx 
+summary: 'Ce guide présentera une approche de déploiement simple pour protéger les datastores FSx for ONTAP Network File System (NFS) et iSCSI Amazon EVS et les machines virtuelles associées à l"aide de la solution de sauvegarde et de restauration NetApp SnapCenter® Plug-in for VMware vSphere (SCV) pour machines virtuelles.' 
+---
+= Comment protéger les datastores Amazon FSx for NetApp ONTAP avec Amazon Elastic VMware Service à l'aide du NetApp SnapCenter Plug-in for VMware
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce guide présentera une approche de déploiement simple pour protéger les datastores FSx for ONTAP Network File System (NFS) et iSCSI Amazon EVS et les machines virtuelles associées à l'aide de la solution de sauvegarde et de restauration NetApp SnapCenter® Plug-in for VMware vSphere (SCV) pour machines virtuelles.
+
+
+
+== Introduction
+
+Les datastores supplémentaires basés sur Amazon FSx for NetApp ONTAP (FSx for ONTAP) pour Amazon Elastic VMware Service (Amazon EVS) offrent une excellente solution pour exécuter à la fois des charges de travail exigeantes en termes de performances — telles que l’utilisation de nConnect, l’appairage Amazon Virtual Private Cloud (Amazon VPC) et l’utilisation de plusieurs connexions réseau par montage de datastore — et des charges de travail gourmandes en stockage.
+
+Cette fonctionnalité permet aux clients de s’affranchir des limitations du stockage local fourni par un réseau de stockage virtuel (vSAN), de faire évoluer le stockage indépendamment des ressources de calcul et de réduire le coût de possession total. Au-delà des avantages en termes de coût de possession total (TCO), FSx for ONTAP offre Amazon EVS avec des fonctionnalités de niveau entreprise familières aux clients d’ONTAP sur site, contribuant ainsi à optimiser et à simplifier les déploiements. L’utilisation de FSx for ONTAP donne accès aux technologies NetApp® Snapshot™, SnapMirror® et SnapVault® qui prennent en charge les opérations de sauvegarde et de restauration des machines virtuelles (VM), des datastores et des disques de machines virtuelles (VMDK). La protection basée sur les snapshots constitue une fonctionnalité clé.
+
+
+
+== Aperçu
+
+À mesure que les entreprises développent et consolident leurs environnements, la protection des charges de travail et du stockage sous-jacent devient primordiale. SCV peut être utilisé pour sauvegarder les datastores et les machines virtuelles directement depuis le client Amazon EVS vSphere.
+
+
+
+== Objectif de ce guide
+
+Ce guide fournit des instructions sur la façon de protéger un datastore FSx for ONTAP pour Amazon EVS à l'aide de SCV. Des exemples de scénarios de protection et de restauration de machines virtuelles et de bases de données sont également fournis.
+
+
+
+== Public
+
+Ce didacticiel est destiné aux architectes et administrateurs Cloud familiarisés avec VMware vSphere, Amazon EVS, la console AWS et FSx pour ONTAP.
+
+
+
+== Étapes générales du déploiement et de la configuration
+
+Vous trouverez ci-dessous les étapes principales pour déployer et configurer SCV afin de protéger vos VMs et datastores sur Amazon EVS :
+
+. Téléchargez l'Open Virtual Appliance (OVA) SCV.
+. Connectez-vous avec les identifiants du client vSphere à Amazon EVS.
+. Déployez un modèle Open Virtualization Format (OVF) pour démarrer l'assistant de déploiement VMware.
+. Pour accéder au plug-in, sélectionnez SnapCenter Plug-in for VMware dans le menu.
+. Ajouter du stockage.
+. Créer des règles de sauvegarde.
+. Créer des groupes de ressources.
+. Groupes de ressources de sauvegarde.
+. Restaurez l'intégralité de la machine virtuelle ou un disque virtuel particulier ou des fichiers invités.
+

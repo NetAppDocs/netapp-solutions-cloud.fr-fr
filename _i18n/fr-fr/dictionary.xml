@@ -51,12 +51,7 @@
   <block id="7786f845adbf4ae5b4b31e55192f5d6c" category="inline-link-macro">Amazon EVS annonce la prise en charge de FSx pour ONTAP</block>
   <block id="8d88f632c6fffd96d1c3fd8be60480a5" category="list-text"><block ref="8d88f632c6fffd96d1c3fd8be60480a5" category="inline-link-macro-rx"></block></block>
   <block id="14d00863ef683631706683292e1e1b3c" category="inline-link-macro">Configurer un cloud hybride avec FSx ONTAP et VMware Cloud sur AWS SDDC à l'aide de VMware HCX</block>
-  <block id="e2d970cd6feb419cd8796624bacf677d" category="list-text"><block ref="e2d970cd6feb419cd8796624bacf677d" category="inline-link-macro-rx"></block></block>
   <block id="4c59a2b73bbff0a790b5fcbf60645c6f" category="section-title">Solution Azure VMware</block>
-  <block id="8d7efa937e97b1a8187ff8f122d9732a" category="inline-link-macro">Optimiser le stockage pour les déploiements VMware basés sur le cloud</block>
-  <block id="5a6bd3a9e0048284caf2b5f521d90959" category="list-text"><block ref="5a6bd3a9e0048284caf2b5f521d90959" category="inline-link-macro-rx"></block></block>
-  <block id="2483c6a0c908ef17b60dc322f9f15352" category="inline-link-macro">Démarrez avec la solution Azure VMware en utilisant les offres cloud basées sur NetApp</block>
-  <block id="8fa69e6a61b03e4d15560c5e224cb577" category="list-text"><block ref="8fa69e6a61b03e4d15560c5e224cb577" category="inline-link-macro-rx"></block></block>
   <block id="8cb69aa5b1609d0a39f0fcd576c07df6" category="section-title">Moteur VMware de Google Cloud</block>
   <block id="2cd9dbbc556004ec4c63b9db15995320" category="inline-link-macro">Prise en charge du magasin de données Google Cloud NetApp Volumes pour Google Cloud VMware Engine (NetApp)</block>
   <block id="81d8e8f3d71b597f33ac08980d0f1c96" category="list-text"><block ref="81d8e8f3d71b597f33ac08980d0f1c96" category="inline-link-macro-rx"></block></block>
@@ -66,12 +61,9 @@
   <block id="4587279425a64cfc00b685b8bfc28bf4" category="list-text"><block ref="4587279425a64cfc00b685b8bfc28bf4" category="inline-link-macro-rx"></block></block>
   <block id="273f11e723794ed27039b86d108dda1c" category="section-title">Protection et gestion des données</block>
   <block id="cc090bcb755694ec2b8ab2fa1beb2258" category="inline-link-macro">Protection des données 3-2-1 pour VMware avec le plug-in SnapCenter et la sauvegarde et la récupération BlueXP pour les machines virtuelles</block>
-  <block id="02a6363ad4835fb1fc2f0babd8ded2b6" category="list-text"><block ref="02a6363ad4835fb1fc2f0babd8ded2b6" category="inline-link-macro-rx"></block></block>
   <block id="3c91c8125baee1371b566d079a57a8f3" category="inline-link-macro">Observabilité pour le centre de données moderne avec NetApp Cloud Insights</block>
-  <block id="462277815cdb60d9aabf9bac09d8c73e" category="list-text"><block ref="462277815cdb60d9aabf9bac09d8c73e" category="inline-link-macro-rx"></block></block>
   <block id="71fbb94034ace383d669c7a15d92bc40" category="section-title">Charges de travail de conteneurs NetApp pour OpenShift</block>
   <block id="cbc56988457f1c69580cdc28974caa1d" category="inline-link-macro">NetApp ONTAP sert également de stockage pour les journaux dans la plateforme de conteneurs Red Hat OpenShift</block>
-  <block id="19e86b6e1e8bff9c2b3cd8a8f8f2b540" category="list-text"><block ref="19e86b6e1e8bff9c2b3cd8a8f8f2b540" category="inline-link-macro-rx"></block></block>
   <block id="d97c288618e32f00d576f83cf79a1fbb" category="section-title">VMware Sovereign Cloud</block>
   <block id="fb51c7e7bf375f2f918b283331273975" category="inline-link-macro">Présentation de la nouvelle initiative Sovereign Cloud</block>
   <block id="56b1f9644d1224160bec47a23c843b2e" category="list-text"><block ref="56b1f9644d1224160bec47a23c843b2e" category="inline-link-macro-rx"></block></block>
@@ -95,11 +87,9 @@
   <block id="66d939bc6b363153976bbd24624850b8" category="admonition">Le nom d'utilisateur et le mot de passe transmis au domaine Active Directory utilisent le chiffrement Kerberos lors de la requête et de la création de l'objet de compte machine pour plus de sécurité.</block>
   <block id="8575c9ec9ca166098f9d546c3c12e9b1" category="section-title">Détails de connexion Active Directory</block>
   <block id="452740f6c26f32def386962441d5cb2c" category="inline-link">Détails de connexion Active Directory</block>
-  <block id="af31d4ab1f284e1f94d3522fd1fa36fe" category="paragraph">Le<block ref="9255123c1378b2d08be170075ba389b5" category="inline-link-rx"></block> fournir des champs permettant aux administrateurs de fournir des informations spécifiques sur le schéma Active Directory pour le placement des comptes de machines, telles que les suivantes :</block>
   <block id="a8f8e7f7a81fce771e2a9f8710b0681a" category="list-text">*Type de connexion Active Directory.*  Utilisé pour spécifier si la connexion Active Directory dans une région est utilisée pour les volumes de type de service Google Cloud NetApp Volumes ou NetApp Volumes-Performance.  Si cette option est mal définie sur une connexion existante, elle risque de ne pas fonctionner correctement lors de son utilisation ou de sa modification.</block>
   <block id="d5cc4c55027c65e3b8d52c15d308935d" category="list-text">*Domaine.*  Le nom de domaine Active Directory.</block>
   <block id="c3fab9d188d8e1e4a9e0ba27a52306c6" category="inline-link">considérations</block>
-  <block id="004c3dcd54f00327d602ce8f426ad65d" category="list-text">*Site.*  Limite les serveurs Active Directory à un site spécifique pour des raisons de sécurité et de performances<block ref="cae534855afa8eaefaa37d26edea88d5" category="inline-link-rx"></block> .  Cela est nécessaire lorsque plusieurs serveurs Active Directory s'étendent sur des régions, car Google Cloud NetApp Volumes ne prend actuellement pas en charge l'autorisation des demandes d'authentification Active Directory aux serveurs Active Directory dans une région différente de celle de l'instance Google Cloud NetApp Volumes .  (Par exemple, le contrôleur de domaine Active Directory se trouve dans une région que seul NetApp Volumes-Performance prend en charge, mais vous souhaitez un partage SMB dans une instance NetApp Volumes-SW.)</block>
   <block id="bc3a6531a92e21b83c95f7d7044fd498" category="list-text">*Serveurs DNS.*  Serveurs DNS à utiliser dans les recherches de noms.</block>
   <block id="2ffe8f82969374459354afd90245abab" category="inline-link-macro">Comment Google Cloud NetApp Volumes apparaît dans Active Directory</block>
   <block id="05d7562f171fbe208b6e30440ba6e51a" category="list-text">*Nom NetBIOS (facultatif).*  Si vous le souhaitez, le nom NetBIOS du serveur.  C'est ce qui est utilisé lorsque de nouveaux comptes de machine sont créés à l'aide de la connexion Active Directory.  Par exemple, si le nom NetBIOS est défini sur NetApp Volumes-EAST, les noms de compte de machine seront NetApp Volumes-EAST-{1234}. Voir la section<block ref="9d9599c3e33e4155210640bba51be746" category="inline-link-macro-rx"></block> pour plus d'informations.</block>
@@ -157,14 +147,11 @@
   <block id="bbfe7622403fb2a786b158ba768ac4ca" category="cell">DES_CBC_MD5, RC4_HMAC, AES128_CTS_HMAC_SHA1_96 et AES256_CTS_HMAC_SHA1_96</block>
   <block id="adfa4c5560980c9b2841dda24bda5935" category="paragraph">Pour activer le chiffrement AES pour les comptes de machine SMB, cliquez sur Activer le chiffrement AES pour l’authentification AD lors de la création de la connexion Active Directory.</block>
   <block id="cda1353d8c57da59be157c734cb73343" category="inline-link">voir la documentation de Google Cloud NetApp Volumes</block>
-  <block id="42f38135a00c376f892f71ca4e0b9dc2" category="paragraph">Pour activer le chiffrement AES pour NFS Kerberos,<block ref="84114ccbe211c12d6602b47f9a69054b" category="inline-link-rx"></block> .</block>
   <block id="154572217b52fa342506f702c7871459" category="summary">De la même manière que d'autres services natifs de Google Cloud tels que CloudSQL, Google Cloud VMware Engine (GCVE) et FileStore, Google Cloud NetApp Volumes utilise Google PSA pour fournir le service.</block>
   <block id="1e325b848d7c8cce5b0aa502fc5c2675" category="doc">Architecture de Google Cloud NetApp Volumes</block>
   <block id="98cdf6a29cf39ecd5239e5071cb0dc88" category="inline-link">Message d'intérêt public de Google</block>
   <block id="d4d6aaf620a68430d28b38f847f2a6af" category="inline-link">Appairage de réseau VPC</block>
   <block id="c63afa8cb87144f5caf6fa2d6ae4fca5" category="paragraph">De manière similaire à d'autres services natifs de Google Cloud tels que CloudSQL, Google Cloud VMware Engine (GCVE) et FileStore, Google Cloud NetApp Volumes utilise<block ref="0f93a99b9e468a051182b66dabbf3bed" category="inline-link-rx"></block> pour fournir le service.  Dans PSA, les services sont construits dans un projet de producteur de services, qui utilise<block ref="2d8d4488e7ed7b53a7aafab379ba8587" category="inline-link-rx"></block> pour se connecter au consommateur de services.  Le producteur de services est fourni et exploité par NetApp, et le consommateur de services est un VPC dans un projet client, hébergeant les clients qui souhaitent accéder aux partages de fichiers Google Cloud NetApp Volumes .</block>
-  <block id="353164decd5aa0c4f58b4e56559e1b13" category="inline-link">section architecture</block>
-  <block id="6863d96e2a62d5eb6e3de0d5f2cce44b" category="paragraph">La figure suivante, référencée à partir du<block ref="6a8b5039754626811ee5b8fe5289e273" category="inline-link-rx"></block> de la documentation Google Cloud NetApp Volumes , montre une vue de haut niveau.</block>
   <block id="79373690575009fc8cdf0c6b0a17e5ab" category="paragraph"><block ref="79373690575009fc8cdf0c6b0a17e5ab" category="inline-image-macro-rx" type="image"></block></block>
   <block id="a6f34964d3060f5dd66e2cc7c8711679" category="paragraph">La partie au-dessus de la ligne pointillée montre le plan de contrôle du service, qui contrôle le cycle de vie du volume.  La partie située sous la ligne pointillée montre le plan de données.  La case bleue de gauche représente le VPC utilisateur (consommateur de services), la case bleue de droite représente le producteur de services fourni par NetApp.  Les deux sont connectés via le peering VPC.</block>
   <block id="0d127864a05110e3053c2690dea7d914" category="section-title">Modèle de location</block>
@@ -6114,7 +6101,6 @@
   <block id="6abf23f75427b3ebb151f7c93ba3e162" category="sidebar">Simulateur DRaaS BlueXP</block>
   <block id="525d3bfbda194b5879b732661e63b9d2" category="sidebar">BlueXP - Simulateur de sauvegarde et de récupération pour machines virtuelles</block>
   <block id="7be0bd11f67b1a57d57f3d9c343755ad" category="sidebar">Calculateurs de TCO</block>
-  <block id="3a70b2513452ccc7061eb3f8a1daf584" category="sidebar">Calculateur TCO FSx ONTAP + VMC</block>
   <block id="1281f32cf6fc0bc363006abf453df792" category="sidebar">Calculateur TCO ANF + AVS</block>
   <block id="053d2c0952babedd93245bc3164b6003" category="sidebar">Estimateur de coût total de possession (TCO) GCVE + NetApp Volumes</block>
   <block id="c08885153d0680dab7349b930f5310c4" category="sidebar">BlueXP disaster recovery</block>
@@ -6208,7 +6194,6 @@
   <block id="5a79bf403d6c3f25e02f82d49f90919c" category="sidebar">Reprise après sinistre avec la réplication Veeam et Azure NetApp Files</block>
   <block id="189030940d7b26af4f7154de15c05fd8" category="sidebar">Migrer les charges de travail sur Azure/AVS</block>
   <block id="6bcf38420bfe0cd94e0d1e077ca21bb6" category="sidebar">Migrer les charges de travail vers la banque de données ANF à l'aide de VMware HCX</block>
-  <block id="e790db2f9c7fc2b69cbf0a8507e98caa" category="sidebar">Présentation de Netapp pour Google Cloud</block>
   <block id="0c7e9ecd57b37f44cfc93839e21849df" category="sidebar">Présentation de Netapp pour Google Cloud</block>
   <block id="3cbfe9482d211417dbb903b0998bf7c5" category="sidebar">Protéger les charges de travail sur GCP/GCVE</block>
   <block id="78efda5a20813282f26286aafd5e47cb" category="sidebar">Reprise après sinistre avec le datastore NFS supplémentaire de Veeam</block>
@@ -6260,4 +6245,244 @@
   <block id="672aa1824d3e6acff1aa5b29ebf335a5" category="paragraph">Voir le détail<block ref="7d3eb805f5f18cab5e25af1bfb1916a8" category="inline-link-macro-rx"></block> . Voir le détail<block ref="345d3355912c80f57744cc75b1801894" category="inline-link-macro-rx"></block> .</block>
   <block id="c76791103485ee91ffe26d6c26727aa3" category="paragraph">Voir le détail<block ref="7579be3a2f29ef8b8644f2450aa0cb4d" category="inline-link-macro-rx"></block> . Voir le détail<block ref="8b86682762859e711b97d12219a25190" category="inline-link-macro-rx"></block> .</block>
   <block id="0c70ebfdf47c8b6d6f765a59f6cadb07" category="paragraph">Voir le détail<block ref="a7706837cfe556ca1ad5d59ff2868a4a" category="inline-link-macro-rx"></block> . Voir le détail<block ref="85f8710f267dcb444c5c088521a37c34" category="inline-link-macro-rx"></block> .</block>
+  <block id="65e48a5c6d94f293b84e8465b3e14b7c" category="list-text"><block ref="65e48a5c6d94f293b84e8465b3e14b7c" category="inline-link-macro-rx"></block></block>
+  <block id="ca821d0143286d806ddd63968470ded6" category="inline-link-macro">Optimisez le stockage et les charges de travail VMware gourmandes en données dans n'importe quel cloud</block>
+  <block id="068f5a3c2c43d2c98585ba811f53448d" category="list-text"><block ref="068f5a3c2c43d2c98585ba811f53448d" category="inline-link-macro-rx"></block></block>
+  <block id="b5ab67622f999884d1e02f03a5ff9516" category="inline-link-macro">Charges de travail VMware vers Azure VMware Solution ? Lisez ceci en premier.</block>
+  <block id="3aa22d916fadd4a53cbd677391da8dfe" category="list-text"><block ref="3aa22d916fadd4a53cbd677391da8dfe" category="inline-link-macro-rx"></block></block>
+  <block id="3a8cc54cc77b4e52aebe58c284605cad" category="list-text"><block ref="3a8cc54cc77b4e52aebe58c284605cad" category="inline-link-macro-rx"></block></block>
+  <block id="ee66058cbe8482df37bb01fb27da7a35" category="list-text"><block ref="ee66058cbe8482df37bb01fb27da7a35" category="inline-link-macro-rx"></block></block>
+  <block id="52e7ee593147c20e72ba0d82102407ba" category="list-text"><block ref="52e7ee593147c20e72ba0d82102407ba" category="inline-link-macro-rx"></block></block>
+  <block id="cdde9d74010f079e21c7c6bb9f28e361" category="paragraph">Le<block ref="b8ddfaae9f91b6ce3bc63839a5a12b48" category="inline-link-rx"></block> guide fournit des instructions aux administrateurs pour fournir des informations spécifiques sur le schéma Active Directory pour le placement des comptes machines, telles que les suivantes :</block>
+  <block id="1a505d2b7cf01cdffad80d9a569a87c1" category="list-text">*Site.* Limite les serveurs Active Directory à un site spécifique pour la sécurité et les performances<block ref="9ae4d78b6039ba66958ed0a04325d1c3" category="inline-link-rx"></block>. Ceci est nécessaire lorsque plusieurs serveurs Active Directory s'étendent sur plusieurs régions car Google Cloud NetApp Volumes ne prend actuellement pas en charge l'autorisation des demandes d'authentification Active Directory vers les serveurs Active Directory dans une région différente de celle de l'instance Google Cloud NetApp Volumes. (Par exemple, le contrôleur de domaine Active Directory se trouve dans une région que seul NetApp Volumes-Performance prend en charge, mais vous voulez un partage SMB dans une instance NetApp Volumes-SW.)</block>
+  <block id="30085707de23bf9812576b042d534e80" category="paragraph">Pour activer le chiffrement AES pour NFS Kerberos,<block ref="07a5f0105d897fdcd0e98a65b187215b" category="inline-link-rx"></block>.</block>
+  <block id="471bdb0aa2d84f6d114789368ffc1cc1" category="inline-link">Documentation Google Cloud NetApp Volumes</block>
+  <block id="1bbb43f7ec90df29cb4d5f98f417ce62" category="paragraph">La figure suivante, référencée dans le<block ref="352f464aaf87296a88e4bc9188d2dd41" category="inline-link-rx"></block>, présente une vue d'ensemble.</block>
+  <block id="b30af43f838a7224c22c1c5162401c48" category="summary">Ce document fournit des étapes détaillées utilisant SCV et le SnapCenter Plug-in for SQL Server (SCSQL) tout en utilisant FSx pour ONTAP comme datastore supplémentaire avec les clusters Amazon EVS.</block>
+  <block id="37d50cb165ea89b30c23382b2b489939" category="inline-link-macro">SnapCenter Plug-in for SQL Server (SCSQL)</block>
+  <block id="7e6b85a5fb5d26bd836466ad53625458" category="paragraph">Dans ce document, nous avons fourni des instructions détaillées étape par étape sur le déploiement, la configuration et l'utilisation de SCV et <block ref="e68e2db9500130263e28d7f711ecf88f" category="inline-link-macro-rx"></block> tout en utilisant FSx for ONTAP comme datastore supplémentaire avec les clusters Amazon EVS.</block>
+  <block id="52df9deb72312c2fcb71a0d475241258" category="paragraph">En résumé, lors de l'utilisation de FSx for ONTAP pour optimiser le TCO d'un déploiement Amazon EVS, SCV offre une méthode simple et efficace pour sauvegarder les machines virtuelles. Il peut sauvegarder et restaurer les machines virtuelles de manière transparente et rapide puisqu'il s'appuie sur des copies Snapshot, qui ne prennent littéralement que quelques secondes à s'exécuter.</block>
+  <block id="85b01f3e5f19381f3dd6f321e7043d1b" category="inline-link-macro">Essayez le plug-in SnapCenter pour VMware dès maintenant gratuitement</block>
+  <block id="2eb2c384433d0ae9f5902f976b61cb03" category="paragraph"><block ref="06919a4447655c181dcc90c278d553e7" category="inline-link-macro-rx"></block>.</block>
+  <block id="4fc3b3fecccf8801843dd15778e16221" category="summary">Cette section décrit les étapes de configuration du SnapCenter Plug-in pour VMware.</block>
+  <block id="631a87b702f1c67d9cc89fb9a973127f" category="doc">Procédure de configuration du SnapCenter Plug-in pour VMware</block>
+  <block id="c83585226b9d581eba4052b5e2f0f231" category="paragraph">Cette section décrit les étapes de configuration du SnapCenter Plug-in pour VMware. Les sections suivantes détaillent comment ajouter du stockage, créer des règles de sauvegarde et créer des groupes de ressources.</block>
+  <block id="da244e6e98c8d1480cacf0c509ed12bc" category="section-title">Ajout du système de stockage</block>
+  <block id="a63b744959732dab4238d9c4c064453a" category="inline-link-macro">système de stockage</block>
+  <block id="23fdc7ab07db02be5d0e64d9e1863556" category="paragraph">L'étape suivante pour protéger les charges de travail avec SVC consiste à ajouter le <block ref="3c434451880c019a14fa9dcce68bb866" category="inline-link-macro-rx"></block>. L'ajout de stockage permet à SCV de détecter et de gérer les opérations de sauvegarde et de restauration au sein de vCenter. Incluez le point de terminaison de gestion FSx for NetApp ONTAP ou l'adresse IP du point de terminaison d'administration de la machine virtuelle de stockage (SVM) comme système de stockage pour activer la sauvegarde et la restauration des machines virtuelles.</block>
+  <block id="5c31ab76c198965c4535047808a2ff37" category="list-text">Dans le menu de navigation de gauche de l'EVS vCenter, sélectionnez « SnapCenter Plug-in for VMware ».</block>
+  <block id="9cc9f3cc7d78515baee8c1d0767ae1ae" category="list-text">Sélectionnez « Storage System ».</block>
+  <block id="d4abd3a30e0aad4af8d3d1e28d305119" category="list-text">Sélectionnez « Ajouter » pour ajouter les détails FSx for ONTAP.</block>
+  <block id="19199889eaf538e3b3f87a474eb07957" category="list-text">Utilisez la méthode « Credentials as the Authentication » et saisissez FSxadmin comme nom d'utilisateur et mot de passe. Sélectionnez ensuite « Add » pour enregistrer les paramètres.</block>
+  <block id="b5c6335b339d0d1ead2248a77cb73dc4" category="paragraph"><block ref="b5c6335b339d0d1ead2248a77cb73dc4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2ae6f5c08b7bdb0aada48aa78ed2c48d" category="admonition">Tous les SVM sont automatiquement ajoutés lorsque le système de fichiers est ajouté.</block>
+  <block id="2756933d177b5beb609ac6d7c871ca85" category="inline-link-macro">la page d'assistance SCV</block>
+  <block id="666cfecc15cc0e31d2dacac73c43e40e" category="paragraph">Si la version de SCV est 6.2, allez sur <block ref="4d3ef6440a4ce3f8431b2d0b437b843b" category="inline-link-macro-rx"></block> et téléchargez la version SCV 6.2P1.</block>
+  <block id="7ccda687a56b7d6ba882c62e6e9aae4c" category="section-title">Créer une règle de sauvegarde</block>
+  <block id="8880e379e3ad2096f277aa405f346afc" category="paragraph">Une stratégie de sauvegarde robuste doit définir des facteurs clés tels que la planification des sauvegardes, les données à sauvegarder et la durée de conservation des sauvegardes. Des copies instantanées peuvent être planifiées toutes les heures ou tous les jours afin de protéger l'ensemble des datastores. La planification des sauvegardes de cette manière sécurise non seulement les datastores, mais prend également en charge les opérations de sauvegarde et de restauration des VMs et des VMDK contenus dans ces datastores.</block>
+  <block id="6c03aa1717232d545a44daaae4b5b0ad" category="inline-link-macro">règles de sauvegarde</block>
+  <block id="147c185b502850dab557a58605d29ac0" category="paragraph">Avant de lancer les sauvegardes des machines virtuelles et des banques de données, créez <block ref="c63ece1059219cfd2438a3499314dec5" category="inline-link-macro-rx"></block> et un groupe de ressources. La règle de sauvegarde spécifie des paramètres tels que la planification des sauvegardes et les paramètres de conservation.</block>
+  <block id="42d21bf9f7f9e257e8db696bf3ee9053" category="paragraph">Voici les étapes à suivre pour créer une règle de sauvegarde :</block>
+  <block id="60664711039054a10a61b579d5c236c1" category="list-text">Accédez au menu de navigation situé à gauche dans SCV et sélectionnez « Policies ».</block>
+  <block id="ce0b6617d53eaf62a852d479e45e7987" category="list-text">Sur la page Policies, sélectionnez « Create » pour démarrer l’assistant.</block>
+  <block id="3898a18492e366f9aabd66003a9431d5" category="list-text">Sur la page « New Backup Policy », saisissez un nom pour la politique.</block>
+  <block id="2e0b8e5903b465eb574428be899315f3" category="list-text">Spécifiez la période de conservation, la fréquence de sauvegarde et les paramètres de réplication.</block>
+  <block id="11c8de5c288d0748c2cca35c7a2e31bb" category="list-text">Cochez la case "Locking Period" pour activer le verrouillage des instantanés. Vous pouvez sélectionner les périodes de verrouillage des instantanés principale et secondaire en jours/mois/années.</block>
+  <block id="82bf28371127096ae8ee2f31a4b5cd24" category="admonition">Quelle que soit la valeur de conservation définie dans la politique SnapMirror, la copie secondaire du Snapshot reste intacte jusqu'à l'expiration de la période de verrouillage du snapshot secondaire spécifiée.</block>
+  <block id="9377a9b616d2d6cf6dd991436d2698fd" category="paragraph"><block ref="9377a9b616d2d6cf6dd991436d2698fd" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="44260f628159614f44f858bd501fc13a" category="admonition">Pour activer les sauvegardes cohérentes avec les machines virtuelles, VMware tools doit être installé et en cours d'exécution. Lorsque la case de cohérence des machines virtuelles est cochée, les machines virtuelles sont d'abord mises en veille, puis VMware effectue une capture instantanée cohérente des machines virtuelles (à l'exclusion de la mémoire), puis SCV effectue son opération de sauvegarde, et enfin les opérations sur les machines virtuelles reprennent.</block>
+  <block id="17a00b692be8e5e1959b6b37c46d9c3d" category="admonition">Pour répliquer les copies Snapshot vers un système de fichiers miroir ou de coffre, les relations doivent être configurées au préalable.</block>
+  <block id="818f86715b4efb6aa82bde5db5837d3c" category="paragraph"><block ref="818f86715b4efb6aa82bde5db5837d3c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5665ca5c684f3293f42b9ba9f589c9dc" category="paragraph">Une fois la règle de sauvegarde créée, l'étape suivante consiste à créer le groupe de ressources qui définira les datastores NFS ou iSCSI appropriés et les machines virtuelles devant être sauvegardées.</block>
+  <block id="548b49f4267cb06525a994818f01fc03" category="section-title">Créer un groupe de ressources</block>
+  <block id="a44ae5f30e399fc2569f53d8e3a3927b" category="paragraph">Un groupe de ressources sert de conteneur pour les machines virtuelles et les banques de données nécessitant une protection. Les ressources peuvent être ajoutées ou supprimées d'un groupe de ressources à tout moment, offrant ainsi une flexibilité dans la gestion des configurations de sauvegarde.</block>
+  <block id="982d9ffc2f05939531141f649d83f96b" category="inline-link-macro">groupe de ressources</block>
+  <block id="306e302b9f42269476bea7241a0cb938" category="paragraph">Vous pouvez créer un <block ref="604185b423c0e2fc425951537b52dfae" category="inline-link-macro-rx"></block> en suivant les étapes suivantes :</block>
+  <block id="4795f5726d9f4403e47a34b89400e21f" category="list-text">Accédez au volet de navigation de gauche dans SCV et sélectionnez "Resource Groups".</block>
+  <block id="13f9d0c1c343ee0f9004c3d171ff1963" category="list-text">Sur la page Groupes de ressources, sélectionnez « Créer » pour démarrer l’assistant de création de groupe de ressources.</block>
+  <block id="a3a8cadf91711e2752d647365208fb55" category="admonition">Une autre option pour créer des groupes de ressources consiste à sélectionner une VM ou un datastore individuel et à créer un groupe de ressources qui ne contient que cette ressource.</block>
+  <block id="ac1c5df48a13c79ce08fa401a50b85b8" category="list-text">Sur la page « Ressources », sélectionnez la portée (VMs ou datastores) et le centre de données.</block>
+  <block id="686628889eae6c6f96a0fa270dac6ed0" category="list-text">Sur la page « Spanning disks », sélectionnez l’option « Virtual Machines with multiple VMDKs across multiple datastores ».</block>
+  <block id="bf54ede7e8c62841869c29d2bd5b1a44" category="list-text">Ensuite, associez une règles de sauvegarde. Sélectionnez une règles de sauvegarde existante ou créez-en une nouvelle.</block>
+  <block id="e1112a48d2ab981f514ae379e4a06cb9" category="list-text">Sur la page « Planifications », configurez la planification des sauvegardes pour chaque règles de sauvegarde sélectionnée.</block>
+  <block id="a771e5d13844eb026dcdfb27f91d3b9a" category="list-text">Une fois vos sélections effectuées, sélectionnez « Finish ». Cela créera un nouveau groupe de ressources et l'ajoutera à la liste des groupes de ressources.</block>
+  <block id="fb41a0c29fe05fcdef5684ff7490a6df" category="paragraph"><block ref="fb41a0c29fe05fcdef5684ff7490a6df" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f8bfe77c61f442ab35f0b4dce70d8355" category="section-title">Sauvegarde des groupes de ressources</block>
+  <block id="e84b41206a2d96420f443f0633919f2e" category="paragraph">Les opérations de sauvegarde sont exécutées sur toutes les ressources définies au sein d'un groupe de ressources. Si un groupe de ressources a une règle de sauvegarde attachée et une planification configurée, les sauvegardes s'effectuent automatiquement selon la planification.</block>
+  <block id="5c1eb726704b0915b1aa60d44abe4e55" category="list-text">Dans le menu de navigation de gauche de la page du client web vCenter, sélectionnez « SnapCenter Plug-in for VMware », puis « Resource Groups ».</block>
+  <block id="b0eff15cac62ff23eb29a3c76769999c" category="list-text">Sur la page Groupes de ressources, trouvez le groupe de ressources désigné et sélectionnez « Exécuter maintenant » pour démarrer la sauvegarde manuelle.</block>
+  <block id="d8e352e64c799dca541860ee2129cff8" category="paragraph"><block ref="d8e352e64c799dca541860ee2129cff8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e840c3fcc97190605e4db3a58cf81f53" category="list-text">Si le groupe de ressources comporte plusieurs règles de sauvegarde configurées, sélectionnez la règle de sauvegarde pour l'opération de sauvegarde dans la boîte de dialogue « Backup Now ».</block>
+  <block id="efcdb64684b673dae87c022028691624" category="list-text">Sélectionnez "OK" pour lancer la sauvegarde.</block>
+  <block id="468b5d33ec94fd0ac934e1e1c429aa06" category="paragraph"><block ref="468b5d33ec94fd0ac934e1e1c429aa06" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="933951efd0cee56541542a59ee9b978d" category="paragraph">Surveillez l'avancement de l'opération en sélectionnant « Recent Tasks » en bas de la fenêtre ou, pour plus de détails, en sélectionnant « Job Monitor » sur le tableau de bord.</block>
+  <block id="842cb1bf4a39006507cb3720fb0a982b" category="admonition">Le processus de création de règles de sauvegarde, de configuration des groupes de ressources et d'exécution des opérations de sauvegarde est cohérent pour différents protocoles de stockage, notamment NFS et iSCSI.</block>
+  <block id="41f96745358af5bf7e15c96bc091a7da" category="admonition">Les sauvegardes sont effectuées selon le calendrier défini dans la règle.</block>
+  <block id="168194d803aa59f6442374579382e4e5" category="paragraph">Une fois la sauvegarde terminée, elle peut être consultée au niveau du datastore ou pour des machines virtuelles individuelles en sélectionnant « SnapCenter Plug-in for VMware vSphere » dans la liste déroulante, puis en choisissant « Restaurer ».</block>
+  <block id="b90ea9eaa96639d1d1eb09e346790dca" category="paragraph"><block ref="b90ea9eaa96639d1d1eb09e346790dca" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8976b9773b77d4dcc8f15dde9e86b0cf" category="summary">Cette section décrit les étapes à suivre pour protéger les bases de données exécutées sur des VMDK VMware avec SnapCenter pour SQL (SCSQL).</block>
+  <block id="47c13aef82844eab4d710d0fdbc16eb2" category="doc">Procédures de protection pour les bases de données exécutées sur des VMDK VMware avec SnapCenter pour SQL (SCSQL)</block>
+  <block id="4a0e48a60813b8d3b0d96808bda0e650" category="paragraph">La section suivante explique comment protéger les bases de données exécutées sur des VMDK VMware avec SnapCenter pour SQL (SCSQL).</block>
+  <block id="4832772a1ec1bf97a07ace822a9e66ca" category="section-title">Configuration de SCSQL</block>
+  <block id="1ec89265cbb7cf88fcd96bd98588de5d" category="paragraph">La configuration requise pour utiliser SCSQL afin de protéger les bases de données sur les VMDK est la suivante :</block>
+  <block id="9f1444ca3aac0720c37a8103593b319f" category="inline-link-macro">Installer et configurer</block>
+  <block id="fb2838c85d1a49a920ff7f12f54faf75" category="list-text"><block ref="686426a2e5638cbbfb39f2645cdaec55" category="inline-link-macro-rx"></block> Serveur SnapCenter.</block>
+  <block id="6d7798cec137958c8ec64d5333d31800" category="list-text">Connectez-vous à SnapCenter.</block>
+  <block id="61993e37023600482e684b0ed6a2165f" category="list-text">Configurez l’environnement SnapCenter :</block>
+  <block id="dcd7f2cc28dc2d3ee208c21637e2b0fd" category="inline-link-macro">Ajouter ou affecter</block>
+  <block id="ba1ba7295e4153923a4774f4511a9102" category="list-text"><block ref="bead66de8df6345dc57ec82523e17293" category="inline-link-macro-rx"></block> Connexions du système de stockage.</block>
+  <block id="686e697538050e4664636337cc3b834f" category="inline-link-macro">Créer</block>
+  <block id="c566c03ccfa8e2e1a436cabc6cdc30d6" category="list-text"><block ref="20ec9adc14c4f6ea99ce24b48854d431" category="inline-link-macro-rx"></block> informations d'identification.</block>
+  <block id="6dbbe23d168759a5580868526cfc72a4" category="list-text">Pour les bases de données Microsoft SQL Server sur les VMDK VMware :</block>
+  <block id="506f322d7d6468340c423ee0caa43823" category="inline-link-macro">Déployer SCV</block>
+  <block id="09c02bcbe1d6f524d3e416bba4e9d172" category="list-text"><block ref="0681f41fa4d16ac177cdde987e418a1c" category="inline-link-macro-rx"></block> (déjà abordé dans la section configuration).</block>
+  <block id="1f4a6987e729eef966b1123f74bd18f8" category="list-text">Enregistrez le plug-in avec SnapCenter.</block>
+  <block id="73325ef54689cc4653385742bba1d125" category="inline-link-macro">Hôtes SQL server et installation des plug-ins</block>
+  <block id="f470dd570e41124f2a085b620c128e51" category="list-text">Ajouter <block ref="a1623dcb1d1837e5f8e99ec98c658255" category="inline-link-macro-rx"></block> :</block>
+  <block id="556d928d71035c9101824cd93d4e3e60" category="inline-link-macro">Configurer les plug-ins SQL</block>
+  <block id="259e3df1866cd47b36e104c82e94a1ea" category="list-text"><block ref="7f92f3566c9d7c697c56f6caa7d4eded" category="inline-link-macro-rx"></block>.</block>
+  <block id="89fd3d8f4292adf6b17ae0002f7d7e9b" category="inline-link-macro">Configurez le plan de protection et les horaires pour la base de données et les journaux</block>
+  <block id="77970ca2800bfbae6db2b63e8e7c37fe" category="list-text"><block ref="5bb1ec267950d3ee3237f217ded6e14d" category="inline-link-macro-rx"></block>.</block>
+  <block id="ae219b1ce8e95443e03d9d11a6fe5162" category="paragraph"><block ref="ae219b1ce8e95443e03d9d11a6fe5162" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a792c7b694674071cc9be4a8b3ad4617" category="section-title">Mise en place d'une règle de sauvegarde</block>
+  <block id="21c40ea177c71633bddab004f481cf31" category="paragraph">Les étapes suivantes vous montreront comment configurer une règle de sauvegarde.</block>
+  <block id="ce77833f1d3f454bf68c2d9db06e95f4" category="list-text">Sélectionnez la base de données dans l'onglet Ressources et sélectionnez "Protéger" dans le coin supérieur droit.</block>
+  <block id="a72c6ad8ec51b10e5b4341d98447fdf2" category="admonition">Les validations sont effectuées sur une base de données SQL Server exécutée sur la machine virtuelle invitée.</block>
+  <block id="a56481adf1701c4192b66c702435574c" category="paragraph"><block ref="a56481adf1701c4192b66c702435574c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7774403b5051979ee81edc5591b8e405" category="list-text">Cliquez sur l'icône du signe plus pour configurer une règle de sauvegarde SQL Server.</block>
+  <block id="511ba8b69497a3a4e499f500f20e2a40" category="paragraph"><block ref="511ba8b69497a3a4e499f500f20e2a40" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e1d5a90e7af548bbf72655eeef877b17" category="list-text">Dans cette démonstration, l'option « Sauvegarde complète » est sélectionnée. Sélectionnez « Suivant » pour continuer.</block>
+  <block id="71027235dcc5f761bde4dde4b5e2dcbc" category="paragraph"><block ref="71027235dcc5f761bde4dde4b5e2dcbc" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0e61dc53763c31d362b5de0da12a7458" category="list-text">Sur la page Résumé, sélectionnez "Terminer".</block>
+  <block id="72ad8855cf1bafa3a8b8d0ad7013ca97" category="paragraph"><block ref="72ad8855cf1bafa3a8b8d0ad7013ca97" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1df0351aac2a873ed52a17ddc27ad1bb" category="list-text">Passez à « Finish ».</block>
+  <block id="b733ec7b3f38cefba4a2c5942f9f3822" category="paragraph"><block ref="b733ec7b3f38cefba4a2c5942f9f3822" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="de2b2f67516097d9823976dc8f3c4cb7" category="section-title">Surveillance d'une sauvegarde</block>
+  <block id="2e71de5c8d2027fa41b328ce24b05845" category="paragraph">Une fois que vous avez défini une règles de sauvegarde, vous pouvez surveiller vos opérations de sauvegarde au fur et à mesure qu'elles ont lieu. Vous pouvez le faire soit en cliquant sur Backup now pour déclencher une opération de sauvegarde à la demande, soit en attendant que votre règles de sauvegarde planifiée s'exécute.</block>
+  <block id="52cdcf9ad45422b93c6f7cd56ef4ba79" category="list-text">Surveillez la progression du travail à l'aide de « Monitor &gt; Jobs ».</block>
+  <block id="82bce2456fbc7a1392b63b731433fcae" category="list-text">Sélectionnez la tâche de sauvegarde, puis cliquez sur "Détails" pour afficher les détails de la tâche comme ci-dessous.</block>
+  <block id="248a2299668d34377034670b75aff2bf" category="paragraph"><block ref="248a2299668d34377034670b75aff2bf" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="cf7285fc88f2ab6a0a7a259a478966b0" category="section-title">Restauration des bases de données résidant sur les VMDKs</block>
+  <block id="8320d02a1d8f50adedcfc28f40c4b59d" category="paragraph">La base de données sur le VMDK peut être restaurée à un point spécifique dans le temps.</block>
+  <block id="2fb2bbf453e2d2e921068b0f97a7631e" category="paragraph">Nous pouvons simuler l'importance de ceci en supprimant certaines tables de votre base de données, qui seront ensuite corrigées par une restauration à un instant précis.</block>
+  <block id="803d3d65afbb8e967552df58deba4fc1" category="paragraph">Vous pouvez constater ci-dessous que plusieurs tables de notre base de données affichées dans la première capture d'écran ont été supprimées dans la seconde capture d'écran :</block>
+  <block id="b7ae57f08b52a83b3ccd468e6dab36a1" category="paragraph"><block ref="b7ae57f08b52a83b3ccd468e6dab36a1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c29bbc5f2126b3771f9de0170e136634" category="paragraph"><block ref="c29bbc5f2126b3771f9de0170e136634" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="648e47669e235c85d0c43d04ebcbdc02" category="paragraph">Les étapes suivantes montrent comment effectuer une restauration pour récupérer les tables supprimées :</block>
+  <block id="35f043bccf6a62843cba66db0be83891" category="list-text">Sélectionnez la base de données dans le groupe de ressources.</block>
+  <block id="a9d9157b7b626cc9897dedd91988a1b8" category="paragraph"><block ref="a9d9157b7b626cc9897dedd91988a1b8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fa3a7c3979e352efd8dc7a72b2b441a2" category="list-text">Sur la page Restaurer, sélectionnez l'option "Restaurer la base de données sur le même hôte où la sauvegarde a été créée".</block>
+  <block id="a7f57098b934f772763bac4eb68b34d6" category="paragraph"><block ref="a7f57098b934f772763bac4eb68b34d6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fb525c6cdf5e90c79913cfc2e15486b8" category="list-text">Sélectionnez l'option pour utiliser une sauvegarde du journal jusqu'à un point dans le temps.</block>
+  <block id="873bd68992257434c2ac688b7bdff2b7" category="paragraph"><block ref="873bd68992257434c2ac688b7bdff2b7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="920f7b8670bca6c0737d8cd36e8502fd" category="list-text">Sélectionnez « Overwrite database with same name during restore, Create transaction log backup before restore », puis sélectionnez « Next ».</block>
+  <block id="291dc488191dcf66c5525ee4148c19a7" category="paragraph"><block ref="291dc488191dcf66c5525ee4148c19a7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="dbc18bafe2acf4d01d0f5d12f8a1d1f1" category="list-text">Sélectionnez l'état post-restauration que vous souhaitez que la base de données adopte dans les options de la liste, puis sélectionnez « Suivant ».</block>
+  <block id="7f662d87cbd8762cb9638ccabe4c7ac4" category="paragraph"><block ref="7f662d87cbd8762cb9638ccabe4c7ac4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="16063576da339a1fa0ce650a789cb8b3" category="list-text">Sur la page récapitulative, sélectionnez "Terminer".</block>
+  <block id="6f80e2662ed48cdc39b8aef0c1c0bbe4" category="paragraph"><block ref="6f80e2662ed48cdc39b8aef0c1c0bbe4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="60189432b5e5c2b94fa902b1712c0c14" category="list-text">Surveillez le job jusqu'à son achèvement.</block>
+  <block id="510982aa14fb552f5b1ecd176330eb89" category="paragraph"><block ref="510982aa14fb552f5b1ecd176330eb89" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="69fc960a3d94d981f9ea00c275e6acc5" category="list-text">Vérifiez que les tables supprimées ont bien été restaurées.</block>
+  <block id="42d587aabbdbfaaa5e389297c14da8be" category="paragraph"><block ref="42d587aabbdbfaaa5e389297c14da8be" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f14a0a0ca4cfedb5ca0f5f76b4d48806" category="summary">Ce guide présentera une approche de déploiement simple pour protéger les datastores FSx for ONTAP Network File System (NFS) et iSCSI Amazon EVS et les machines virtuelles associées à l'aide de la solution de sauvegarde et de restauration NetApp SnapCenter® Plug-in for VMware vSphere (SCV) pour machines virtuelles.</block>
+  <block id="aba8b8901709ea1177d88859144a7528" category="doc">Comment protéger les datastores Amazon FSx for NetApp ONTAP avec Amazon Elastic VMware Service à l'aide du NetApp SnapCenter Plug-in for VMware</block>
+  <block id="6fb87bfb37748a4a080f7554adbd3f38" category="paragraph">Les datastores supplémentaires basés sur Amazon FSx for NetApp ONTAP (FSx for ONTAP) pour Amazon Elastic VMware Service (Amazon EVS) offrent une excellente solution pour exécuter à la fois des charges de travail exigeantes en termes de performances — telles que l’utilisation de nConnect, l’appairage Amazon Virtual Private Cloud (Amazon VPC) et l’utilisation de plusieurs connexions réseau par montage de datastore — et des charges de travail gourmandes en stockage.</block>
+  <block id="0e1dfd5cf176ee88c1738dbde51abb43" category="paragraph">Cette fonctionnalité permet aux clients de s’affranchir des limitations du stockage local fourni par un réseau de stockage virtuel (vSAN), de faire évoluer le stockage indépendamment des ressources de calcul et de réduire le coût de possession total. Au-delà des avantages en termes de coût de possession total (TCO), FSx for ONTAP offre Amazon EVS avec des fonctionnalités de niveau entreprise familières aux clients d’ONTAP sur site, contribuant ainsi à optimiser et à simplifier les déploiements. L’utilisation de FSx for ONTAP donne accès aux technologies NetApp® Snapshot™, SnapMirror® et SnapVault® qui prennent en charge les opérations de sauvegarde et de restauration des machines virtuelles (VM), des datastores et des disques de machines virtuelles (VMDK). La protection basée sur les snapshots constitue une fonctionnalité clé.</block>
+  <block id="3629747b9e7a0b79ef39f3605d421fe2" category="paragraph">À mesure que les entreprises développent et consolident leurs environnements, la protection des charges de travail et du stockage sous-jacent devient primordiale. SCV peut être utilisé pour sauvegarder les datastores et les machines virtuelles directement depuis le client Amazon EVS vSphere.</block>
+  <block id="eddbb433cf6d0d4fcdfb9baa578318e6" category="paragraph">Ce guide fournit des instructions sur la façon de protéger un datastore FSx for ONTAP pour Amazon EVS à l'aide de SCV. Des exemples de scénarios de protection et de restauration de machines virtuelles et de bases de données sont également fournis.</block>
+  <block id="d06b54c2b8a38f0e47ea7cadd1889634" category="section-title">Étapes générales du déploiement et de la configuration</block>
+  <block id="0e1ebc73b6253b048d799a0c4096a1f6" category="paragraph">Vous trouverez ci-dessous les étapes principales pour déployer et configurer SCV afin de protéger vos VMs et datastores sur Amazon EVS :</block>
+  <block id="0e7d1df6e8d6149e5b7740c2d008d147" category="list-text">Téléchargez l'Open Virtual Appliance (OVA) SCV.</block>
+  <block id="90c588d7abe2eda2eef7c31f8eb59bf6" category="list-text">Connectez-vous avec les identifiants du client vSphere à Amazon EVS.</block>
+  <block id="c6ad86efc3a8b0ac38046476153e965e" category="list-text">Déployez un modèle Open Virtualization Format (OVF) pour démarrer l'assistant de déploiement VMware.</block>
+  <block id="7df3ace22749be96340e016fca7e8eed" category="list-text">Pour accéder au plug-in, sélectionnez SnapCenter Plug-in for VMware dans le menu.</block>
+  <block id="5265ea57ec48d0259cc881d6a67819d4" category="list-text">Ajouter du stockage.</block>
+  <block id="97fd666c30620b060b46717719fda411" category="list-text">Créer des règles de sauvegarde.</block>
+  <block id="60b4b8c0b498ecdc476f16d945477f16" category="list-text">Créer des groupes de ressources.</block>
+  <block id="51aea0aada0ecf28b4546e4a6244099a" category="list-text">Groupes de ressources de sauvegarde.</block>
+  <block id="63027ccde34ecb04a335dd08ca40ad3d" category="list-text">Restaurez l'intégralité de la machine virtuelle ou un disque virtuel particulier ou des fichiers invités.</block>
+  <block id="429edc7578192e1549964e7ea1fa9f94" category="summary">Cette section décrit les étapes à suivre pour restaurer les fichiers et dossiers invités protégés par le SnapCenter Plug-in pour VMware.</block>
+  <block id="4ebaf97273a3d45a92dc71fe4be35b8a" category="doc">Procédure de restauration des fichiers et dossiers invités protégés par le SnapCenter Plug-in pour VMware</block>
+  <block id="6620ae7e5aecc2256d950195e5b026a8" category="paragraph">La section suivante explique comment restaurer les fichiers et dossiers invités à partir de VMDK.</block>
+  <block id="607fbffc6ca93b14de741f522573da94" category="admonition">SnapCenter prend en charge la restauration des fichiers et des dossiers à partir de VMDK uniquement lorsque le système d'exploitation invité est Windows.</block>
+  <block id="797e987dea709205da0dc86b06321bec" category="paragraph">Considérations relatives à la restauration des fichiers et dossiers invités avec SCV :</block>
+  <block id="8c35b099944a45af88cb8ac0224cbadd" category="list-text">Les outils VMware doivent être en cours d'exécution sur la VM.</block>
+  <block id="91bf6098e6979da6d1f96097b53f0b61" category="list-text">Le fichier VMDK joint est accessible pendant 24 heures par défaut.</block>
+  <block id="a72cc8245fafc9ef38d2fe789cf57bb8" category="list-text">Une seule opération de restauration ou d’attachement peut être effectuée sur une machine virtuelle à la fois.</block>
+  <block id="d43023d5f8fd858823f8b96d882b5701" category="list-text">Les fichiers système, cachés et chiffrés peuvent être restaurés ; cependant, leurs attributs d'origine ne seront pas préservés.</block>
+  <block id="1c3d5169e6f0d3918fd545cc2adf6111" category="list-text">Évitez de restaurer des fichiers chiffrés dans des dossiers chiffrés ou d’écraser des fichiers système.</block>
+  <block id="5ad1fb931eed873354195e0dd8059cd4" category="paragraph">Étapes pour la restauration des fichiers et dossiers invités :</block>
+  <block id="86faa3dd08e3099d5031fc12b1c33a52" category="list-text">Cliquez avec le bouton droit sur la machine virtuelle cible et sélectionnez « NetApp SnapCenter &gt; Restauration des fichiers invités ».</block>
+  <block id="c84c82f697aad32e26605bee266d7834" category="paragraph"><block ref="c84c82f697aad32e26605bee266d7834" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d4a3d6e891c2cde28b583204c65bfe34" category="list-text">Choisissez la sauvegarde contenant le VMDK requis. Spécifiez le VMDK et son emplacement (primaire ou secondaire).</block>
+  <block id="355671c161fb2afe0d3e12015ae964a8" category="paragraph"><block ref="355671c161fb2afe0d3e12015ae964a8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="046ccd6f93be2578e4f99a6659c998c3" category="list-text">Choisissez « Disk Attachment Method ».</block>
+  <block id="773444c50a0a5c6e34503fb078f96cef" category="paragraph"><block ref="773444c50a0a5c6e34503fb078f96cef" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e8c1b343f2964afa494125f0e799f4fe" category="list-text">Option de machine virtuelle invitée : Attachez le disque à la machine virtuelle d’origine (nécessite des informations d’identification préconfigurées). C’est l’option utilisée dans cette démonstration.</block>
+  <block id="d5c87f9521144e141ab033e3dbed224f" category="list-text">Option Proxy VM : Attachez le disque à une Proxy VM désignée (doit être configurée au préalable).</block>
+  <block id="b23c6cb59c160872660b2658dad1a1c5" category="list-text">Veuillez patienter jusqu'à la fin de l'opération de rattachement avant de parcourir et de restaurer les fichiers. Une fois l'opération terminée, SnapCenter crée automatiquement une session de restauration de fichiers invité. <block ref="f264ac312656c99d0c4d47e7b48889a5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="dea67f722abe17f090331416531a65c4" category="paragraph"><block ref="dea67f722abe17f090331416531a65c4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c1be816903e2828c60098c6e9c58b99d" category="list-text">Accédez au VMDK dans la session de restauration de fichiers invités, sélectionnez les fichiers ou dossiers requis et restaurez-les à l'emplacement spécifié.</block>
+  <block id="1f1cf4dd5e4453e50d0c84d2b4521a2a" category="summary">Cette section décrit les étapes pour restaurer des machines virtuelles à partir de sauvegardes.</block>
+  <block id="7ddc26fc8eddc937be7b0ee665bb6417" category="doc">Procédure de restauration des machines virtuelles protégées par le SnapCenter Plug-in pour VMware</block>
+  <block id="a03a7cb687b392261609a45b2117ab5e" category="paragraph">Cette section décrit les étapes de restauration des machines virtuelles à partir de sauvegardes. SCV peut être utilisé pour restaurer des machines virtuelles au sein de vCenter, permettant de les récupérer sur le datastore d'origine de l'hôte ESXi d'origine (en écrasant le contenu existant), de restaurer des machines virtuelles supprimées ou renommées à partir d'une copie de sauvegarde, sur un autre datastore de l'hôte ESXi d'origine, sur le datastore d'origine d'un autre hôte ESXi géré par le même vCenter, ou sur un autre datastore d'un autre hôte ESXi au sein du même environnement vCenter.</block>
+  <block id="305a5a088aa8a4718f814b763705dc71" category="section-title">Étapes pour effectuer l'opération de restauration</block>
+  <block id="75c8e875c7fd2d80c91347a89e53b92f" category="paragraph">Pour effectuer l'opération de restauration, suivez ces étapes :</block>
+  <block id="704c77fce9044dfc57f99b50bc7719d4" category="list-text">Dans l’interface graphique du client web EVS vSphere, accédez à « Inventory &gt; Datastores » et sélectionnez le datastore souhaité. Ensuite, naviguez jusqu’à « Configure &gt; Backups » dans la section « SnapCenter Plug-in for VMware vSphere ».</block>
+  <block id="9037161b875d9e6d76ad93e9544893c7" category="paragraph"><block ref="9037161b875d9e6d76ad93e9544893c7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="75aa7198e4a893d00eafa6a31bec79e5" category="list-text">Double-cliquez sur une sauvegarde pour afficher toutes les machines virtuelles incluses dans cette sauvegarde. Trouvez la machine virtuelle à restaurer dans la liste et sélectionnez "Restaurer".</block>
+  <block id="426e911e4346023661772e7fc63b04b7" category="paragraph"><block ref="426e911e4346023661772e7fc63b04b7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9980445dc315761818673337765d1beb" category="list-text">Sur la page « Select Scope page », sélectionnez « Entire Virtual Machine » dans le champ « Restore scope », puis sélectionnez « Restore location » et saisissez les informations ESXi de destination où la sauvegarde doit être montée.</block>
+  <block id="df4f89b8bb6c917b11455515b3cf12c9" category="list-text">Activez la case à cocher « Restart VM » si la VM doit être mise sous tension après l'opération de restauration.</block>
+  <block id="96b658f368565f37a46461b6694731e5" category="list-text">Sur la page "Sélectionner un emplacement", choisissez un emplacement principal.</block>
+  <block id="66eeaf60f5aa62e8a639c90217ceec6f" category="paragraph"><block ref="66eeaf60f5aa62e8a639c90217ceec6f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="93977ac19671d7f2a00b0f8c5389cde6" category="list-text">Consultez la page « Summary », puis sélectionnez « Finish ».</block>
+  <block id="d548e80c434779a7f9e5bee72d3478e0" category="paragraph"><block ref="d548e80c434779a7f9e5bee72d3478e0" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="961a956837138b06da48098651f6f150" category="list-text">Surveillez l'avancement de l'opération en sélectionnant "Tâches récentes" en bas de l'écran.</block>
+  <block id="284b357fdae6facfd11b5dc85171d559" category="paragraph"><block ref="284b357fdae6facfd11b5dc85171d559" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5792be444c8951b962442be29a3a8008" category="admonition">Bien que les machines virtuelles soient restaurées, elles ne sont pas automatiquement réintégrées à leurs groupes de ressources d'origine. Si vous souhaitez protéger ces machines virtuelles, ajoutez-les manuellement aux groupes de ressources appropriés.</block>
+  <block id="c1a513a9c9445e7655d988ed0a12ccd3" category="admonition">L'opération de restauration peut également être déclenchée au niveau de chaque machine virtuelle.</block>
+  <block id="204cb92becf36c94ad5f5b8169b3d26d" category="section-title">Étapes pour restaurer une machine virtuelle supprimée</block>
+  <block id="031b9bbcd03d9ec284fb76cdaeca9f27" category="paragraph">Restaurer une machine virtuelle supprimée est un processus simple avec SCV.</block>
+  <block id="d70dfc35daa9c6e7dded8f46b2e15b10" category="paragraph">L'opération de restauration d'une machine virtuelle supprimée peut être effectuée au niveau du datastore.</block>
+  <block id="bab22b122940f34392dab00949957965" category="list-text">Accédez à la banque de données concernée &gt; Configurer &gt; Sauvegardes. Là, sélectionnez la machine virtuelle supprimée et sélectionnez « Restaurer ».</block>
+  <block id="164db7aa5e5f0ad493a5925ce3d91292" category="paragraph"><block ref="164db7aa5e5f0ad493a5925ce3d91292" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e68a6cc6d3b4d12532f7f78ea4d2af20" category="paragraph"><block ref="e68a6cc6d3b4d12532f7f78ea4d2af20" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2c51841635eb1b3f87ca2ec4eaf9e66c" category="list-text">La séquence de captures d'écran qui suit illustre la restauration d'une machine virtuelle sur un autre hôte ESXi et un autre datastore.</block>
+  <block id="4d9f4423a83ef5ead3333e799e6431c1" category="paragraph"><block ref="4d9f4423a83ef5ead3333e799e6431c1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="895bd466e1e1230b4272eea21f076c6a" category="paragraph"><block ref="895bd466e1e1230b4272eea21f076c6a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f75d1e262e634bde2ba06286b10050c1" category="paragraph"><block ref="f75d1e262e634bde2ba06286b10050c1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ef7063a75f7ab17f9b8b4987d86bf704" category="paragraph"><block ref="ef7063a75f7ab17f9b8b4987d86bf704" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c86f6679c09fc0b95d709003bcf0efe9" category="paragraph"><block ref="c86f6679c09fc0b95d709003bcf0efe9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="684d759b7fa5bff84c80be03e6e7a0ea" category="admonition">Le datastore de destination doit disposer d'un espace libre suffisant et le vCenter spécifié dans le champ « Restore to Alternate Location » doit être résolvable par DNS.</block>
+  <block id="fd790e596fbb4ebe5dfd16c0b7efbf58" category="admonition">Pour une meilleure efficacité de restauration dans les environnements NFS, activez l’API vStorage pour l’intégration de baies VMware (VAAI).</block>
+  <block id="d04d698a79644ae7e96515943beaf479" category="admonition">Les restaurations peuvent également être effectuées à partir de sites secondaires, tels qu'une SnapMirror destination.</block>
+  <block id="79f6f51275b65def8fa792eae3eb60ac" category="paragraph">+ <block ref="851e6748eb211612f10d8108677d6a68" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="822c8930b036f82906df386ea80997b2" category="doc">Procédure d'installation du plug-in SnapCenter pour VMware</block>
+  <block id="bccbf9ab3a62681b4a9025248057385d" category="paragraph">Les prérequis suivants sont nécessaires avant de commencer :</block>
+  <block id="b4a7efffc2997fc2c3478827facb84c4" category="list-text">Pour enregistrer le serveur vCenter lors du déploiement de l'OVA, spécifiez le nom de domaine complet (FQDN) ou l'adresse IP du vCenter.</block>
+  <block id="9dc56bf7fafe9413bf68c179b66804e7" category="list-text">Pour les identifiants vCenter, utilisez un compte disposant des privilèges minimaux requis</block>
+  <block id="b7a995681b3fb2e06d6edc26eef9e240" category="list-text">Ouvrez les ports du pare-feu pour l'accès au serveur vCenter.</block>
+  <block id="97e5a33a5be16801642cab3c80363d19" category="list-text">Mettez à jour le groupe de sécurité du VPC Amazon où FSx for ONTAP est en cours d'exécution pour permettre à SCV d'accéder à FSx for ONTAP.</block>
+  <block id="9ec23f78186771ba12ee9dc1d4f1db8f" category="admonition">SCV est disponible gratuitement.</block>
+  <block id="7d7e0d9bf074d3730b1e0181405e2909" category="section-title">Configuration du SnapCenter Plug-in pour VMware</block>
+  <block id="b679cfda60bdc7d11b1317a8b7919319" category="paragraph">Pour protéger les machines virtuelles et les banques de données NFS/iSCSI qui les hébergent, SCV doit être déployé. Il s'agit d'une simple importation OVF.</block>
+  <block id="9b534f797082f23c5f33e1e135204cf3" category="paragraph">Les étapes de déploiement sont les suivantes :</block>
+  <block id="9d2169c1c2855b78a7aeaa4f42d27dc7" category="inline-link-macro">Site de support NetApp</block>
+  <block id="b8508c0004c984851700b0c1750062e7" category="list-text">Téléchargez l'OVA depuis <block ref="c94efbdbbc1eaa3fde4a5571dda7c210" category="inline-link-macro-rx"></block>.</block>
+  <block id="5ac9c8c7146a08343e061acbd12966b7" category="list-text">Connectez-vous à Amazon EVS vCenter.</block>
+  <block id="852641d7edb41c38a975534056af54df" category="list-text">Dans vCenter, cliquez avec le bouton droit sur n'importe quel objet d'inventaire tel qu'un centre de données, un dossier, un cluster ou un hôte et sélectionnez « Déployer le modèle OVF ».</block>
+  <block id="695f6a37e6bb3512f8f9c2b05b7d88a9" category="list-text">Sélectionnez les paramètres appropriés, y compris le stockage, segmentez et personnalisez le modèle pour mettre à jour le vCenter et ses informations d'identification, créer des identifiants SCV et les détails IP. Une fois la vérification effectuée, sélectionnez « Terminer ».</block>
+  <block id="5a3884a4180bfb0625a603b87015ae95" category="list-text">Attendez que les tâches d'importation et de déploiement OVF soient terminées.</block>
+  <block id="f5326ac8378d23c30feb85764f4567e5" category="list-text">Une fois le SCV déployé avec succès, il sera enregistré dans vCenter.</block>
+  <block id="cf5cbf9f3e7b1d6961048b96ee53e29f" category="list-text">Pour accéder au plug-in, accédez à la barre latérale gauche de la page du client web vCenter, puis sélectionnez « SnapCenter Plug-in for VMware ».</block>
+  <block id="dccf1b5830c71b902372f777e75ec2e4" category="paragraph"><block ref="dccf1b5830c71b902372f777e75ec2e4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6f306c4b5620fa2c071b39591760be91" category="sidebar">FSx ONTAP + EVS Calculateur TCO</block>
+  <block id="91042b70bed7598de8aebe905f23b84f" category="sidebar">Protéger le datastore FSx ONTAP pour EVS</block>
+  <block id="dfa0a5f6f263d3c337831d4f86959f42" category="sidebar">Configuration du module SnapCenter pour VMware</block>
+  <block id="34d024220a8f970ec1866f7b76371883" category="sidebar">Configurer le plug-in SnapCenter pour VMware</block>
+  <block id="9cda0c7b074ab9336e54e5c799f32f1d" category="sidebar">Restaurez les fichiers et dossiers invités à partir des VMDKs</block>
+  <block id="801c7fa476257c3eb5aa2c101b78642c" category="sidebar">Protection des bases de données sur VMDK</block>
+  <block id="cc79f1d011dd390eb495c4430f17ce2e" category="sidebar">NetApp pour Google Cloud : vue d'ensemble</block>
 </blocks>
