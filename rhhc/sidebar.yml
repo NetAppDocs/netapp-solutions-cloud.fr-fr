@@ -27,8 +27,6 @@ entries:
     url: "/openshift/os-op-setup.html"
   - title: Protégez les charges de travail des conteneurs sur VMware
     url: "/openshift/os-op-data-protection.html"
-  - title: Migrer les charges de travail des conteneurs sur VMware
-    url: "/openshift/os-op-data-migration.html"
 - title: Cloud hybride avec composants autogérés
   pdf-filename: Cloud hybride avec composants autogérés Red Hat OpenShift (sur site/AWS/GCP/Azure)
   entries:
@@ -42,8 +40,6 @@ entries:
     url: "/openshift/os-sm-azure-setup.html"
   - title: Protégez les charges de travail des conteneurs sur AWS/GCP/Azure
     url: "/openshift/os-sm-data-protection.html"
-  - title: Migrer les charges de travail des conteneurs vers AWS/GCP/Azure
-    url: "/openshift/os-sm-data-migration.html"
 - title: Cloud hybride avec composants gérés par le fournisseur
   pdf-filename: Cloud hybride avec composants gérés par le fournisseur Red Hat OpenShift
   entries:
@@ -55,8 +51,6 @@ entries:
     url: "/openshift/os-pm-gcnv-setup.html"
   - title: Protégez les charges de travail des conteneurs sur AWS
     url: "/openshift/os-pm-aws-dp.html"
-  - title: Migrer les charges de travail des conteneurs sur AWS
-    url: "/openshift/os-pm-aws-data-migration.html"
   - title: Solutions ROSA supplémentaires pour les conteneurs et la virtualisation
     url: "/openshift/os-pm-rosa-additional.html"
 - title: Protégez vos données avec Trident Protect

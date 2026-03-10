@@ -30,30 +30,24 @@ indexpage:
       url: "../openshift/os-op-solution.html"
     - title: Configurer l'environnement
       url: "../openshift/os-op-setup.html"
-    - title: Protégez vos données grâce à l'ACC
+    - title: Protégez vos données avec Trident Protect
       url: "../openshift/os-op-data-protection.html"
-    - title: Migrer des données à l'aide d'ACC
-      url: "../openshift/os-op-data-migration.html"
   - title: Charges de travail cloud hybrides autogérées
     links:
     - title: Présentation de la solution
       url: "../openshift/os-sm-solution.html"
     - title: Configurer l'environnement
       url: "../openshift/os-sm-setup.html"
-    - title: Protégez vos données grâce à l'ACC
+    - title: Protégez vos données avec Trident Protect
       url: "../openshift/os-sm-data-protection.html"
-    - title: Migrer des données à l'aide d'ACC
-      url: "../openshift/os-sm-data-migration.html"
   - title: Charges de travail cloud hybrides gérées par le fournisseur
     links:
     - title: Solution de cloud hybride avec composants gérés par le fournisseur
       url: "../openshift/os-pm-solution.html"
     - title: Configurer l'environnement
       url: "../openshift/os-pm-setup.html"
-    - title: Protégez vos données grâce à ACS
+    - title: Protégez vos données avec Trident Protect
       url: "../openshift/os-pm-aws-dp.html"
-    - title: Migrer des données à l'aide de BlueXP
-      url: "../openshift/os-pm-aws-data-migration.html"
     - title: Solutions supplémentaires
       url: "../openshift/os-pm-rosa-additional.html"
   - title: Protégez les applications conteneurisées avec des outils tiers
