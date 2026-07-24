@@ -18,6 +18,7 @@ Les magasins de données Azure NetApp Files (ANF) dissocient le stockage du calc
 
 
 
+[[overview]]
 == Aperçu
 
 Les magasins de données NFS basés sur des volumes Azure NetApp Files (ANF) peuvent être utilisés pour répliquer des données à partir de sites locaux à l’aide de n’importe quelle solution tierce validée offrant une capacité de réplication de machines virtuelles.  En ajoutant des magasins de données Azure NetApp Files , cela permettra un déploiement optimisé en termes de coûts par rapport à la création d'un SDDC Azure VMware Solution avec une énorme quantité d'hôtes ESXi pour accueillir le stockage.  Cette approche est appelée « Pilot Light Cluster ».  Un cluster de voyants lumineux est une configuration d’hôte AVS minimale (3 nœuds AVS) avec une capacité de banque de données Azure NetApp Files .
@@ -26,6 +27,7 @@ L’objectif est de maintenir une infrastructure à faible coût avec tous les c
 
 
 
+[[purposes-of-this-document]]
 == Objectifs du présent document
 
 Cet article décrit comment utiliser la banque de données Azure NetApp Files avec Veeam Backup et la réplication pour configurer la reprise après sinistre des machines virtuelles VMware locales (AVS) à l'aide de la fonctionnalité du logiciel de réplication de machines virtuelles Veeam.
@@ -40,10 +42,12 @@ image:dr-veeam-anf-001.png["Figure montrant une boîte de dialogue d'entrée/sor
 
 
 
+[[solution-deployment]]
 == Déploiement de la solution
 
 
 
+[[high-level-steps]]
 === Étapes de haut niveau
 
 . Le logiciel Veeam Backup and Replication s'exécute dans un environnement sur site avec une connectivité réseau appropriée.
@@ -58,6 +62,7 @@ Un environnement de veilleuse configuré avec une configuration minimale peut ê
 
 
 
+[[pre-requisites-for-veeam-vm-replication-to-avs-and-anf-datastores]]
 === Prérequis pour la réplication de machines virtuelles Veeam vers les datastores AVS et ANF
 
 . Assurez-vous que la machine virtuelle de sauvegarde Veeam Backup & Replication est connectée aux clusters AVS SDDC source et cible.
@@ -69,6 +74,7 @@ Pour plus d'informations, reportez-vous à la section « Considérations et limi
 
 
 
+[[deployment-details]]
 === Détails du déploiement
 
 .Étape 1 : Répliquer les machines virtuelles
@@ -225,6 +231,7 @@ image:dr-veeam-anf-022.png["Figure montrant une boîte de dialogue d'entrée/sor
 ====
 
 
+[[conclusion]]
 == Conclusion
 
 La capacité de stockage de données Azure NetApp Files permet à Veeam ou à tout outil tiers validé de fournir une solution DR à faible coût en exploitant les clusters Pilot Light au lieu de mettre en place un grand cluster uniquement pour héberger les répliques de machines virtuelles.  Cela offre un moyen efficace de gérer un plan de reprise après sinistre personnalisé et sur mesure et de réutiliser les produits de sauvegarde existants en interne pour la reprise après sinistre, permettant une reprise après sinistre basée sur le cloud en quittant les centres de données de reprise après sinistre sur site.  Il est possible de basculer en cliquant sur un bouton en cas de sinistre ou de basculer automatiquement si un sinistre survient.

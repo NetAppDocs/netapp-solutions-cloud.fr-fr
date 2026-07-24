@@ -47,6 +47,7 @@ Lors de l'utilisation de Google Cloud NetApp Volumes pour les partages NAS, des 
 |===
 
 
+[[kerberos-keytab-rotationpassword-resets-for-machine-account-objects]]
 == Rotation des clés Kerberos/réinitialisations de mots de passe pour les objets de compte machine
 
 Avec les comptes de machine SMB, Google Cloud NetApp Volumes planifie des réinitialisations de mot de passe périodiques pour le compte de machine SMB.  Ces réinitialisations de mot de passe se produisent à l'aide du cryptage Kerberos et fonctionnent selon un calendrier tous les quatrièmes dimanches à une heure aléatoire entre 23h et 1h du matin.  Ces réinitialisations de mot de passe modifient les versions de clé Kerberos, font pivoter les keytabs stockés sur le système Google Cloud NetApp Volumes et contribuent à maintenir un niveau de sécurité plus élevé pour les serveurs SMB exécutés dans Google Cloud NetApp Volumes.  Les mots de passe des comptes machines sont aléatoires et ne sont pas connus des administrateurs.
@@ -55,12 +56,14 @@ Pour les comptes de machine NFS Kerberos, les réinitialisations de mot de passe
 
 
 
+[[network-ports-for-use-with-ldap-and-kerberos]]
 == Ports réseau à utiliser avec LDAP et Kerberos
 
 Lorsque vous utilisez LDAP et Kerberos, vous devez déterminer les ports réseau utilisés par ces services.  Vous pouvez trouver une liste complète des ports utilisés par Google Cloud NetApp Volumes dans le https://cloud.google.com/architecture/partners/netapp-cloud-volumes/security-considerations?hl=en_US["Documentation de Google Cloud NetApp Volumes sur les considérations de sécurité"^] .
 
 
 
+[[ldap]]
 == LDAP
 
 Google Cloud NetApp Volumes agit comme un client LDAP et utilise des requêtes de recherche LDAP standard pour les recherches d'utilisateurs et de groupes pour les identités UNIX.  LDAP est nécessaire si vous avez l'intention d'utiliser des utilisateurs et des groupes en dehors des utilisateurs par défaut standard fournis par Google Cloud NetApp Volumes.  LDAP est également nécessaire si vous prévoyez d'utiliser NFS Kerberos avec des principaux utilisateurs (tels que user1@domain.com).  Actuellement, seul LDAP utilisant Microsoft Active Directory est pris en charge.
@@ -120,6 +123,7 @@ Pour plus d'informations sur la définition des attributs LDAP dans Active Direc
 
 
 
+[[ldap-bind-information]]
 === Informations de liaison LDAP
 
 Pour interroger les utilisateurs dans LDAP, Google Cloud NetApp Volumes doit se lier (se connecter) au service LDAP.  Cette connexion dispose d'autorisations en lecture seule et est utilisée pour interroger les attributs LDAP UNIX pour les recherches d'annuaire.  Actuellement, les liaisons LDAP ne sont possibles qu'en utilisant un compte machine SMB.
@@ -136,6 +140,7 @@ Lorsque LDAP est activé, les événements suivants se produisent dans des scén
 
 
 
+[[ldap-queries]]
 === Requêtes LDAP
 
 Bien que les liaisons LDAP soient chiffrées, les requêtes LDAP sont transmises sur le réseau en texte clair à l'aide du port LDAP commun 389.  Ce port bien connu ne peut actuellement pas être modifié dans Google Cloud NetApp Volumes.  Par conséquent, une personne ayant accès au reniflage de paquets sur le réseau peut voir les noms d’utilisateur et de groupe, les identifiants numériques et les appartenances aux groupes.
@@ -144,6 +149,7 @@ Cependant, les machines virtuelles Google Cloud ne peuvent pas détecter le traf
 
 
 
+[[ldap-client-configuration-defaults]]
 === Paramètres de configuration par défaut du client LDAP
 
 Lorsque LDAP est activé dans une instance Google Cloud NetApp Volumes , une configuration client LDAP est créée avec des détails de configuration spécifiques par défaut.  Dans certains cas, les options ne s'appliquent pas aux Google Cloud NetApp Volumes (non pris en charge) ou ne sont pas configurables.
@@ -228,6 +234,7 @@ Lorsque LDAP est activé dans une instance Google Cloud NetApp Volumes , une con
 |===
 
 
+[[using-ldap-for-asymmetric-name-mapping]]
 === Utilisation de LDAP pour le mappage de noms asymétriques
 
 Par défaut, Google Cloud NetApp Volumes mappe les utilisateurs Windows et UNIX avec des noms d'utilisateur identiques de manière bidirectionnelle sans configuration spéciale.  Tant que Google Cloud NetApp Volumes peut trouver un utilisateur UNIX valide (avec LDAP), le mappage de noms 1:1 se produit.  Par exemple, si l'utilisateur Windows `johnsmith` est utilisé, alors, si Google Cloud NetApp Volumes peut trouver un utilisateur UNIX nommé `johnsmith` dans LDAP, le mappage de noms réussit pour cet utilisateur, tous les fichiers/dossiers créés par `johnsmith` afficher la propriété correcte de l'utilisateur et toutes les ACL affectant `johnsmith` sont honorés quel que soit le protocole NAS utilisé.  C'est ce qu'on appelle le mappage de noms symétrique.
@@ -301,6 +308,7 @@ TEXT
 ....
 
 
+[[ldap-channel-binding]]
 === Liaison de canal LDAP
 
 En raison d'une vulnérabilité des contrôleurs de domaine Windows Active Directory, https://msrc.microsoft.com/update-guide/vulnerability/ADV190023["Avis de sécurité Microsoft ADV190023"^] modifie la manière dont les contrôleurs de domaine autorisent les liaisons LDAP.
@@ -309,6 +317,7 @@ L’impact pour Google Cloud NetApp Volumes est le même que pour n’importe qu
 
 
 
+[[dns]]
 == DNS
 
 Active Directory et Kerberos ont tous deux des dépendances sur DNS pour la résolution du nom d'hôte vers l'IP/IP vers le nom d'hôte.  DNS nécessite que le port 53 soit ouvert.  Google Cloud NetApp Volumes n'apporte aucune modification aux enregistrements DNS et ne prend actuellement pas en charge l'utilisation de https://support.google.com/domains/answer/6147083?hl=en["DNS dynamique"^] sur les interfaces réseau.
@@ -324,12 +333,14 @@ NOTE: Google Cloud NetApp Volumes ne prend actuellement pas en charge DNSSEC et 
 
 
 
+[[file-access-auditing]]
 == Audit d'accès aux fichiers
 
 Actuellement non pris en charge pour Google Cloud NetApp Volumes.
 
 
 
+[[antivirus-protection]]
 == Protection antivirus
 
 Vous devez effectuer une analyse antivirus dans Google Cloud NetApp Volumes sur le client vers un partage NAS.  Il n’existe actuellement aucune intégration antivirus native avec Google Cloud NetApp Volumes.

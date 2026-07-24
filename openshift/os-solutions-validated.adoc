@@ -31,6 +31,7 @@ Pour cette solution, les scénarios suivants sont testés et validés par NetApp
 
 
 
+[[scenario-1-data-protection-and-migration-within-the-on-premises-environment-using-trident-protect]]
 == Scénario 1 : Protection et migration des données dans l'environnement sur site à l'aide de Trident Protect
 
 **Sur site : clusters OpenShift autogérés et stockage NetApp autogéré**
@@ -40,12 +41,14 @@ Pour cette solution, les scénarios suivants sont testés et validés par NetApp
 
 
 
+[[scenario-1]]
 === Scénario 1
 
 image:rhhc-on-premises.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
 
 
+[[scenario-2-data-protection-and-migration-from-the-on-premises-environment-to-aws-environment-using-trident-protect]]
 == Scénario 2 : Protection des données et migration de l'environnement sur site vers l'environnement AWS à l'aide de Trident Protect
 
 **Sur site : cluster OpenShift autogéré et stockage autogéré** **Cloud AWS : cluster OpenShift autogéré et stockage autogéré**
@@ -55,12 +58,14 @@ image:rhhc-on-premises.png["Figure montrant une boîte de dialogue d'entrée/sor
 
 
 
+[[scenario-2]]
 === Scénario 2
 
 image:rhhc-self-managed-aws.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
 
 
+[[scenario-3-data-protection-and-migration-from-the-on-premises-environment-to-aws-environment]]
 == Scénario 3 : Protection des données et migration de l'environnement sur site vers l'environnement AWS
 
 **Sur site : cluster OpenShift autogéré et stockage autogéré** **AWS Cloud : cluster OpenShift géré par le fournisseur (ROSA) et stockage géré par le fournisseur (FSx ONTAP)**
@@ -71,12 +76,14 @@ image:rhhc-self-managed-aws.png["Figure montrant une boîte de dialogue d'entré
 
 
 
+[[scenario-3]]
 === Scénario 3
 
 image:rhhc-rosa-with-fsxn.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
 
 
+[[scenario-4-data-protection-and-migration-from-the-on-premises-environment-to-gcp-environment-using-trident-protect]]
 === Scénario 4 : Protection des données et migration de l'environnement sur site vers l'environnement GCP à l'aide de Trident Protect
 
 **Sur site : cluster OpenShift autogéré et stockage autogéré** **Google Cloud : cluster OpenShift autogéré et stockage autogéré**
@@ -90,6 +97,7 @@ Pour les considérations relatives à l'utilisation ONTAP dans une configuration
 
 
 
+[[scenario-5-data-protection-and-migration-from-the-on-premises-environment-to-azure-environment-using-trident-protect]]
 === Scénario 5 : Protection des données et migration de l'environnement local vers l'environnement Azure à l'aide de Trident Protect
 
 **Sur site : cluster OpenShift autogéré et stockage autogéré** **Azure Cloud : cluster OpenShift autogéré et stockage autogéré**

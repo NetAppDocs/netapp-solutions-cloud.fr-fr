@@ -20,24 +20,28 @@ Les facteurs qui poussent les clients à migrer vers le cloud peuvent inclure l�
 
 
 
+[[vmware-cloud-options-in-public-cloud]]
 == Options VMware Cloud dans le cloud public
 
 Cette section décrit comment chacun des fournisseurs de cloud prend en charge une pile VMware Software Defined Data Center (SDDC) et/ou VMware Cloud Foundation (VCF) au sein de leurs offres de cloud public respectives.
 
 
 
+[[azure-vmware-solution]]
 === Solution Azure VMware
 
 Azure VMware Solution est un service cloud hybride qui permet des SDDC VMware entièrement fonctionnels au sein du cloud public Microsoft Azure.  Azure VMware Solution est une solution propriétaire entièrement gérée et prise en charge par Microsoft, vérifiée par VMware s'appuyant sur l'infrastructure Azure.  Cela signifie que lorsque Azure VMware Solution est déployé, les clients bénéficient de l'ESXi de VMware pour la virtualisation du calcul, de vSAN pour le stockage hyperconvergé et de NSX pour la mise en réseau et la sécurité, tout en profitant de la présence mondiale de Microsoft Azure, des installations de centre de données de pointe et de la proximité du riche écosystème de services et de solutions Azure natifs.
 
 
 
+[[vmware-cloud-on-aws]]
 === VMware Cloud sur AWS
 
 VMware Cloud sur AWS apporte le logiciel SDDC de classe entreprise de VMware au cloud AWS avec un accès optimisé aux services AWS natifs.  Propulsé par VMware Cloud Foundation, VMware Cloud sur AWS intègre les produits de virtualisation de calcul, de stockage et de réseau de VMware (VMware vSphere, VMware vSAN et VMware NSX) ainsi que la gestion de VMware vCenter Server, optimisée pour fonctionner sur une infrastructure AWS dédiée, élastique et bare-metal.
 
 
 
+[[google-cloud-vmware-engine]]
 === Moteur VMware de Google Cloud
 
 Google Cloud VMware Engine est une offre IaaS (Infrastructure as a Service) basée sur l'infrastructure évolutive et performante de Google Cloud et la pile VMware Cloud Foundation (VMware vSphere, vCenter, vSAN et NSX-T). Ce service permet une transition rapide vers le cloud, en migrant ou en étendant de manière transparente les charges de travail VMware existantes depuis les environnements sur site vers Google Cloud Platform, sans les coûts, les efforts ni les risques liés à la réarchitecture des applications ou à la refonte des opérations.  Il s'agit d'un service vendu et supporté par Google, en étroite collaboration avec VMware.
@@ -47,6 +51,7 @@ NOTE: Le cloud privé SDDC et la colocation NetApp Cloud Volumes offrent les mei
 
 
 
+[[did-you-know]]
 == Saviez-vous?
 
 Quel que soit le cloud utilisé, lorsqu'un SDDC VMware est déployé, le cluster initial comprend les produits suivants :
@@ -58,6 +63,7 @@ Quel que soit le cloud utilisé, lorsqu'un SDDC VMware est déployé, le cluster
 
 
 
+[[storage-configuration]]
 == Configuration de stockage
 
 Pour les clients qui prévoient d'héberger des charges de travail gourmandes en stockage et de les faire évoluer sur n'importe quelle solution VMware hébergée dans le cloud, l'infrastructure hyperconvergée par défaut impose que l'extension soit effectuée à la fois sur les ressources de calcul et de stockage.
@@ -66,6 +72,7 @@ En s'intégrant à NetApp Cloud Volumes, tels qu'Azure Azure NetApp Files, Amazo
 
 
 
+[[notes]]
 === Remarques :
 
 * VMware ne recommande pas les configurations de cluster déséquilibrées. Par conséquent, l'extension du stockage implique l'ajout de plus d'hôtes, ce qui implique un coût total de possession plus élevé.
@@ -100,6 +107,7 @@ NOTE: Le stockage interne était la seule option disponible au moment de la réd
 
 
 
+[[points-to-remember]]
 === Points à retenir
 
 * Dans les modèles de stockage hybrides, placez les charges de travail de niveau 1 ou de haute priorité sur la banque de données vSAN pour répondre à toutes les exigences de latence spécifiques, car elles font partie de l'hôte lui-même et se trouvent à proximité.  Utilisez des mécanismes intégrés pour toutes les machines virtuelles de charge de travail pour lesquelles les latences transactionnelles sont acceptables.
@@ -114,6 +122,7 @@ NOTE: Ceci s'applique uniquement au stockage connecté en tant qu'invité.
 
 
 
+[[benefits-of-netapp-cloud-storage]]
 == Avantages du stockage cloud NetApp
 
 Le stockage cloud NetApp offre les avantages suivants :
@@ -131,6 +140,7 @@ Le stockage cloud NetApp offre les avantages suivants :
 
 
 
+[[assumptions]]
 == Hypothèses
 
 * La technologie SnapMirror ou d’autres mécanismes de migration de données pertinents sont activés.  Il existe de nombreuses options de connectivité, depuis le cloud local jusqu'à n'importe quel cloud hyperscaler.  Utilisez le chemin approprié et travaillez avec les équipes réseau concernées.
@@ -142,6 +152,7 @@ NOTE: Engagez les architectes de solutions NetApp et les architectes cloud hyper
 
 
 
+[[detailed-architecture]]
 == Architecture détaillée
 
 D'un point de vue général, cette architecture (illustrée dans la figure ci-dessous) explique comment obtenir une connectivité multicloud hybride et une portabilité des applications sur plusieurs fournisseurs de cloud à l'aide de NetApp Cloud Volumes ONTAP, Google Cloud NetApp Volumes pour Google Cloud et Azure NetApp Files comme option de stockage supplémentaire en invité.

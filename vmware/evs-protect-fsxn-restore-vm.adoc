@@ -18,6 +18,7 @@ Cette section décrit les étapes de restauration des machines virtuelles à par
 
 
 
+[[steps-to-perform-restore-operation]]
 == Étapes pour effectuer l'opération de restauration
 
 Pour effectuer l'opération de restauration, suivez ces étapes :
@@ -54,6 +55,7 @@ NOTE: L'opération de restauration peut également être déclenchée au niveau 
 
 
 
+[[steps-to-restore-a-deleted-vm]]
 == Étapes pour restaurer une machine virtuelle supprimée
 
 Restaurer une machine virtuelle supprimée est un processus simple avec SCV.

@@ -18,6 +18,7 @@ Cette section décrit comment restaurer des applications à partir d'une sauvega
 
 
 
+[[prerequisites]]
 == Prérequis
 
 Pour restaurer à partir d’une sauvegarde, supposons que l’espace de noms où l’application existait a été supprimé accidentellement.

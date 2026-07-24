@@ -18,6 +18,7 @@ L'intégration d' Amazon FSx ONTAP avec VMware Cloud sur AWS est un magasin de d
 
 
 
+[[overview]]
 == Aperçu
 
 Pour les clients souhaitant utiliser VMware Cloud sur AWS SDDC comme cible de reprise après sinistre, les banques de données FSx ONTAP peuvent être utilisées pour répliquer des données à partir de sites locaux à l'aide de n'importe quelle solution tierce validée offrant une capacité de réplication de machines virtuelles.  En ajoutant la banque de données FSx ONTAP , cela permettra un déploiement optimisé en termes de coûts par rapport à la création d'un cloud VMware sur AWS SDDC avec une énorme quantité d'hôtes ESXi juste pour accueillir le stockage.
@@ -26,6 +27,7 @@ Cette approche permet également aux clients d’utiliser un cluster de voyants 
 
 
 
+[[problem-statement]]
 == Énoncé du problème
 
 Ce document décrit comment utiliser la banque de données FSx ONTAP et Veeam Backup et la réplication pour configurer la reprise après sinistre des machines virtuelles VMware sur site vers VMware Cloud sur AWS à l'aide de la fonctionnalité de réplication de machines virtuelles.
@@ -42,10 +44,12 @@ image:dr-veeam-fsx-001.png["Diagramme du scénario DR utilisant Veeam Replicatio
 
 
 
+[[solution-deployment]]
 == Déploiement de la solution
 
 
 
+[[high-level-steps]]
 === Étapes de haut niveau
 
 . Le logiciel Veeam Backup and Replication s'exécute dans un environnement sur site avec une connectivité réseau appropriée.
@@ -57,6 +61,7 @@ image:dr-veeam-fsx-001.png["Diagramme du scénario DR utilisant Veeam Replicatio
 
 
 
+[[pre-requisites-for-veeam-vm-replication-to-vmc-and-fsx-ontap-datastores]]
 === Prérequis pour la réplication de machines virtuelles Veeam vers les datastores VMC et FSx ONTAP
 
 . Assurez-vous que la machine virtuelle de sauvegarde Veeam Backup & Replication est connectée au vCenter source ainsi qu'au cloud VMware cible sur les clusters AWS SDDC.
@@ -68,6 +73,7 @@ Pour plus d'informations, reportez-vous à la section « Considérations et limi
 
 
 
+[[deployment-details]]
 === Détails du déploiement
 
 .Étape 1 : Répliquer les machines virtuelles
@@ -217,6 +223,7 @@ image:dr-veeam-fsx-019.png["Figure montrant une boîte de dialogue d'entrée/sor
 ====
 
 
+[[conclusion]]
 == Conclusion
 
 La capacité de stockage de données FSx ONTAP permet à Veeam ou à tout outil tiers validé de fournir une solution DR à faible coût à l'aide d'un cluster Pilot Light et sans avoir à créer un grand nombre d'hôtes dans le cluster juste pour héberger la copie de réplique de la machine virtuelle.  Cela fournit une solution puissante pour gérer un plan de reprise après sinistre personnalisé et sur mesure et permet également de réutiliser les produits de sauvegarde existants en interne pour répondre aux besoins de reprise après sinistre, permettant ainsi une reprise après sinistre basée sur le cloud en quittant les centres de données DR sur site.  Le basculement peut être effectué sous forme de basculement planifié ou de basculement en un clic en cas de sinistre et une décision est prise pour activer le site DR.

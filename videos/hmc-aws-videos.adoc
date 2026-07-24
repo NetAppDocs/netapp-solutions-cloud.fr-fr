@@ -18,6 +18,7 @@ Explorez la bibliothèque vidéo complète de NetApp présentant des solutions m
 
 
 
+[[guest-connected-storage]]
 == Stockage connecté aux invités
 
 .Stockage invité Windows connecté avec FSx ONTAP à l'aide d'iSCSI
@@ -26,6 +27,7 @@ video::0d03e040-634f-4086-8cb5-b01200fb8515[panopto,width=360]
 video::c3befe1b-4f32-4839-a031-b01200fb6d60[panopto,width=360]
 
 
+[[tco-and-supplemental-datastores]]
 == TCO et magasins de données supplémentaires
 
 .Économies TCO VMware Cloud sur AWS avec Amazon FSx ONTAP
@@ -34,6 +36,7 @@ video::f0fedec5-dc17-47af-8821-b01200f00e08[panopto,width=360]
 video::2065dcc1-f31a-4e71-a7d5-b01200f01171[panopto,width=360]
 
 
+[[migration-workflows-hcx]]
 == Flux de travail de migration (HCX)
 
 .Déploiement et configuration de VMware HCX pour VMC

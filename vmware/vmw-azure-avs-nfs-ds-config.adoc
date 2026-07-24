@@ -37,6 +37,7 @@ NOTE: Contactez les architectes de solutions Azure et NetApp pour planifier et d
 
 
 
+[[detailed-architecture]]
 == Architecture détaillée
 
 D’un point de vue général, cette architecture décrit comment obtenir une connectivité cloud hybride et une portabilité des applications dans les environnements locaux et Azure.  Il décrit également l’utilisation Azure NetApp Files comme banque de données NFS supplémentaire et comme option de stockage en invité pour les machines virtuelles invitées hébergées sur la solution Azure VMware.
@@ -45,6 +46,7 @@ image:vmware-dr-001.png["Figure montrant une boîte de dialogue d'entrée/sortie
 
 
 
+[[sizing]]
 == Dimensionnement
 
 L’aspect le plus important de la migration ou de la reprise après sinistre est de déterminer la taille appropriée pour l’environnement cible.  Il est très important de comprendre combien de nœuds sont nécessaires pour prendre en charge un exercice de transfert et de transfert des locaux vers la solution Azure VMware.
@@ -64,6 +66,7 @@ NOTE: Les machines virtuelles invitées utilisées avec le stockage invité doiv
 
 
 
+[[deploying-and-configuring-azure-vmware-solution]]
 == Déploiement et configuration de la solution Azure VMware
 
 Comme sur site, la planification d’une solution Azure VMware est essentielle pour un environnement prêt pour la production pour la création de machines virtuelles et la migration.
@@ -79,6 +82,7 @@ Le processus de configuration peut être divisé en trois parties :
 
 
 
+[[configure-azure-netapp-files-with-azure-vmware-solution]]
 == Configurer Azure NetApp Files avec Azure VMware Solution
 
 La nouvelle intégration entre Azure NetApp Files vous permet de créer des banques de données NFS via les API/CLI du fournisseur de ressources Azure VMware Solution avec les volumes Azure NetApp Files et de monter les banques de données sur les clusters de votre choix dans un cloud privé.  Outre l’hébergement des VMDK de machine virtuelle et d’application, les volumes de fichiers Azure NetApp peuvent également être montés à partir de machines virtuelles créées dans l’environnement Azure VMware Solution SDDC.  Les volumes peuvent être montés sur le client Linux et mappés sur un client Windows, car Azure NetApp Files prend en charge les protocoles Server Message Block (SMB) et Network File System (NFS).
@@ -217,6 +221,7 @@ image:vmware-dr-005.png["Figure montrant une boîte de dialogue d'entrée/sortie
 ====
 
 
+[[sizing-and-performance-optimization]]
 == Dimensionnement et optimisation des performances
 
 Azure NetApp Files prend en charge trois niveaux de service : Standard (16 Mo/s par téraoctet), Premium (64 Mo/s par téraoctet) et Ultra (128 Mo/s par téraoctet). Le provisionnement de la taille de volume appropriée est important pour des performances optimales de la charge de travail de la base de données. Avec Azure NetApp Files, les performances du volume et la limite de débit sont déterminées en fonction des facteurs suivants :
@@ -244,6 +249,7 @@ Se référer à cecilink:https://learn.microsoft.com/en-us/azure/azure-netapp-fi
 |===
 
 
+[[performance-considerations]]
 == Considérations relatives aux performances
 
 Il est important de comprendre qu’avec la version 3 de NFS, il n’existe qu’un seul canal actif pour la connexion entre l’hôte ESXi et une seule cible de stockage.  Cela signifie que même s'il peut y avoir des connexions alternatives disponibles pour le basculement, la bande passante d'une seule banque de données et le stockage sous-jacent sont limités à ce qu'une seule connexion peut fournir.
@@ -268,6 +274,7 @@ Se référer à cecilink:https://learn.microsoft.com/en-us/azure/azure-netapp-fi
 |===
 
 
+[[increasing-the-size-of-the-datastore]]
 == Augmenter la taille du magasin de données
 
 Le remodelage du volume et les changements dynamiques du niveau de service sont totalement transparents pour le SDDC.  Dans Azure NetApp Files, ces fonctionnalités offrent des optimisations continues des performances, de la capacité et des coûts.  Augmentez la taille des banques de données NFS en redimensionnant le volume à partir du portail Azure ou en utilisant l’interface de ligne de commande.  Une fois que vous avez terminé, accédez à vCenter, accédez à l’onglet Banque de données, cliquez avec le bouton droit sur la banque de données appropriée et sélectionnez Actualiser les informations de capacité.  Cette approche peut être utilisée pour augmenter la capacité du magasin de données et pour augmenter les performances du magasin de données de manière dynamique sans temps d’arrêt.  Ce processus est également totalement transparent pour les applications.
@@ -284,6 +291,7 @@ Le remodelage du volume et les changements dynamiques du niveau de service sont 
 |===
 
 
+[[workloads]]
 == Charges de travail
 
 .Migration

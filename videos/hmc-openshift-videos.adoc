@@ -18,24 +18,28 @@ Explorez la bibliothèque vidéo complète de NetApp présentant des solutions m
 
 
 
+[[snapshots-and-restore]]
 == Instantanés et restauration
 
 .Instantané/Restauration pour les applications sur les clusters Red Hat OpenShift Service sur AWS (ROSA) avec stockage Amazon FSx ONTAP
 video::36ecf505-5d1d-4e99-a6f8-b11c00341793[panopto,width=360]
 
 
+[[storage-integration]]
 == Intégration du stockage
 
 .Intégration de FSx ONTAP avec Trident
 video::621ae20d-7567-4bbf-809d-b01200fa7a68[panopto,width=360]
 
 
+[[failover-and-fail-back]]
 == Basculement et restauration automatique
 
 .Basculement et restauration des applications sur ROSA avec FSx ONTAP
 video::e9a07d79-42a1-4480-86be-b01200fa62f5[panopto,width=360]
 
 
+[[solution-automation]]
 == Automatisation des solutions
 
 .Déploiement automatisé d'Oracle 19c RAC sur FlexPod avec Ansible

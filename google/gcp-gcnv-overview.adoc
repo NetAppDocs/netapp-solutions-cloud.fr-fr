@@ -20,6 +20,7 @@ La sécurité, en particulier dans le cloud où l’infrastructure échappe au c
 
 
 
+[[intended-audience]]
 == Public visé
 
 Le public visé par ce document comprend, sans s'y limiter, les rôles suivants :

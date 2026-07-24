@@ -18,6 +18,7 @@ Un aperçu des cas d’utilisation importants pour l’organisation informatique
 
 
 
+[[popular-use-cases]]
 == Cas d'utilisation populaires
 
 Les cas d'utilisation incluent :
@@ -39,6 +40,7 @@ Tout au long de cette documentation, les références de charge de travail cloud
 
 
 
+[[inside-the-it-journey]]
 === Au cœur du parcours informatique
 
 La plupart des organisations sont en chemin vers la transformation et la modernisation.  Dans le cadre de ce processus, les entreprises tentent d’utiliser leurs investissements VMware existants tout en tirant parti des avantages du cloud et en explorant les moyens de rendre le processus de migration aussi transparent que possible.  Cette approche rendrait leurs efforts de modernisation très faciles car les données sont déjà dans le cloud.
@@ -47,6 +49,7 @@ La réponse la plus simple à ce scénario est l’offre VMware dans chaque hype
 
 
 
+[[understanding-the-importance-of-supplemental-nfs-storage-options]]
 === Comprendre l'importance des options de stockage NFS supplémentaires
 
 Bien que VMware, quel que soit le cloud, offre des capacités hybrides uniques à chaque client, les options de stockage NFS supplémentaires limitées ont limité son utilité pour les organisations ayant des charges de travail lourdes en stockage.  Étant donné que le stockage est directement lié aux hôtes, la seule façon de faire évoluer le stockage est d’ajouter davantage d’hôtes, ce qui peut augmenter les coûts de 35 à 40 % ou plus pour les charges de travail gourmandes en stockage.  Ces charges de travail nécessitent simplement un stockage supplémentaire, pas une puissance supplémentaire.  Mais cela signifie payer pour des hôtes supplémentaires.

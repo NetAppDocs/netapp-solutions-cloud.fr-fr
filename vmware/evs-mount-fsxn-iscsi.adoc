@@ -18,12 +18,14 @@ Cette section couvre les étapes de configuration d'une banque de données iSCSI
 
 
 
+[[prerequisites]]
 == Prérequis
 
 Avant de provisionner et d’attacher FSx pour ONTAP en tant que banque de données iSCSI, vous devez d’abord déployer un environnement de virtualisation Amazon EVS.  Pour plus d'informations, consultez la documentation sur le guide de démarrage rapide avec Amazon EVS.  Cette section suppose également que vous avez déployé un système de fichiers FSx pour ONTAP . Veuillez consulter la section Approche détaillée ci-dessus pour connaître les étapes appropriées.
 
 
 
+[[high-level-deployment-steps]]
 == Étapes de déploiement de haut niveau
 
 Le déploiement du système de fichiers FSx for ONTAP pour l'utiliser comme banque de données iSCSI pour Amazon EVS et l'établissement de la connectivité entre les deux services comprendront les étapes suivantes :
@@ -36,6 +38,7 @@ Le déploiement du système de fichiers FSx for ONTAP pour l'utiliser comme banq
 
 
 
+[[add-iscsi-network-adapter]]
 == Ajouter un adaptateur réseau iSCSI
 
 Les étapes suivantes doivent être effectuées sur chaque hôte ESXi de votre environnement.
@@ -52,6 +55,7 @@ image:evs-mount-fsxn-026.png["Figure représentant la boîte de dialogue pour l'
 
 
 
+[[create-an-fsx-for-ontap-volume]]
 == Créer un volume FSx pour ONTAP
 
 . Accédez à la console AWS et accédez à la page de votre système de fichiers FSx for ONTAP et cliquez sur « Créer un volume ».
@@ -113,6 +117,7 @@ image:evs-mount-fsxn-030.png["Figure représentant la boîte de dialogue pour l'
 
 
 
+[[create-a-lun-igroup-and-mapping-the-lun]]
 == Créer un LUN, un igroup et mapper le LUN
 
 Dans cette section, nous montrons comment créer le LUN qui apparaîtra comme un disque dans vSphere.  Nous montrerons également comment créer un groupe d'initiateurs (igroup), qui est la liste des initiateurs qui ont accès au LUN.  Le groupe i permettra l'accès au LUN à partir des hôtes vSphere ESXi.  Enfin, nous montrerons comment mapper l'igroup au LUN.
@@ -149,6 +154,7 @@ fsx       /vol/DemoDS02/lun1              online  mapped   vmware     1.80TB
 
 
 
+[[obtain-iscsi-configuration-information-from-the-svm]]
 == Obtenir les informations de configuration iSCSI à partir du SVM
 
 . Exécutez iSCSI show et enregistrez le nom de la cible.  Cela sera utilisé dans la découverte vSphere des disques FSx pour ONTAP (Remarque : ce nom de cible est unique à votre SVM) :
@@ -173,6 +179,7 @@ fsx     iscsi_2   10.0.10.227
 
 
 
+[[discover-the-fsx-for-ontap-iscsi-server]]
 == Découvrez le serveur iSCSI FSx pour ONTAP
 
 Maintenant que nous avons mappé le LUN, nous pouvons découvrir le serveur iSCSI FSx pour ONTAP pour le SVM.  Notez que pour chaque hôte ESXi existant dans votre SDDC, vous devrez répéter les étapes répertoriées ici.
@@ -194,6 +201,7 @@ image:evs-mount-fsxn-032.png["Figure représentant la boîte de dialogue pour l'
 
 
 
+[[create-an-iscsi-datastore]]
 == Créer une banque de données iSCSI
 
 Maintenant que nous avons découvert le serveur iSCSI, nous pouvons créer une banque de données iSCSI.

@@ -18,6 +18,7 @@ Cette section décrit les étapes de configuration du SnapCenter Plug-in pour VM
 
 
 
+[[adding-the-storage-system]]
 == Ajout du système de stockage
 
 L'étape suivante pour protéger les charges de travail avec SVC consiste à ajouter le link:https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_add_storage_01.html["système de stockage"]. L'ajout de stockage permet à SCV de détecter et de gérer les opérations de sauvegarde et de restauration au sein de vCenter. Incluez le point de terminaison de gestion FSx for NetApp ONTAP ou l'adresse IP du point de terminaison d'administration de la machine virtuelle de stockage (SVM) comme système de stockage pour activer la sauvegarde et la restauration des machines virtuelles.
@@ -37,6 +38,7 @@ Si la version de SCV est 6.2, allez sur link:https://mysupport.netapp.com/site/p
 
 
 
+[[create-a-backup-policy]]
 == Créer une règle de sauvegarde
 
 Une stratégie de sauvegarde robuste doit définir des facteurs clés tels que la planification des sauvegardes, les données à sauvegarder et la durée de conservation des sauvegardes. Des copies instantanées peuvent être planifiées toutes les heures ou tous les jours afin de protéger l'ensemble des datastores. La planification des sauvegardes de cette manière sécurise non seulement les datastores, mais prend également en charge les opérations de sauvegarde et de restauration des VMs et des VMDK contenus dans ces datastores.
@@ -69,6 +71,7 @@ Une fois la règle de sauvegarde créée, l'étape suivante consiste à créer l
 
 
 
+[[create-a-resource-group]]
 == Créer un groupe de ressources
 
 Un groupe de ressources sert de conteneur pour les machines virtuelles et les banques de données nécessitant une protection. Les ressources peuvent être ajoutées ou supprimées d'un groupe de ressources à tout moment, offrant ainsi une flexibilité dans la gestion des configurations de sauvegarde.
@@ -92,6 +95,7 @@ image:evs-protect-fsxn-005.png["Figure représentant la boîte de dialogue pour 
 
 
 
+[[backing-up-resource-groups]]
 == Sauvegarde des groupes de ressources
 
 Les opérations de sauvegarde sont exécutées sur toutes les ressources définies au sein d'un groupe de ressources. Si un groupe de ressources a une règle de sauvegarde attachée et une planification configurée, les sauvegardes s'effectuent automatiquement selon la planification.

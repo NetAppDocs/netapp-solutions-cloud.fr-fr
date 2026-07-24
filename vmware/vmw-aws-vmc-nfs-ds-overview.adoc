@@ -18,6 +18,7 @@ Ce document décrit comment monter Amazon FSx ONTAP en tant que banque de donné
 
 
 
+[[introduction]]
 == Introduction
 
 Toute organisation qui réussit est sur la voie de la transformation et de la modernisation.  Dans le cadre de ce processus, les entreprises utilisent généralement leurs investissements VMware existants pour tirer parti des avantages du cloud et explorer comment migrer, déployer, étendre et assurer la reprise après sinistre des processus de la manière la plus transparente possible.  Les clients qui migrent vers le cloud doivent évaluer les cas d’utilisation en termes d’élasticité et d’éclatement, de sortie du centre de données, de consolidation du centre de données, de scénarios de fin de vie, de fusions, d’acquisitions, etc.
@@ -33,6 +34,7 @@ NOTE: Cette solution est également disponible auprès de VMware.  Veuillez visi
 
 
 
+[[connectivity-options]]
 == Options de connectivité
 
 
@@ -58,6 +60,7 @@ NOTE: FSx ONTAP n'est actuellement pas pris en charge avec les clusters étendus
 
 
 
+[[conclusion]]
 == Conclusion
 
 Ce document couvre les étapes nécessaires pour configurer Amazon FSx ONTAP avec VMware Cloud sur AWS.  Amazon FSx ONTAP offre d'excellentes options pour déployer et gérer les charges de travail des applications ainsi que les services de fichiers tout en réduisant le coût total de possession en rendant les exigences de données transparentes pour la couche application.  Quel que soit le cas d'utilisation, choisissez VMware Cloud sur AWS avec Amazon FSx ONTAP pour une réalisation rapide des avantages du cloud, une infrastructure et des opérations cohérentes sur site vers AWS, une portabilité bidirectionnelle des charges de travail et une capacité et des performances de niveau entreprise.  Il s’agit du même processus et des mêmes procédures familiers utilisés pour connecter le stockage.  N'oubliez pas que seule la position des données a changé avec les nouveaux noms ; les outils et les processus restent tous les mêmes et Amazon FSx ONTAP contribue à optimiser le déploiement global.

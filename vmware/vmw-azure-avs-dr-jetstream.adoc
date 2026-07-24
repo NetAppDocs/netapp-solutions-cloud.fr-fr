@@ -64,6 +64,7 @@ NOTE: Le nombre et le contenu des domaines prescrits dépendent de diverses cara
 
 
 
+[[install-jetstream-dr-in-on-premises-datacenter]]
 == Installer JetStream DR dans un centre de données sur site
 
 Le logiciel JetStream DR se compose de trois composants principaux : JetStream DR Management Server Virtual Appliance (MSA), DR Virtual Appliance (DRVA) et les composants hôtes (packages de filtres d'E/S).  MSA est utilisé pour installer et configurer les composants hôtes sur le cluster de calcul, puis pour administrer le logiciel JetStream DR.  La liste suivante fournit une description de haut niveau du processus d’installation :
@@ -125,6 +126,7 @@ NOTE: Les livres d'exécution de basculement peuvent être configurés pour regr
 ====
 
 
+[[install-jetstream-dr-for-avs-in-an-azure-vmware-solution-private-cloud-using-the-run-command]]
 == Installer JetStream DR pour AVS dans un cloud privé Azure VMware Solution à l'aide de la commande Exécuter
 
 Une bonne pratique pour un site de récupération (AVS) consiste à créer à l’avance un cluster de voyants lumineux à trois nœuds.  Cela permet de préconfigurer l'infrastructure du site de récupération, y compris les éléments suivants :
@@ -186,6 +188,7 @@ image:vmware-dr-018.png["Figure montrant une boîte de dialogue d'entrée/sortie
 ====
 
 
+[[performing-failover-failback]]
 == Exécution d'un basculement/retour arrière
 
 .Comment effectuer un basculement / retour arrière
@@ -238,6 +241,7 @@ Terminez le processus de restauration automatique, puis confirmez la reprise de 
 ====
 
 
+[[ransomeware-recovery]]
 == Récupération de ransomware
 
 Se remettre d’un ransomware peut être une tâche ardue.  Plus précisément, il peut être difficile pour les organisations informatiques de déterminer le point de retour sûr et, une fois déterminé, comment garantir que les charges de travail récupérées sont protégées contre les attaques récurrentes (provenant de logiciels malveillants dormants ou d'applications vulnérables).

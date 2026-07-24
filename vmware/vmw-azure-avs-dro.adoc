@@ -18,6 +18,7 @@ La reprise après sinistre utilisant la réplication au niveau des blocs entre l
 
 
 
+[[overview]]
 == Aperçu
 
 Avec la réplication de volume interrégionale Azure NetApp Files (ANF), les charges de travail VMware exécutées sur un site SDDC Azure VMware Solution (AVS) utilisant des volumes Azure NetApp Files comme banque de données NFS sur le site AVS principal peuvent être répliquées vers un site AVS secondaire désigné dans la région de récupération cible.
@@ -28,6 +29,7 @@ image:azure-dro-001.png["Figure montrant une boîte de dialogue d'entrée/sortie
 
 
 
+[[prerequisites-and-general-recommendations]]
 === Prérequis et recommandations générales
 
 * Vérifiez que vous avez activé la réplication interrégionale en créant un peering de réplication. Voir https://learn.microsoft.com/en-us/azure/azure-netapp-files/cross-region-replication-create-peering["Créer une réplication de volume pour Azure NetApp Files"^] .
@@ -42,10 +44,12 @@ NOTE: Les topologies en cascade et en éventail ne sont pas prises en charge.
 
 
 
+[[getting-started]]
 == Commencer
 
 
 
+[[deploy-azure-vmware-solution]]
 === Déployer la solution Azure VMware
 
 Le https://learn.microsoft.com/en-us/azure/azure-vmware/introduction["Solution Azure VMware"^] (AVS) est un service cloud hybride qui fournit des SDDC VMware entièrement fonctionnels au sein d'un cloud public Microsoft Azure.  AVS est une solution propriétaire entièrement gérée et prise en charge par Microsoft et vérifiée par VMware qui utilise l’infrastructure Azure.  Par conséquent, les clients bénéficient de VMware ESXi pour la virtualisation du calcul, de vSAN pour le stockage hyperconvergé et de NSX pour la mise en réseau et la sécurité, tout en profitant de la présence mondiale de Microsoft Azure, des installations de centre de données de pointe et de la proximité du riche écosystème de services et de solutions Azure natifs.  Une combinaison d’Azure VMware Solution SDDC et Azure NetApp Files offre les meilleures performances avec une latence réseau minimale.
@@ -57,6 +61,7 @@ NOTE: Dans la version initiale, DRO prend en charge un cluster AVS SDDC existant
 
 
 
+[[provision-and-configure-azure-netapp-files]]
 === Provisionner et configurer Azure NetApp Files
 
 https://learn.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-introduction["Azure NetApp Files"^]est un service de stockage de fichiers à hautes performances, de niveau entreprise et mesuré.  Suivez les étapes de cette https://learn.microsoft.com/en-us/azure/azure-vmware/attach-azure-netapp-files-to-azure-vmware-solution-hosts?tabs=azure-portal["lien"^] pour provisionner et configurer Azure NetApp Files en tant que banque de données NFS afin d'optimiser les déploiements de cloud privé AVS.
@@ -76,6 +81,7 @@ NOTE: Une relation de réplication inter-régionale est une condition préalable
 
 
 
+[[dro-installation]]
 == Installation de DRO
 
 Pour commencer avec DRO, utilisez le système d’exploitation Ubuntu sur la machine virtuelle Azure désignée et assurez-vous de remplir les conditions préalables.  Ensuite, installez le package.
@@ -129,6 +135,7 @@ image:azure-dro-003.png["Figure montrant une boîte de dialogue d'entrée/sortie
 
 
 
+[[dro-configuration]]
 == Configuration DRO
 
 Une fois Azure NetApp Files et AVS correctement configurés, vous pouvez commencer à configurer DRO pour automatiser la récupération des charges de travail du site AVS principal vers le site AVS secondaire.  NetApp recommande de déployer l’agent DRO sur le site AVS secondaire et de configurer la connexion de passerelle ExpressRoute afin que l’agent DRO puisse communiquer via le réseau avec les composants AVS et Azure NetApp Files appropriés.
@@ -202,6 +209,7 @@ L’étape suivante consiste à regrouper les machines virtuelles requises dans 
 
 
 
+[[resource-groupings]]
 === Groupements de ressources
 
 Une fois les plates-formes ajoutées, regroupez les machines virtuelles que vous souhaitez récupérer dans des groupes de ressources.  Les groupes de ressources DRO vous permettent de regrouper un ensemble de machines virtuelles dépendantes en groupes logiques contenant leurs ordres de démarrage, leurs délais de démarrage et leurs validations d'application facultatives qui peuvent être exécutées lors de la récupération.
@@ -233,6 +241,7 @@ image:azure-dro-011.png["Figure montrant une boîte de dialogue d'entrée/sortie
 
 
 
+[[replication-plans]]
 === Plans de réplication
 
 Vous devez disposer d’un plan pour récupérer les applications en cas de sinistre.  Sélectionnez les plates-formes vCenter source et de destination dans la liste déroulante, choisissez les groupes de ressources à inclure dans ce plan et incluez également le regroupement de la manière dont les applications doivent être restaurées et mises sous tension (par exemple, contrôleurs de domaine, niveau 1, niveau 2, etc.).  Les plans sont souvent également appelés schémas directeurs.  Pour définir le plan de récupération, accédez à l’onglet Plan de réplication et cliquez sur *Nouveau plan de réplication*.
@@ -298,6 +307,7 @@ image:azure-dro-023.png["Figure montrant une boîte de dialogue d'entrée/sortie
 
 
 
+[[ransomware-recovery]]
 === Récupération après un ransomware
 
 Se remettre d’un ransomware peut être une tâche ardue.  Plus précisément, il peut être difficile pour les organisations informatiques d'identifier précisément le point de retour sûr et, une fois celui-ci déterminé, de garantir que les charges de travail récupérées sont protégées contre les attaques récurrentes (par exemple, contre des logiciels malveillants dormants ou via des applications vulnérables).
@@ -306,6 +316,7 @@ DRO répond à ces préoccupations en permettant aux organisations de récupére
 
 
 
+[[conclusion]]
 == Conclusion
 
 La solution de reprise après sinistre Azure NetApp Files et Azure VMware vous offre les avantages suivants :
@@ -322,6 +333,7 @@ La solution de reprise après sinistre Azure NetApp Files et Azure VMware vous o
 
 
 
+[[where-to-find-additional-information]]
 === Où trouver des informations supplémentaires
 
 Pour en savoir plus sur les informations décrites dans ce document, consultez les documents et/ou sites Web suivants :

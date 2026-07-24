@@ -18,6 +18,7 @@ La section suivante explique comment protéger les bases de données exécutées
 
 
 
+[[setting-up-scsql]]
 == Configuration de SCSQL
 
 La configuration requise pour utiliser SCSQL afin de protéger les bases de données sur les VMDK est la suivante :
@@ -49,6 +50,7 @@ image:evs-protect-fsxn-027.png["Figure représentant la boîte de dialogue pour 
 
 
 
+[[setting-up-a-backup-policy]]
 == Mise en place d'une règle de sauvegarde
 
 Les étapes suivantes vous montreront comment configurer une règle de sauvegarde.
@@ -81,6 +83,7 @@ image:evs-protect-fsxn-032.png["Figure représentant la boîte de dialogue pour 
 
 
 
+[[monitoring-a-backup]]
 == Surveillance d'une sauvegarde
 
 Une fois que vous avez défini une règles de sauvegarde, vous pouvez surveiller vos opérations de sauvegarde au fur et à mesure qu'elles ont lieu. Vous pouvez le faire soit en cliquant sur Backup now pour déclencher une opération de sauvegarde à la demande, soit en attendant que votre règles de sauvegarde planifiée s'exécute.
@@ -94,6 +97,7 @@ image:evs-protect-fsxn-033.png["Figure représentant la boîte de dialogue pour 
 
 
 
+[[restore-of-databases-residing-on-the-vmdks]]
 == Restauration des bases de données résidant sur les VMDKs
 
 La base de données sur le VMDK peut être restaurée à un point spécifique dans le temps.

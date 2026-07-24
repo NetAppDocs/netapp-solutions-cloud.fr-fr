@@ -18,6 +18,7 @@ Cette section décrit comment créer une sauvegarde à la demande pour les machi
 
 
 
+[[steps-to-create-a-backup-of-an-app]]
 == Étapes pour créer une sauvegarde d'une application
 
 Pour créer une sauvegarde à la demande d'une application (métadonnées de l'application et volumes persistants de l'application), cliquez sur l'onglet **Sauvegarde** pour créer une ressource personnalisée de sauvegarde (CR).  Un exemple de fichier yaml est fourni pour créer le CR de sauvegarde.  À l’aide de ce fichier yaml, l’application et son stockage persistant dans l’espace de noms spécifié seront sauvegardés.  Des paramètres supplémentaires peuvent être définis comme indiqué dans lelink:https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-cr.html["documentation"] .
@@ -48,6 +49,7 @@ image:redhat-openshift-oadp-backup-002.png["Sauvegarder des objets dans S3"]
 
 
 
+[[creating-scheduled-backups-for-apps]]
 == Création de sauvegardes planifiées pour les applications
 
 Pour créer des sauvegardes selon une planification, vous devez créer une CR de planification.  La planification est simplement une expression Cron vous permettant de spécifier l'heure à laquelle vous souhaitez créer la sauvegarde.  Un exemple de fichier yaml pour créer un CR de planification est présenté ci-dessous.

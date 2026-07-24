@@ -18,6 +18,7 @@ L’un des cas d’utilisation les plus courants de la solution Azure VMware et 
 
 
 
+[[overview-migrating-virtual-machines-with-vmware-hcx-azure-netapp-files-datastores-and-azure-vmware-solution]]
 == Présentation : Migration de machines virtuelles avec VMware HCX, banques de données Azure NetApp Files et solution Azure VMware
 
 VMware HCX est principalement une plate-forme de migration conçue pour simplifier la migration des applications, le rééquilibrage de la charge de travail et même la continuité des activités dans les clouds.  Il est inclus dans le cadre d'Azure VMware Solution Private Cloud et offre de nombreuses façons de migrer les charges de travail et peut être utilisé pour les opérations de reprise après sinistre (DR).
@@ -69,6 +70,7 @@ image:anfd-hcx-001.png["Cette image illustre l’architecture de haut niveau uti
 ====
 
 
+[[solution-deployment]]
 == Déploiement de la solution
 
 Suivez la série d’étapes pour terminer le déploiement de cette solution :
@@ -315,12 +317,14 @@ NOTE: Le magasin de données ANF cible doit disposer de suffisamment d’espace 
 ====
 
 
+[[conclusion]]
 == Conclusion
 
 Que vous cibliez un cloud entièrement ou un cloud hybride et que vos données résident sur n'importe quel type/fournisseur de stockage sur site, Azure NetApp Files et HCX offrent d'excellentes options pour déployer et migrer les charges de travail des applications tout en réduisant le coût total de possession en rendant les exigences de données transparentes pour la couche applicative.  Quel que soit le cas d'utilisation, choisissez Azure VMware Solution avec Azure NetApp Files pour une réalisation rapide des avantages du cloud, une infrastructure et des opérations cohérentes sur site et sur plusieurs clouds, une portabilité bidirectionnelle des charges de travail et une capacité et des performances de niveau entreprise.  Il s’agit du même processus et des mêmes procédures familiers utilisés pour connecter le stockage et migrer les machines virtuelles à l’aide de VMware vSphere Replication, VMware vMotion ou même de la copie de fichiers réseau (NFC).
 
 
 
+[[takeaways]]
 == Plats à emporter
 
 Les points clés de ce document comprennent :
@@ -332,6 +336,7 @@ Les points clés de ce document comprennent :
 
 
 
+[[where-to-find-additional-information]]
 == Où trouver des informations supplémentaires
 
 Pour en savoir plus sur les informations décrites dans ce document, reportez-vous aux liens Web suivants :

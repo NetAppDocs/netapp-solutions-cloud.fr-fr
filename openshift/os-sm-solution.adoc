@@ -20,6 +20,7 @@ NetApp Cloud Volumes ONTAP offre protection des données, fiabilité et flexibil
 
 
 
+[[data-protection-and-migration-solution-for-openshift-container-workloads-in-a-hybrid-cloud-using-trident-protect]]
 == Solution de protection et de migration des données pour les charges de travail OpenShift Container dans un cloud hybride à l'aide de Trident Protect
 
 Sur site et AWSimage:rhhc-self-managed-aws.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]

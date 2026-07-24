@@ -24,12 +24,14 @@ La partie au-dessus de la ligne pointillée montre le plan de contrôle du servi
 
 
 
+[[tenancy-model]]
 == Modèle de location
 
 Dans Google Cloud NetApp Volumes, les projets individuels sont considérés comme des locataires uniques.  Cela signifie que la manipulation des volumes, des copies Snapshot, etc. sont effectuées projet par projet.  En d'autres termes, tous les volumes appartiennent au projet dans lequel ils ont été créés et seul ce projet peut gérer et accéder aux données qu'ils contiennent par défaut.  Ceci est considéré comme la vue du plan de contrôle du service.
 
 
 
+[[shared-vpcs]]
 === VPC partagés
 
 Sur la vue du plan de données, Google Cloud NetApp Volumes peut se connecter à un VPC partagé.  Vous pouvez créer des volumes dans le projet d’hébergement ou dans l’un des projets de service connectés au VPC partagé.  Tous les projets (hôte ou service) connectés à ce VPC partagé peuvent atteindre les volumes au niveau de la couche réseau (TCP/IP).  Étant donné que tous les clients disposant d'une connectivité réseau sur le VPC partagé peuvent potentiellement accéder aux données via les protocoles NAS, le contrôle d'accès sur le volume individuel (tel que les listes de contrôle d'accès utilisateur/groupe (ACL) et les noms d'hôte/adresses IP pour les exportations NFS) doit être utilisé pour contrôler qui peut accéder aux données.
@@ -42,6 +44,7 @@ En d'autres termes, sur la couche réseau, tous les projets connectés au VPC pa
 
 
 
+[[vpc-service-controls]]
 === Contrôles de service VPC
 
 Les contrôles de service VPC établissent un périmètre de contrôle d'accès autour des services Google Cloud connectés à Internet et accessibles dans le monde entier.  Ces services fournissent un contrôle d'accès via les identités des utilisateurs, mais ne peuvent pas restreindre l'emplacement réseau d'où proviennent les demandes.  Les contrôles de service VPC comblent cette lacune en introduisant des fonctionnalités permettant de restreindre l’accès à des réseaux définis.
@@ -52,6 +55,8 @@ En bref, le plan de données Google Cloud NetApp Volumes offre la possibilité d
 
 
 
+[[packet-sniffingtrace-considerations]]
+[[packet-sniffing]]
 === Considérations relatives au reniflage et au traçage des paquets
 
 Les captures de paquets peuvent être utiles pour résoudre les problèmes de réseau ou d'autres problèmes (tels que les autorisations NAS, la connectivité LDAP, etc.), mais peuvent également être utilisées de manière malveillante pour obtenir des informations sur les adresses IP du réseau, les adresses MAC, les noms d'utilisateur et de groupe, et le niveau de sécurité utilisé sur les points de terminaison.  En raison de la façon dont les règles de réseau, de VPC et de pare-feu de Google Cloud sont configurées, l'accès indésirable aux paquets réseau devrait être difficile à obtenir sans les informations de connexion de l'utilisateur oulink:gcp-gcnv-control-plane-arch.html#jwt-tokens["Jetons JWT"] dans les instances cloud.  Les captures de paquets ne sont possibles que sur les points de terminaison (tels que les machines virtuelles (VM)) et uniquement possibles sur les points de terminaison internes au VPC, sauf si un VPC partagé et/ou un tunnel réseau externe/un transfert IP sont utilisés pour autoriser explicitement le trafic externe vers les points de terminaison.  Il n’existe aucun moyen de détecter le trafic en dehors des clients.
@@ -71,6 +76,7 @@ image:ncvs-gc-004.png["Figure montrant une boîte de dialogue d'entrée/sortie o
 
 
 
+[[vm-network-interfaces]]
 === Interfaces réseau VM
 
 Une astuce que les attaquants pourraient tenter est d'ajouter une nouvelle carte d'interface réseau (NIC) à une machine virtuelle. https://en.wikipedia.org/wiki/Promiscuous_mode["mode promiscuité"^] (mise en miroir des ports) ou activer le mode promiscuité sur une carte réseau existante afin de renifler tout le trafic.  Dans Google Cloud, l'ajout d'une nouvelle carte réseau nécessite l'arrêt complet d'une machine virtuelle, ce qui crée des alertes, de sorte que les attaquants ne peuvent pas le faire sans se faire remarquer.

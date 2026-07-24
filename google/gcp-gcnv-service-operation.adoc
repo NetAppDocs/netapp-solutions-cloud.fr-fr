@@ -20,6 +20,7 @@ Chaque client obtient son propre sous-réseau unique dont l'accès est isolé de
 
 
 
+[[physical-security]]
 == Sécurité physique
 
 Avec une approbation préalable appropriée, seuls les ingénieurs sur site et les ingénieurs de support sur le terrain (FSE) portant le badge NetApp ont accès à la cage et aux racks pour le travail physique.  Le stockage et la gestion du réseau ne sont pas autorisés.  Seules ces ressources sur site sont en mesure d’effectuer des tâches de maintenance matérielle.
@@ -28,6 +29,7 @@ Pour les ingénieurs sur site, un ticket est émis pour l'énoncé des travaux (
 
 
 
+[[operations-team]]
 == Équipe des opérations
 
 L'équipe d'exploitation de Google Cloud NetApp Volumes se compose d'ingénieurs de production et d'un ingénieur de fiabilité du site (SRE) pour Google Cloud NetApp Volumes et d'ingénieurs et partenaires de support sur le terrain NetApp pour le matériel.  Tous les membres de l'équipe d'exploitation sont accrédités pour travailler dans Google Cloud et des enregistrements détaillés du travail sont conservés pour chaque ticket soulevé.  De plus, un processus rigoureux de contrôle et d’approbation des changements est en place pour garantir que chaque décision est examinée de manière appropriée.
@@ -36,6 +38,7 @@ L'équipe SRE gère le plan de contrôle et la manière dont les données sont a
 
 
 
+[[customer-responsibilities]]
 == Responsabilités du client
 
 Les clients de Google Cloud NetApp Volumes gèrent l'Active Directory et la gestion des rôles utilisateur de leur organisation, ainsi que les opérations de volume et de données.  Les clients peuvent avoir des rôles administratifs et déléguer des autorisations à d’autres utilisateurs finaux au sein du même projet Google Cloud à l’aide des deux rôles prédéfinis fournis par NetApp et Google Cloud (Administrateur et Spectateur).
@@ -44,6 +47,7 @@ L'administrateur peut connecter n'importe quel VPC du projet client aux Google C
 
 
 
+[[malicious-sre-protection]]
 == Protection SRE malveillante
 
 Une préoccupation qui pourrait survenir est de savoir comment Google Cloud NetApp Volumes protège contre les scénarios dans lesquels il existe un SRE malveillant ou lorsque les informations d’identification SRE ont été compromises ?
@@ -52,6 +56,7 @@ L'accès à l'environnement de production est réservé à un nombre limité de 
 
 
 
+[[volume-life-cycle]]
 == Cycle de vie du volume
 
 Google Cloud NetApp Volumes gère uniquement les objets au sein du service, et non les données au sein des volumes.  Seuls les clients accédant aux volumes peuvent gérer les données, les ACL, les propriétaires de fichiers, etc.  Les données de ces volumes sont chiffrées au repos et l'accès est limité aux locataires de l'instance Google Cloud NetApp Volumes .
@@ -62,12 +67,14 @@ Dans les cas où un contrat Google Cloud NetApp Volumes est résilié, NetApp ma
 
 
 
+[[certifications]]
 == Certifications
 
 Google Cloud NetApp Volumes pour Google Cloud est actuellement certifié selon les normes ISO/IEC 27001:2013 et ISO/IEC 27018:2019.  Le service a également récemment reçu son rapport d’attestation SOC2 Type I.  Pour plus d'informations sur l'engagement de NetApp en matière de sécurité et de confidentialité des données, consultez https://www.netapp.com/company/trust-center/compliance/["Conformité : sécurité et confidentialité des données"^] .
 
 
 
+[[gdpr]]
 == RGPD
 
 Nos engagements en matière de confidentialité et de conformité au RGPD sont disponibles dans un certain nombre de nos https://www.netapp.com/how-to-buy/sales-terms-and-conditions%22%20/o%20%22SEO%20-%20Sales%20Terms%20and%20Conditions["contrats clients"^] , comme notre https://netapp.na1.echosign.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhCqPPgcufskl_71q-FelD4DHz5EMJVOkqqT0iiORT10DlfZnZeMpDrse5W6K9LEw6o*["Addendum relatif au Data Processing clients"^] , qui comprend le https://ec.europa.eu/info/law/law-topic/data-protection/international-dimension-data-protection/standard-contractual-clauses-scc_en["Clauses contractuelles types"^] fourni par la Commission européenne.  Nous prenons également ces engagements dans notre politique de confidentialité, soutenus par les valeurs fondamentales énoncées dans notre code de conduite d’entreprise.

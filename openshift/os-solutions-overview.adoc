@@ -18,6 +18,7 @@ NetApp constate une augmentation significative du nombre de clients modernisant 
 
 
 
+[[overview]]
 == Aperçu
 
 Alors que de plus en plus de clients commencent à adopter des conteneurs au sein de leurs entreprises, NetApp est parfaitement positionné pour répondre aux besoins de stockage persistant de leurs applications avec état et aux besoins de gestion des données classiques tels que la protection des données, la sécurité des données et la migration des données.  Cependant, ces besoins sont satisfaits à l’aide de stratégies, d’outils et de méthodes différentes.

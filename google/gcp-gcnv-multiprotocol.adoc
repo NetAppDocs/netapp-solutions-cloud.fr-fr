@@ -18,6 +18,7 @@ Google Cloud NetApp Volumes offre la possibilité de partager les mêmes ensembl
 
 
 
+[[access-control]]
 == Contrôle d'accès
 
 * *Partager les contrôles d'accès.*  Déterminez quels clients et/ou utilisateurs et groupes peuvent accéder à un partage NAS.  Pour NFS, les politiques et règles d’exportation contrôlent l’accès des clients aux exportations.  Les exportations NFS sont gérées à partir de l'instance Google Cloud NetApp Volumes .  SMB utilise des partages CIFS/SMB et des listes de contrôle d'accès (ACL) pour fournir un contrôle plus précis au niveau de l'utilisateur et du groupe.  Vous pouvez uniquement configurer les ACL au niveau du partage à partir de clients SMB en utilisant https://library.netapp.com/ecmdocs/ECMP1401220/html/GUID-C1772CDF-8AEE-422B-AB87-CFCB7E50FF94.html [MMC/Computer Management^] avec un compte disposant de droits d'administrateur sur l'instance Google Cloud NetApp Volumes (voir la section link:gcp-gcnv-smb.html#Accounts with local/BUILTIN administrator/backup rights["Comptes avec droits d'administrateur/de sauvegarde locaux/BUILTIN."]).
@@ -28,6 +29,7 @@ Le contrôle d'accès pour les volumes qui servent des données à la fois à NF
 
 
 
+[[user-mapping]]
 == Cartographie des utilisateurs
 
 Lorsqu'un client accède à un volume, Google Cloud NetApp Volumes tente de mapper l'utilisateur entrant à un utilisateur valide dans la direction opposée.  Cela est nécessaire pour que l’accès approprié soit déterminé à travers les protocoles et pour garantir que l’utilisateur demandant l’accès est bien celui qu’il prétend être.
@@ -40,6 +42,7 @@ Actuellement, seul Active Directory est pris en charge pour la gestion des ident
 
 
 
+[[permission-model]]
 == Modèle d'autorisation
 
 Lors de l'utilisation de configurations à double protocole, Google Cloud NetApp Volumes utilise des styles de sécurité pour les volumes afin de déterminer le type d'ACL.  Ces styles de sécurité sont définis en fonction du protocole NAS spécifié ou, dans le cas d'un protocole double, d'un choix effectué au moment de la création du volume Google Cloud NetApp Volumes .

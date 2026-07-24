@@ -35,6 +35,7 @@ Trident Protect permet la création de snapshots, la sauvegarde, la restauration
 
 
 
+[[create-appvault-for-object-storage]]
 == Créer AppVault pour le stockage d'objets
 
 .Créer AppVault
@@ -105,6 +106,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-008.png["ONTAP S3 Appvault créé"]
 ====
 
 
+[[create-a-vm-in-openshift-virtualization]]
 == Créer une machine virtuelle dans OpenShift Virtualization
 
 .Créer une machine virtuelle dans OpenShift Virtualization
@@ -132,6 +134,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-007.png["vm, pods et pvc créés"]
 ====
 
 
+[[create-an-app]]
 == Créer une application
 
 .Créer une application
@@ -163,6 +166,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-009.png["Application créée"]
 ====
 
 
+[[protect-the-app-by-creating-a-backup]]
 == Protégez l'application en créant une sauvegarde
 
 .Créer des sauvegardes
@@ -217,6 +221,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-017.png["Sauvegardes créées à la demande et
 ====
 
 
+[[restore-from-backup]]
 == Restaurer à partir d'une sauvegarde
 
 .Restaurer à partir de sauvegardes
@@ -301,6 +306,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-023.png["VM dans le nouvel espace de noms"]
 ====
 
 
+[[protect-the-app-using-snapshots]]
 == Protégez l'application à l'aide de snapshots
 
 .Créer des instantanés
@@ -373,6 +379,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-026.png["instantané planifié"]
 ====
 
 
+[[restore-from-snapshot]]
 == Restaurer à partir d'un instantané
 
 .Restaurer à partir d'un instantané
@@ -455,6 +462,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-032.png["VM restaurée dans un nouvel espace d
 ====
 
 
+[[restore-a-specific-vm]]
 == Restaurer une machine virtuelle spécifique
 
 .Sélection de machines virtuelles spécifiques dans un espace de noms pour créer des instantanés/sauvegardes et restaurer
@@ -548,6 +556,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-038.png["création d'une machine virtuelle Cen
 ====
 
 
+[[video-demonstration]]
 == Démonstration vidéo
 
 La vidéo suivante montre une démonstration de la protection d'une machine virtuelle à l'aide de snapshots
