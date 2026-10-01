@@ -33,7 +33,7 @@ Le processus de configuration peut être décomposé selon les étapes suivantes
 
 
 .Installer Trident sur les clusters OSD (à l'aide du graphique Helm)
-* Utilisez un Helm chart pour installer Trident sur les clusters OSD. Consultez link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-helm.html["ici"] pour obtenir des instructions sur l'installation du Helm chart.
+* Utilisez un Helm chart pour installer Trident sur les clusters OSD. Consultez link:https://docs.netapp.com/us-en/trident/trident-install/kubernetes-deploy-helm.html["ici"^] pour obtenir des instructions sur l'installation du Helm chart.
 
 
 .Intégration de NetApp Volumes avec NetApp Trident pour les clusters OSD
@@ -63,4 +63,4 @@ allowVolumeExpansion: true
 * Configurez une nouvelle instance Argo CD pour le cluster.  Se référer aux instructionslink:https://docs.openshift.com/gitops/1.13/argocd_instance/setting-up-argocd-instance.html["ici"] .
 
 
-Ouvrez la console d’Argo CD et déployez une application.  À titre d’exemple, vous pouvez déployer une application Jenkins à l’aide d’Argo CD avec un graphique Helm.  Lors de la création de l'application, les détails suivants ont été fournis : Projet : cluster par défaut :'https://kubernetes.default.svc'[] (sans les guillemets) Espace de noms : Jenkins L'URL du graphique Helm :'https://charts.bitnami.com/bitnami'[] (sans les guillemets)
+Ouvrez la console d'Argo CD et déployez une application. Par exemple, vous pouvez déployer une application Jenkins à l’aide d’Argo CD avec un Helm Chart. Lors de la création de l'application, les informations suivantes ont été fournies : Project: default cluster: +'https://kubernetes.default.svc'+[] (sans les guillemets) Namespace: Jenkins L’URL du Helm Chart : +'https://charts.bitnami.com/bitnami'+[] (sans les guillemets)
