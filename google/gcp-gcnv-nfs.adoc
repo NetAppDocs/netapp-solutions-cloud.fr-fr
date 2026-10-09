@@ -144,7 +144,7 @@ Autorisations * read-data (fichiers) / list-directory (répertoires) * write-dat
 |===
 Enfin, l'appartenance au groupe NFS (dans NFSv3 et NFSV4.x) est limitée à un maximum par défaut de 16 pour AUTH_SYS conformément aux limites des paquets RPC.  NFS Kerberos fournit jusqu'à 32 groupes et les ACL NFSv4 suppriment la limitation au moyen d'ACL utilisateur et groupe granulaires (jusqu'à 1024 entrées par ACE).
 
-De plus, Google Cloud NetApp Volumes fournit une prise en charge de groupe étendue pour étendre le nombre maximal de groupes pris en charge jusqu'à 32.  Cela nécessite une connexion LDAP à un serveur LDAP contenant des identités d'utilisateur et de groupe UNIX valides.  Pour plus d'informations sur la configuration de ceci, voir https://cloud.google.com/architecture/partners/netapp-cloud-volumes/creating-nfs-volumes?hl=en_US["Création et gestion des volumes NFS"^] dans la documentation Google.
+De plus, Google Cloud NetApp Volumes prend en charge un nombre étendu de groupes, jusqu'à 32. Cela nécessite une connexion LDAP à un serveur LDAP contenant des identités d'utilisateurs et de groupes UNIX valides. Pour plus d'informations sur cette configuration, consultez https://docs.cloud.google.com/netapp/volumes/docs/configure-and-use/active-directory/ad-ldap-access["Création et gestion des volumes NFS"^] dans la documentation Google.
 
 
 

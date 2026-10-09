@@ -14,7 +14,7 @@ summary: SMB est un protocole de partage de fichiers réseau développé par Mic
 
 
 [role="lead"]
-https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831795(v=ws.11)["PME"^]est un protocole de partage de fichiers réseau développé par Microsoft qui fournit une authentification centralisée des utilisateurs/groupes, des autorisations, un verrouillage et un partage de fichiers à plusieurs clients SMB sur un réseau Ethernet.  Les fichiers et dossiers sont présentés aux clients via des partages, qui peuvent être configurés avec une variété de propriétés de partage et offrent un contrôle d'accès via des autorisations au niveau du partage.  SMB peut être présenté à n’importe quel client offrant un support pour le protocole, y compris les clients Windows, Apple et Linux.
+https://learn.microsoft.com/en-us/windows-server/storage/file-server/file-server-smb-overview["PME"^] est un protocole de partage de fichiers réseau développé par Microsoft qui fournit une authentification centralisée des utilisateurs/groupes, des autorisations, le verrouillage et le partage de fichiers à plusieurs clients SMB sur un réseau Ethernet. Les fichiers et les dossiers sont présentés aux clients sous forme de partages, qui peuvent être configurés avec diverses propriétés de partage et offrent un contrôle d'accès via des autorisations au niveau du partage. SMB peut être présenté à tout client prenant en charge le protocole, y compris les clients Windows, Apple et Linux.
 
 Google Cloud NetApp Volumes prend en charge les versions SMB 2.1 et 3.x du protocole.
 

@@ -18,7 +18,7 @@ Pour en savoir plus sur les informations décrites dans ce document, consultez l
 
 * Documentation Google Cloud pour Google Cloud NetApp Volumes
 +
-https://cloud.google.com/architecture/partners/netapp-cloud-volumes/["https://cloud.google.com/architecture/partners/netapp-cloud-volumes/"^]
+https://docs.cloud.google.com/netapp/volumes/docs/discover/overview["https://docs.cloud.google.com/netapp/volumes/docs/discover/overview"^]
 
 * Accès au service privé de Google
 +

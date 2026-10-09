@@ -128,7 +128,7 @@ Les partages et LUN Cloud Volumes ONTAP peuvent être montés à partir de machi
 Pour répliquer des volumes d’un environnement local vers le cloud à des fins de reprise après sinistre ou de migration, établissez une connectivité réseau à Azure, soit à l’aide d’un VPN site à site, soit d’ExpressRoute.  La réplication des données sur site vers Cloud Volumes ONTAP n'entre pas dans le cadre de ce document.  Pour répliquer des données entre les systèmes locaux et Cloud Volumes ONTAP , consultezlink:https://docs.netapp.com/us-en/occm/task_replicating_data.html#setting-up-data-replication-between-systems["Configuration de la réplication des données entre les systèmes"] .
 
 
-NOTE: Utiliserlink:https://cloud.netapp.com/cvo-sizer["Dimensionneur Cloud Volumes ONTAP"] pour dimensionner avec précision les instances Cloud Volumes ONTAP .  Surveillez également les performances sur site à utiliser comme entrées dans le dimensionneur Cloud Volumes ONTAP .
+NOTE: Utilisez link:https://bluexp.netapp.com/cvo-sizer["Dimensionneur Cloud Volumes ONTAP"^] pour dimensionner précisément les instances Cloud Volumes ONTAP. Surveillez également les performances sur site afin de les utiliser comme données d'entrée dans l'outil de dimensionnement Cloud Volumes ONTAP.
 
 . Connectez-vous à NetApp Cloud Central : l’écran Fabric View s’affiche.  Localisez l’onglet Cloud Volumes ONTAP et sélectionnez Accéder au Gestionnaire de Cloud.  Une fois connecté, l’écran Canvas s’affiche.
 +
