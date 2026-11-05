@@ -26,7 +26,7 @@ NOTE: Il existe plusieurs façons de déployer des clusters de plateforme Red Ha
 Le processus de configuration peut être décomposé selon les étapes suivantes :
 
 .Installer un cluster OCP sur GCP à partir de la CLI
-* Assurez-vous d'avoir satisfait à toutes les conditions préalables énoncéeslink:https://docs.openshift.com/container-platform/4.13/installing/installing_gcp/installing-gcp-default.html["ici"] .
+* Assurez-vous d’avoir rempli toutes les conditions préalables énoncées link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.13/html/installing_on_google_cloud/index#installing-gcp-default["ici"^].
 * Pour la connectivité VPN entre le site local et GCP, une machine virtuelle pfsense a été créée et configurée.  Pour les instructions, voir https://docs.netgate.com/pfsense/en/latest/recipes/ipsec-s2s-psk.html["ici"] .
 +
 ** L'adresse de passerelle distante dans pfsense ne peut être configurée qu'après avoir créé une passerelle VPN dans Google Cloud Platform.
@@ -36,7 +36,7 @@ Le processus de configuration peut être décomposé selon les étapes suivantes
 
 * Installez maintenant le cluster OpenShift sur GCP.
 +
-** Obtenez le programme d'installation et le secret d'extraction et déployez le cluster en suivant les étapes fournies dans la documentation https://docs.openshift.com/container-platform/4.13/installing/installing_gcp/installing-gcp-default.html["ici"] .
+** Obtenez le programme d'installation et le pull secret, puis déployez le cluster en suivant les étapes fournies dans la documentation https://docs.redhat.com/en/documentation/openshift_container_platform/4.13/html/installing_on_google_cloud/index#installing-gcp-default["ici"^].
 ** L'installation crée un réseau VPC dans Google Cloud Platform.  Il crée également une zone privée dans Cloud DNS et ajoute des enregistrements A.
 +
 *** Utilisez l’adresse de bloc CIDR du réseau VPC pour configurer le pfsense et établir la connexion VPN.  Assurez-vous que les pare-feu sont correctement configurés.

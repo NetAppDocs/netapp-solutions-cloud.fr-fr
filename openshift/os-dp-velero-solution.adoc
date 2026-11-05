@@ -16,7 +16,7 @@ summary: Protection des données des applications conteneurisées Red Hat OpenSh
 [role="lead"]
 Cette section du document de référence fournit des détails sur la création de sauvegardes d'applications conteneurisées à l'aide de l'API OpenShift pour la protection des données (OADP) avec Velero sur NetApp ONTAP S3 ou NetApp StorageGRID S3.  Les sauvegardes des ressources limitées à l'espace de noms, y compris les volumes persistants (PV) de l'application, sont créées à l'aide de snapshots CSI Trident .
 
-Le stockage persistant pour les applications conteneurisées peut être sauvegardé par le stockage ONTAP intégré au cluster OpenShift à l'aide delink:https://docs.netapp.com/us-en/trident/["Trident CSI"] .  Dans cette section, nous utilisonslink:https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ocs.html["API OpenShift pour la protection des données (OADP)"] pour effectuer la sauvegarde des applications, y compris leurs volumes de données,
+Le stockage persistant des applications conteneurisées peut être assuré par le stockage ONTAP intégré au cluster OpenShift à l’aide de link:https://docs.netapp.com/us-en/trident/["Trident CSI"]. Dans cette section, nous utilisons link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.14/html/backup_and_restore/oadp-application-backup-and-restore#installing-oadp-ocs["API OpenShift pour la protection des données (OADP)"] pour effectuer la sauvegarde des applications, y compris de leurs volumes de données, vers
 
 * Stockage d'objets ONTAP
 * Grille de stockage
@@ -44,4 +44,4 @@ OADP 1.3 est disponible à partir du hub opérateur du cluster OpenShift 4.12 et
 * postgresql installé en utilisant helm.
 
 
-link:https://docs.netapp.com/us-en/trident/["Trident CSI"] link:https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ocs.html["API OpenShift pour la protection des données (OADP)"] link:https://velero.io/["Velero"]
+link:https://docs.netapp.com/us-en/trident/["Trident CSI"] link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.14/html/backup_and_restore/oadp-application-backup-and-restore#installing-oadp-ocs["API OpenShift pour la protection des données (OADP)"] link:https://velero.io/["Velero"]

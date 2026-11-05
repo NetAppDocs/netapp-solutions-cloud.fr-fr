@@ -53,7 +53,7 @@ image:dr-veeam-fsx-001.png["Diagramme du scénario DR utilisant Veeam Replicatio
 === Étapes de haut niveau
 
 . Le logiciel Veeam Backup and Replication s'exécute dans un environnement sur site avec une connectivité réseau appropriée.
-. Configurez VMware Cloud sur AWS, consultez l'article VMware Cloud Tech Zonelink:https://vmc.techzone.vmware.com/fsx-guide["Guide de déploiement de l'intégration de VMware Cloud sur AWS avec Amazon FSx ONTAP"] pour déployer, configurez VMware Cloud sur AWS SDDC et FSx ONTAP en tant que banque de données NFS.  (Un environnement de veilleuse configuré avec une configuration minimale peut être utilisé à des fins de reprise après sinistre.  Les machines virtuelles basculeront vers ce cluster en cas d'incident et des nœuds supplémentaires pourront être ajoutés).
+. Pour configurer VMware Cloud on AWS, consultez l’article VMware Cloud Tech Zone link:https://www.vmware.com/docs/vmware-cloud-on-aws-integration-with-amazon-fsx-for-netapp-ontap-deployment-guide["Guide de déploiement de l'intégration de VMware Cloud sur AWS avec Amazon FSx ONTAP"^] pour déployer et configurer VMware Cloud on AWS SDDC et FSx ONTAP en tant que datastore NFS. (Un environnement pilot-light configuré avec une configuration minimale peut être utilisé à des fins de reprise après sinistre. Les VM basculeront vers ce cluster en cas d’incident, et des nœuds supplémentaires peuvent être ajoutés).
 . Configurez des tâches de réplication pour créer des répliques de machines virtuelles à l’aide de Veeam Backup and Replication.
 . Créez un plan de basculement et effectuez le basculement.
 . Revenez aux machines virtuelles de production une fois l'événement de catastrophe terminé et le site principal opérationnel.
