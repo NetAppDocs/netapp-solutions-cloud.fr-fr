@@ -53,7 +53,7 @@ Ceci est installé à l'aide de l'opérateur de gestion de cluster avancé sur l
 [%collapsible%open]
 ====
 * Les clusters supplémentaires peuvent être déployés à l’aide de l’ACM sur le cluster Hub.
-* Se référer aux instructionslink:https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.7/html/clusters/cluster_mce_overview#vsphere_prerequisites["ici"] .
+* Veuillez vous référer aux instructions link:https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.7/html/clusters/cluster_mce_overview#vsphere_prerequisites["ici"^].
 
 
 ====

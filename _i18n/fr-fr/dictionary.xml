@@ -1323,7 +1323,6 @@
   <block id="643c48205940ae10b1f2c5f6f8aa5f64" category="paragraph">Ceci est installé à l'aide de l'opérateur de gestion de cluster avancé sur le cluster Hub.  Se référer aux instructions<block ref="4bb39576c102d9630dc961b3998ecbd9" category="inline-link-macro-rx"></block> .</block>
   <block id="c0090a527266898baf1b6d9a9978eeb3" category="example-title">Installer deux clusters OCP supplémentaires (source et destination)</block>
   <block id="a4fcf9c2586b5e93f63d9c1290438839" category="list-text">Les clusters supplémentaires peuvent être déployés à l’aide de l’ACM sur le cluster Hub.</block>
-  <block id="24ed1bd1ba2dc78d194e4186a2a7b0a1" category="list-text">Se référer aux instructions<block ref="61a11e403c83c9c41ff797a7a780dbff" category="inline-link-macro-rx"></block> .</block>
   <block id="4cb2dca6265c22cd883513131d603c5f" category="example-title">Configurer le stockage NetApp ONTAP</block>
   <block id="31114fdb67ca9ac1afd2af9e1a830e4e" category="list-text">Installez un cluster ONTAP avec connectivité aux machines virtuelles OCP dans l’environnement VMWare.</block>
   <block id="15a89333d6100097518836f27ebc981d" category="list-text">Créer un SVM.</block>
@@ -6304,4 +6303,5 @@
   <block id="aeaece73e35427cd110235fe07465efa" category="inline-link-macro">Architecture classique du service Red Hat OpenShift sur AWS</block>
   <block id="71dc7e7b294a93352ae90298511cd77a" category="list-text"><block ref="71dc7e7b294a93352ae90298511cd77a" category="inline-link-macro-rx"></block></block>
   <block id="5e8103bb1916579dd98fa386e2c79112" category="list-text">Pour configurer VMware Cloud on AWS, consultez l’article VMware Cloud Tech Zone <block ref="e8043ec5591ebbd4394405d542308830" category="inline-link-macro-rx"></block> pour déployer et configurer VMware Cloud on AWS SDDC et FSx ONTAP en tant que datastore NFS. (Un environnement pilot-light configuré avec une configuration minimale peut être utilisé à des fins de reprise après sinistre. Les VM basculeront vers ce cluster en cas d’incident, et des nœuds supplémentaires peuvent être ajoutés).</block>
+  <block id="5b1325f759c14b5e2dece9541c225fe7" category="list-text">Veuillez vous référer aux instructions <block ref="79bea77f03fef0626d8f9094b6973fe2" category="inline-link-macro-rx"></block>.</block>
 </blocks>
