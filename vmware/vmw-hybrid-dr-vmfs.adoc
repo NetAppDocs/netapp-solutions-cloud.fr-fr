@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: vmware/vmw-hybrid-dr-vmfs.html 
-keywords: dr, draas, bluexp, disaster recovery, vmfs datastore 
-summary: Cette section du document décrit la configuration de BlueXP DRaaS pour configurer la reprise après sinistre des machines virtuelles VMware sur site vers un autre site désigné. 
+keywords: dr, draas, console, disaster recovery, vmfs datastore 
+summary: Cette section du document décrit la configuration de NetApp Disaster Recovery pour configurer la reprise après sinistre des machines virtuelles VMware sur site vers un autre site désigné. 
 ---
-= DR avec BlueXP DRaaS pour les banques de données VMFS
+= NetApp Disaster Recovery pour les datastores VMFS
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -16,31 +16,34 @@ summary: Cette section du document décrit la configuration de BlueXP DRaaS pour
 [role="lead"]
 La reprise après sinistre utilisant la réplication au niveau des blocs du site de production vers le site de reprise après sinistre est un moyen résilient et rentable de protéger les charges de travail contre les pannes de site et les événements de corruption de données, comme les attaques de ransomware.  Avec la réplication NetApp SnapMirror , les charges de travail VMware exécutant des systèmes ONTAP sur site utilisant une banque de données VMFS peuvent être répliquées vers un autre système de stockage ONTAP dans un centre de données de récupération désigné où réside VMware.
 
-Cette section du document décrit la configuration de BlueXP DRaaS pour configurer la reprise après sinistre des machines virtuelles VMware sur site vers un autre site désigné.  Dans le cadre de cette configuration, le compte BlueXP , le connecteur BlueXP , les baies ONTAP ajoutées dans l'espace de travail BlueXP qui sont nécessaires pour permettre la communication de VMware vCenter vers le stockage ONTAP .  De plus, ce document détaille comment configurer la réplication entre les sites et comment configurer et tester un plan de récupération.  La dernière section contient des instructions pour effectuer un basculement complet du site et comment effectuer une restauration lorsque le site principal est récupéré et acheté en ligne.
+Cette section du document décrit la configuration de NetApp Disaster Recovery pour configurer la reprise après sinistre des machines virtuelles VMware sur site vers un autre site désigné. Dans le cadre de cette configuration, il s'agit de l'agent Console, de l'intégration des baies ONTAP, de la définition des sites et de l'association de VMware vCenter. En outre, ce document décrit en détail comment configurer la réplication entre les sites et comment mettre en place et tester un plan de reprise. La dernière section fournit des instructions pour effectuer un basculement complet du site et pour revenir en arrière lorsque le site principal est rétabli et remis en ligne.
 
-Grâce au service de BlueXP disaster recovery , intégré à la console NetApp BlueXP , les clients peuvent découvrir leurs VMware vCenters sur site ainsi que le stockage ONTAP , créer des groupes de ressources, créer un plan de reprise après sinistre, l'associer à des groupes de ressources et tester ou exécuter le basculement et la restauration.  SnapMirror fournit une réplication de blocs au niveau du stockage pour maintenir les deux sites à jour avec les modifications incrémentielles, ce qui entraîne un RPO allant jusqu'à 5 minutes.  Il est également possible de simuler des procédures DR comme un exercice régulier sans impacter la production et les banques de données répliquées ni entraîner de coûts de stockage supplémentaires.  La BlueXP disaster recovery tire parti de la technologie FlexClone d'ONTAP pour créer une copie peu encombrante du magasin de données VMFS à partir du dernier snapshot répliqué sur le site de reprise après sinistre.  Une fois le test DR terminé, les clients peuvent simplement supprimer l'environnement de test, sans aucun impact sur les ressources de production répliquées réelles.  Lorsqu'un basculement réel est nécessaire (planifié ou non), en quelques clics, le service de BlueXP disaster recovery orchestrera toutes les étapes nécessaires pour mettre automatiquement en service les machines virtuelles protégées sur le site de reprise après sinistre désigné.  Le service inversera également la relation SnapMirror avec le site principal et répliquera toutes les modifications du site secondaire vers le site principal pour une opération de restauration automatique, si nécessaire.  Tout cela peut être réalisé à un coût bien inférieur à celui d’autres alternatives bien connues.
+En utilisant Disaster Recovery, qui fait partie de NetApp Data Services, les clients peuvent découvrir leurs vCenters VMware sur site ainsi que le stockage ONTAP, créer des groupes de ressources, créer un plan de reprise après sinistre, l'associer à des groupes de ressources, et tester ou exécuter le basculement et le rétablissement. SnapMirror fournit une réplication des blocs au niveau du stockage pour maintenir les deux sites à jour avec les modifications incrémentielles, ce qui permet d'obtenir un RPO pouvant atteindre 5 minutes. Il est également possible de simuler les procédures de DR comme exercice régulier sans affecter les datastores de production et répliqués ni entraîner de coûts de stockage supplémentaires. NetApp Data Services tire parti de la technologie FlexClone d'ONTAP pour créer une copie à faible encombrement du datastore VMFS à partir du dernier Snapshot répliqué sur le site de DR. Une fois le test de DR terminé, les clients peuvent simplement supprimer l'environnement de test, là encore sans aucun impact sur les ressources de production répliquées réelles. Lorsqu'un basculement réel est nécessaire (planifié ou non), en quelques clics, Disaster Recovery orchestrera toutes les étapes nécessaires pour démarrer automatiquement les machines virtuelles protégées sur le site de reprise après sinistre désigné. Le service inversera également la relation SnapMirror vers le site principal et répliquera, si nécessaire, toute modification du site secondaire vers le site principal pour une opération de rétablissement. Tout cela peut être réalisé pour une fraction du coût par rapport à d'autres alternatives bien connues.
 
 image:dr-draas-vmfs-030.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
+
+
+NOTE: Pour obtenir des informations à jour et les versions prises en charge de vCenter Server, ESXi et ONTAP pour la reprise après sinistre, veuillez vous référer à link:https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-intro.html["Configurations prises en charge pour la reprise après sinistre"].
 
 
 
 [[getting-started]]
 == Commencer
 
-Pour démarrer avec la BlueXP disaster recovery, utilisez la console BlueXP , puis accédez au service.
+Pour commencer avec Disaster Recovery, utilisez NetApp Console, puis accédez au service.
 
-. Connectez-vous à BlueXP.
-. Dans la navigation de gauche de BlueXP , sélectionnez Protection > Reprise après sinistre.
-. Le tableau de bord de BlueXP disaster recovery apparaît.
+. Connectez-vous à Console.
+. Dans le volet de navigation de gauche de Console, sélectionnez Protection > Reprise après sinistre.
+. Le Disaster Recovery Dashboard s'affiche.
 
 
 image:dr-draas-vmfs-001.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
 Avant de configurer le plan de reprise après sinistre, assurez-vous que les conditions préalables suivantes sont remplies :
 
-* Le connecteur BlueXP est configuré dans NetApp BlueXP.  Le connecteur doit être déployé dans AWS VPC.
-* L'instance du connecteur BlueXP dispose d'une connectivité aux systèmes vCenter et de stockage source et de destination.
-* Les systèmes de stockage NetApp sur site hébergeant des banques de données VMFS pour VMware sont ajoutés dans BlueXP.
+* L'agent Console est déployé dans un VPC AWS.
+* L'instance de l'agent Console dispose d'une connectivité aux systèmes vCenter source et de destination, ainsi qu'aux systèmes de stockage.
+* Les systèmes de stockage NetApp sur site hébergeant des banques de données VMFS pour VMware sont ajoutés dans Console.
 * La résolution DNS doit être en place lors de l'utilisation de noms DNS.  Sinon, utilisez les adresses IP pour le vCenter.
 * La réplication SnapMirror est configurée pour les volumes de banque de données basés sur VMFS désignés.
 
@@ -48,7 +51,7 @@ Avant de configurer le plan de reprise après sinistre, assurez-vous que les con
 Une fois la connectivité établie entre les sites source et de destination, procédez aux étapes de configuration, qui devraient prendre environ 3 à 5 minutes.
 
 
-NOTE: NetApp recommande de déployer le connecteur BlueXP sur le site de reprise après sinistre ou sur un site tiers, afin que le connecteur BlueXP puisse communiquer via le réseau avec les ressources source et de destination lors de pannes réelles ou de catastrophes naturelles.
+NOTE: NetApp recommande de déployer l'agent Console sur le site de reprise après sinistre ou sur un site tiers, afin que l'agent Console puisse communiquer via le réseau avec les ressources source et de destination lors de pannes réelles ou de catastrophes naturelles.
 
 image:dr-draas-vmfs-002.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
@@ -57,13 +60,13 @@ NOTE: La prise en charge des banques de données VMFS sur site vers sur site est
 
 
 
-[[bluexp-disaster-recovery-configuration]]
-== Configuration de la BlueXP disaster recovery
+[[disaster-recovery-configuration]]
+== Configuration de reprise après sinistre
 
-La première étape de la préparation à la reprise après sinistre consiste à découvrir et à ajouter les ressources de stockage et vCenter sur site à la BlueXP disaster recovery.
+La première étape de la préparation à la reprise après sinistre consiste à découvrir et à ajouter les ressources vCenter et de stockage sur site à Disaster Recovery.
 
 
-NOTE: Assurez-vous que les systèmes de stockage ONTAP sont ajoutés à l’environnement de travail dans le canevas.  Ouvrez la console BlueXP et sélectionnez *Protection > Reprise après sinistre* dans la navigation de gauche.  Sélectionnez *Découvrir les serveurs vCenter* ou utilisez le menu supérieur, sélectionnez *Sites > Ajouter > Ajouter vCenter*.
+NOTE: Assurez-vous que les systèmes de stockage ONTAP sont ajoutés à l'environnement de travail dans le canevas. Ouvrez Console et sélectionnez *Protection > Disaster Recovery* dans le volet de navigation de gauche. Sélectionnez *Découvrir les serveurs vCenter* ou utilisez le menu supérieur, puis sélectionnez *Sites > Add > Add vCenter*.
 
 image:dr-draas-vmfs-003.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
@@ -97,11 +100,11 @@ La rupture de la relation SnapMirror rend le volume de destination accessible en
 [[how-to-set-it-up-for-vmware-disaster-recovery]]
 == Comment le configurer pour la récupération après sinistre VMware
 
-Le processus de création d’une réplication SnapMirror reste le même pour toute application donnée.  Le processus peut être manuel ou automatisé.  Le moyen le plus simple consiste à exploiter BlueXP pour configurer la réplication SnapMirror en utilisant un simple glisser-déposer du système ONTAP source dans l'environnement sur la destination pour déclencher l'assistant qui guide tout au long du reste du processus.
+Le processus de création de la réplication SnapMirror reste le même pour toute application donnée. Le processus peut être manuel ou automatisé. Le moyen le plus simple consiste à utiliser Console pour configurer la réplication SnapMirror en faisant simplement glisser-déposer le système ONTAP source de l’environnement vers la destination afin de lancer l’assistant qui vous guidera pour le reste du processus.
 
 image:dr-draas-vmfs-006.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
-BlueXP DRaaS peut également automatiser la même chose à condition que les deux critères suivants soient remplis :
+NetApp Data Services peut également automatiser ce processus à condition que les deux critères suivants soient remplis :
 
 * Les clusters source et de destination ont une relation d’homologue.
 * La SVM source et la SVM de destination ont une relation homologue.
@@ -110,21 +113,21 @@ BlueXP DRaaS peut également automatiser la même chose à condition que les deu
 image:dr-draas-vmfs-007.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
 
-NOTE: Si la relation SnapMirror est déjà configurée pour le volume via CLI, BlueXP DRaaS récupère la relation et continue avec le reste des opérations de workflow.
+NOTE: Si une relation SnapMirror est déjà configurée pour le volume via l'interface de ligne de commande (CLI), Console détecte la relation et poursuit le reste des opérations du flux de travail.
 
 
-NOTE: Outre les approches ci-dessus, la réplication SnapMirror peut également être créée via ONTAP CLI ou System Manager.  Quelle que soit l’approche utilisée pour synchroniser les données à l’aide de SnapMirror, BlueXP DRaaS orchestre le flux de travail pour des opérations de reprise après sinistre transparentes et efficaces.
+NOTE: Outre les méthodes mentionnées ci-dessus, la réplication SnapMirror peut également être créée via l’interface de ligne de commande ONTAP ou System Manager. Quelle que soit la méthode utilisée pour synchroniser les données à l’aide de SnapMirror, Disaster Recovery orchestre le flux de travail pour des opérations de reprise après sinistre fluides et efficaces.
 
 
 
-[[what-can-bluexp-disaster-recovery-do-for-you]]
-== Que peut faire pour vous la BlueXP disaster recovery ?
+[[what-can-disaster-recovery-do-for-you]]
+== Que peut faire Disaster Recovery pour vous?
 
-Une fois les sites source et de destination ajoutés, la BlueXP disaster recovery effectue une découverte approfondie automatique et affiche les machines virtuelles ainsi que les métadonnées associées.  La BlueXP disaster recovery détecte également automatiquement les réseaux et les groupes de ports utilisés par les machines virtuelles et les remplit.
+Une fois les sites source et de destination ajoutés, Disaster Recovery effectue une analyse approfondie automatique et affiche les machines virtuelles ainsi que leurs métadonnées associées. Disaster Recovery détecte et renseigne également automatiquement les réseaux et les groupes de ports utilisés par les machines virtuelles.
 
 image:dr-draas-vmfs-008.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
-Une fois les sites ajoutés, les machines virtuelles peuvent être regroupées en groupes de ressources.  Les groupes de ressources de BlueXP disaster recovery vous permettent de regrouper un ensemble de machines virtuelles dépendantes en groupes logiques contenant leurs ordres de démarrage et leurs délais de démarrage qui peuvent être exécutés lors de la récupération.  Pour commencer à créer des groupes de ressources, accédez à *Groupes de ressources* et cliquez sur *Créer un nouveau groupe de ressources*.
+Une fois les sites ajoutés, les machines virtuelles peuvent être regroupées en groupes de ressources. Les groupes de ressources de reprise après sinistre vous permettent de regrouper un ensemble de machines virtuelles dépendantes en groupes logiques qui incluent leur ordre de démarrage et leurs délais de démarrage à appliquer lors de la reprise. Pour commencer à créer des groupes de ressources, accédez à *Groupes de ressources* et cliquez sur *Créer un groupe de ressources*.
 
 image:dr-draas-vmfs-009.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
@@ -161,7 +164,7 @@ La capture d'écran ci-dessous montre l'option permettant de filtrer les machine
 
 image:dr-draas-vmfs-015.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
-Une fois les groupes de ressources sélectionnés, créez les mappages de basculement.  Dans cette étape, spécifiez comment les ressources de l’environnement source sont mappées vers la destination.  Cela inclut les ressources de calcul et les réseaux virtuels.  Personnalisation IP, pré- et post-scripts, délais de démarrage, cohérence des applications, etc. Pour des informations détaillées, reportez-vous àlink:https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html#map-source-resources-to-the-target["Créer un plan de réplication"] .
+Une fois les groupes de ressources sélectionnés, créez les mappages de basculement. À cette étape, indiquez comment les ressources de l’environnement source sont mappées vers la destination. Cela inclut les ressources de calcul et les réseaux virtuels, la personnalisation des adresses IP, les scripts de pré- et post-traitement, les délais de démarrage, la cohérence des applications, etc. Pour plus d’informations, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html#map-source-resources-to-the-target["Créer un plan de réplication"].
 
 image:dr-draas-vmfs-016.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
@@ -184,7 +187,7 @@ image:dr-draas-vmfs-020.png["Figure montrant une boîte de dialogue d'entrée/so
 
 image:dr-draas-vmfs-021.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
-Une fois le plan de réplication créé, le basculement peut être effectué en fonction des besoins en sélectionnant l'option de basculement, l'option de test de basculement ou l'option de migration.  La BlueXP disaster recovery garantit que le processus de réplication est exécuté conformément au plan toutes les 30 minutes.  Pendant les options de basculement et de test de basculement, vous pouvez utiliser la copie Snapshot SnapMirror la plus récente ou sélectionner une copie Snapshot spécifique à partir d'une copie Snapshot à un instant T (conformément à la politique de conservation de SnapMirror).  L'option ponctuelle peut être très utile en cas d'événement de corruption comme un ransomware, où les répliques les plus récentes sont déjà compromises ou cryptées.  La BlueXP disaster recovery affiche tous les points de récupération disponibles.
+Une fois le plan de réplication créé, le basculement peut être effectué selon les besoins en sélectionnant l’option de basculement, l’option de test de basculement ou l’option de migration. Disaster Recovery garantit que le processus de réplication est exécuté conformément au plan toutes les 30 minutes. Lors des options de basculement et de test de basculement, vous pouvez utiliser la copie Snapshot SnapMirror la plus récente, ou vous pouvez sélectionner une copie Snapshot spécifique à un instant donné (conformément à la politique de conservation de SnapMirror). L’option à un instant donné peut s’avérer très utile en cas de corruption des données, comme lors d’une attaque par ransomware, lorsque les réplicas les plus récents sont déjà compromis ou chiffrés. Disaster Recovery affiche tous les points de récupération disponibles.
 
 image:dr-draas-vmfs-022.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
@@ -197,7 +200,7 @@ image:dr-draas-vmfs-023.png["Figure montrant une boîte de dialogue d'entrée/so
 [[what-happens-during-a-failover-or-test-failover-operation]]
 == Que se passe-t-il lors d'une opération de basculement ou de test de basculement ?
 
-Lors d'une opération de basculement de test, la BlueXP disaster recovery crée un volume FlexClone sur le système de stockage ONTAP de destination à l'aide de la dernière copie Snapshot ou d'un snapshot sélectionné du volume de destination.
+Lors d'une opération de basculement test, Disaster Recovery crée un volume FlexClone® sur le système de stockage ONTAP de destination à l'aide de la copie Snapshot la plus récente ou d'un snapshot sélectionné du volume de destination.
 
 
 NOTE: Une opération de basculement de test crée un volume cloné sur le système de stockage ONTAP de destination.
@@ -207,15 +210,15 @@ NOTE: L’exécution d’une opération de récupération de test n’affecte pa
 
 image:dr-draas-vmfs-024.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
-Au cours du processus, la BlueXP disaster recovery ne mappe pas le volume cible d’origine.  Au lieu de cela, il crée un nouveau volume FlexClone à partir du snapshot sélectionné et une banque de données temporaire prenant en charge le volume FlexClone est mappée aux hôtes ESXi.
+Pendant le processus, Disaster Recovery ne mappe pas le volume cible d'origine. À la place, il crée un nouveau volume FlexClone® à partir du Snapshot sélectionné et un datastore temporaire adossé au volume FlexClone® est mappé sur les hôtes ESXi.
 
 image:dr-draas-vmfs-025.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
 image:dr-draas-vmfs-026.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
-Une fois l'opération de basculement de test terminée, l'opération de nettoyage peut être déclenchée à l'aide de *« Nettoyer le test de basculement »*.  Au cours de cette opération, la BlueXP disaster recovery détruit le volume FlexClone qui a été utilisé dans l'opération.
+Une fois l'opération de basculement de test terminée, l'opération de nettoyage peut être déclenchée à l'aide de *« Clean Up failover test »*. Au cours de cette opération, Disaster Recovery détruit le volume FlexClone utilisé dans l'opération.
 
-En cas de véritable catastrophe, la BlueXP disaster recovery exécute les étapes suivantes :
+En cas de catastrophe réelle, Disaster Recovery effectue les étapes suivantes :
 
 . Rompt la relation SnapMirror entre les sites.
 . Monte le volume de la banque de données VMFS après la resignature pour une utilisation immédiate.
@@ -225,13 +228,13 @@ En cas de véritable catastrophe, la BlueXP disaster recovery exécute les étap
 
 image:dr-draas-vmfs-027.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
-Une fois le site principal opérationnel, la BlueXP disaster recovery permet la resynchronisation inversée pour SnapMirror et active la restauration automatique, qui peut à nouveau être effectuée en un clic.
+Une fois le site principal opérationnel, Disaster Recovery permet la resynchronisation inverse pour SnapMirror et permet le rétablissement, qui peut également être effectué d'un simple clic.
 
 image:dr-draas-vmfs-028.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
 Et si l’option de migration est choisie, elle est considérée comme un événement de basculement planifié.  Dans ce cas, une étape supplémentaire est déclenchée qui consiste à arrêter les machines virtuelles sur le site source.  Le reste des étapes reste le même que pour l’événement de basculement.
 
-À partir de BlueXP ou de l'interface de ligne de commande ONTAP , vous pouvez surveiller l'état de santé de la réplication pour les volumes de banque de données appropriés, et l'état d'un basculement ou d'un basculement de test peut être suivi via la surveillance des tâches.
+Depuis Console ou l'ONTAP CLI, vous pouvez surveiller l'état de santé de la réplication des volumes de datastore appropriés, et suivre l'état d'un basculement ou d'un test de basculement via Job Monitoring.
 
 image:dr-draas-vmfs-029.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 

@@ -9,7 +9,6 @@ settings:
     harmony_enabled: false
     lipi_enabled: true
   pdf:
-    gen-type: named-only
     zip-level: 1
     zip-filename: netapp-solutions-cloud.zip
   langs: fr-fr,us-en,de-de,es-es,it-it,pt-br,ja-jp,ko-kr,zh-cn,zh-tw

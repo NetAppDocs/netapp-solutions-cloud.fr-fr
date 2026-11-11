@@ -21,7 +21,7 @@ Lisez les blogs qui offrent des conseils pratiques et des bonnes pratiques pour 
 [[vmware-integration-with-aws-and-amazon-fsx-for-ontap]]
 == Intégration de VMware avec AWS et Amazon FSx pour ONTAP
 
-* link:https://bluexp.netapp.com/blog/aws-fsxn-blg-migrate-vmware-to-amazon-ec2-iscsi-based-fsx-for-ontap["Migrer des machines virtuelles VMware vers AWS à l'aide du protocole iSCSI Amazon EC2 et Amazon FSx ONTAP"]
+* link:https://www.netapp.com/blog/aws-fsxn-blg-migrate-vmware-to-amazon-ec2-iscsi-based-fsx-for-ontap/["Migrer des machines virtuelles VMware vers AWS à l'aide du protocole iSCSI Amazon EC2 et Amazon FSx ONTAP"]
 * link:https://aws.amazon.com/about-aws/whats-new/2025/06/amazon-elastic-vmware-service-fsx-netapp-ontap/["Amazon EVS s'intègre désormais à FSx pour ONTAP"]
 * link:https://www.netapp.com/blog/amazon-elastic-vmware-service-fsx-ontap/["Amazon EVS annonce la prise en charge de FSx pour ONTAP"]
 * link:https://www.netapp.com/blog/aws-fsxo-blg-configure-hybrid-cloud-with-fsx-for-netapp-ontap-and-vmware-cloud-on-aws-sddc-using-vmware-hcx/["Configurer un cloud hybride avec FSx ONTAP et VMware Cloud sur AWS SDDC à l'aide de VMware HCX"]
@@ -51,7 +51,7 @@ Lisez les blogs qui offrent des conseils pratiques et des bonnes pratiques pour 
 [[data-protection-and-management]]
 == Protection et gestion des données
 
-* link:https://community.netapp.com/t5/Tech-ONTAP-Blogs/3-2-1-Data-Protection-for-VMware-with-SnapCenter-Plug-in-and-BlueXP-backup-and/ba-p/446180["Protection des données 3-2-1 pour VMware avec le plug-in SnapCenter et la sauvegarde et la récupération BlueXP pour les machines virtuelles"]
+* link:https://community.netapp.com/t5/Tech-ONTAP-Blogs/3-2-1-Data-Protection-for-VMware-with-SnapCenter-Plug-in-and-BlueXP-backup-and/ba-p/446180["Protection des données 3-2-1 pour VMware avec SnapCenter Plug-in et NetApp Backup and Recovery for VMs"]
 * link:https://community.netapp.com/t5/Tech-ONTAP-Blogs/Observability-for-the-Modern-Datacenter-with-NetApp-Cloud-Insights/ba-p/447495["Observabilité pour le centre de données moderne avec NetApp Cloud Insights"]
 
 

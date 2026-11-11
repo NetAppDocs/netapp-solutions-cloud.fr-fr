@@ -217,18 +217,19 @@ entries:
       url: "/google/gcp-gcnv-service-operation.html"
     - title: Informations Complémentaires
       url: "/vmware/gcp-gcnv-additional-info.html"
-- title: BlueXP disaster recovery
+- title: NetApp Disaster Recovery
   entries:
-  - title: Protégez les données de VMware avec SnapCenter Plug-in et BlueXP
-    pdf-filename: Protection des données 3-2-1 pour VMware avec le plug-in SnapCenter
-      et la BlueXP backup and recovery pour les machines virtuelles
+  - title: Protégez les données pour VMware avec SnapCenter Plug-in et NetApp Backup
+      and Recovery for VMs
+    pdf-filename: Protection des données 3-2-1 pour VMware avec SnapCenter Plug-in
+      et NetApp Backup and Recovery for VMs
     url: "/vmware/vmw-hybrid-321-dp-scv.html"
-  - title: Reprise après sinistre avec BlueXP DRaaS
-    pdf-filename: Reprise après sinistre avec BlueXP DRaaS
+  - title: NetApp Disaster Recovery
+    pdf-filename: NetApp Disaster Recovery
     entries:
     - title: Présentation de la solution
       url: "/vmware/vmw-hybrid-dr-overview.html"
-    - title: Reprise après sinistre pour les banques de données NFS
+    - title: Reprise après sinistre pour les datastores NFS
       url: "/vmware/vmw-hybrid-dr-nfs.html"
     - title: Reprise après sinistre pour les banques de données VMFS
       url: "/vmware/vmw-hybrid-dr-vmfs.html"

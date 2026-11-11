@@ -310,14 +310,14 @@ Utilisez des copies instantanées Azure NetApp Files pour une protection génér
 
 NOTE: Avec les banques de données ANF, l'option Restaurer vers un nouveau volume peut être utilisée pour cloner un volume de banque de données entier, et le volume restauré peut être monté comme une autre banque de données sur des hôtes dans AVS SDDC.  Une fois qu'un magasin de données est monté, les machines virtuelles qu'il contient peuvent être enregistrées, reconfigurées et personnalisées comme s'il s'agissait de machines virtuelles clonées individuellement.
 
-.BlueXP backup and recovery pour machines virtuelles
+.NetApp Backup and Recovery pour machines virtuelles
 [%collapsible%open]
 =====
-La BlueXP backup and recovery pour les machines virtuelles fournissent une interface graphique client Web vSphere sur vCenter pour protéger les machines virtuelles Azure VMware Solution et les banques de données de fichiers Azure NetApp via des stratégies de sauvegarde.  Ces politiques peuvent définir la planification, la conservation et d’autres capacités.  La fonctionnalité de BlueXP backup and recovery pour machine virtuelle peut être déployée à l'aide de la commande Exécuter.
+NetApp Backup and Recovery for Virtual Machines fournit une interface graphique web client vSphere sur vCenter pour protéger les machines virtuelles Azure VMware Solution et les datastores Azure NetApp Files via des règles de sauvegarde. Ces règles peuvent définir la planification, la conservation et d'autres fonctionnalités. La fonctionnalité NetApp Backup and Recovery for Virtual Machine peut être déployée à l'aide de la commande Exécuter.
 
 Les politiques de configuration et de protection peuvent être installées en suivant les étapes suivantes :
 
-. Installez la BlueXP backup and recovery pour la machine virtuelle dans le cloud privé Azure VMware Solution à l’aide de la commande Exécuter.
+. Installez NetApp Backup and Recovery for Virtual Machine dans le cloud privé Azure VMware Solution à l’aide de la commande Run.
 . Ajoutez les informations d’identification d’abonnement cloud (client et valeur secrète), puis ajoutez un compte d’abonnement cloud (compte NetApp et groupe de ressources associé) qui contient les ressources que vous souhaitez protéger.
 . Créez une ou plusieurs stratégies de sauvegarde qui gèrent la rétention, la fréquence et d’autres paramètres pour les sauvegardes de groupes de ressources.
 . Créez un conteneur pour ajouter une ou plusieurs ressources qui doivent être protégées avec des politiques de sauvegarde.

@@ -14,7 +14,7 @@ summary:
 
 
 [role="lead"]
-La solution teste et valide la migration et la protection centralisée des données avec OpenShift Container Platform (OCP), OpenShift Advanced Cluster Manager (ACM), NetApp ONTAP, NetApp BlueXP et NetApp Trident Protect.
+La solution teste et valide la migration et la protection centralisée des données avec OpenShift Container Platform (OCP), OpenShift Advanced Cluster Manager (ACM), NetApp ONTAP, NetApp Console et NetApp Trident Protect.
 
 Pour cette solution, les scénarios suivants sont testés et validés par NetApp.  La solution est divisée en plusieurs scénarios en fonction des caractéristiques suivantes :
 
@@ -70,7 +70,7 @@ image:rhhc-self-managed-aws.png["Figure montrant une boîte de dialogue d'entré
 
 **Sur site : cluster OpenShift autogéré et stockage autogéré** **AWS Cloud : cluster OpenShift géré par le fournisseur (ROSA) et stockage géré par le fournisseur (FSx ONTAP)**
 
-* À l’aide de BlueXP, effectuez la réplication de volumes persistants (FSx ONTAP).
+* À l'aide de NetApp Console, effectuez la réplication des volumes persistants (FSx ONTAP).
 * À l’aide d’OpenShift GitOps, recréez les métadonnées de l’application.
 
 

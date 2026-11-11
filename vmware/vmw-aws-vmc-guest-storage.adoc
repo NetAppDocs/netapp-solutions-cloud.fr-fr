@@ -317,7 +317,7 @@ image:aws-cvo-guest-002.png["Figure montrant une boîte de dialogue d'entrée/so
 
 image:aws-cvo-guest-003.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]
 
-. Sélectionnez les services complémentaires pour le déploiement de Cloud Volumes ONTAP , notamment la classification BlueXP , la BlueXP backup and recovery et Cloud Insights.  Cliquez sur Continuer.
+. Sélectionnez les services complémentaires pour le déploiement de Cloud Volumes ONTAP, notamment NetApp Data Classification, NetApp Backup and Recovery et Data Infrastructure Insights. Cliquez sur Continue.
 
 
 image:aws-cvo-guest-004.png["Figure montrant une boîte de dialogue d'entrée/sortie ou représentant un contenu écrit"]

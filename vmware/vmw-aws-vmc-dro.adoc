@@ -56,11 +56,11 @@ Amazon FSx ONTAP est un service entièrement géré qui fournit un stockage de f
 [[deploy-and-configure-snapmirror-to-fsx-ontap]]
 === Déployer et configurer SnapMirror sur FSx ONTAP
 
-L'étape suivante consiste à utiliser NetApp BlueXP et à découvrir l'instance FSx ONTAP provisionnée sur AWS et à répliquer les volumes de banque de données souhaités à partir d'un environnement sur site vers FSx ONTAP avec la fréquence appropriée et la conservation des copies NetApp Snapshot :
+L'étape suivante consiste à utiliser NetApp Console pour découvrir l'instance FSx ONTAP provisionnée sur AWS et répliquer les volumes de datastore souhaités depuis un environnement sur site vers FSx ONTAP avec la fréquence appropriée et la durée de conservation appropriée des copies Snapshot de NetApp :
 
-image:dro-vmc-002.png["Ce graphique illustre la carte des relations BlueXP Canvas qui montre les différentes interactions entre les services activés."]
+image:dro-vmc-002.png["Ce graphique représente la carte des relations entre les systèmes, illustrant les différentes interactions entre les services activés."]
 
-Suivez les étapes de ce lien pour configurer BlueXP.  Vous pouvez également utiliser l'interface de ligne de commande NetApp ONTAP pour planifier la réplication en suivant ce lien.
+Suivez les étapes décrites dans ce lien pour configurer DRO. Vous pouvez également utiliser l’interface de ligne de commande NetApp ONTAP pour planifier la réplication en suivant ce lien.
 
 
 NOTE: Une relation SnapMirror est une condition préalable et doit être créée au préalable.
@@ -273,7 +273,7 @@ Une fois terminé, vous pouvez déclencher la restauration automatique pour reve
 
 image:dro-vmc-020.png["Capture d'écran de l'aperçu du plan de réplication avec la liste déroulante contenant l'option de restauration."] image:dro-vmc-021.png["Capture d'écran de la page de résumé DRO avec le site de production d'origine opérationnel."]
 
-À partir de NetApp BlueXP, nous pouvons voir que l’intégrité de la réplication est interrompue pour les volumes appropriés (ceux qui ont été mappés à VMC en tant que volumes en lecture-écriture).  Lors du basculement de test, DRO ne mappe pas le volume de destination ou de réplication.  Au lieu de cela, il crée une copie FlexClone de l'instance SnapMirror (ou Snapshot) requise et expose l'instance FlexClone , qui ne consomme pas de capacité physique supplémentaire pour FSx ONTAP.  Ce processus garantit que le volume n'est pas modifié et que les tâches de réplication peuvent continuer même pendant les tests DR ou les flux de travail de triage.  De plus, ce processus garantit que, si des erreurs se produisent ou si des données corrompues sont récupérées, la récupération peut être nettoyée sans risque de destruction de la réplique.
+Depuis NetApp Console, nous pouvons constater que l’état de la réplication a été interrompu pour les volumes appropriés (ceux mappés à VMC en tant que volumes en lecture-écriture). Pendant le basculement de test, DRO ne mappe pas le volume de destination ou le volume répliqué. À la place, il crée une copie FlexClone® de l'instance SnapMirror (ou Snapshot) requise et expose l'instance FlexClone®, ce qui ne consomme pas de capacité physique supplémentaire pour FSx ONTAP. Ce processus garantit que le volume n'est pas modifié et que les tâches de réplication peuvent continuer même pendant les tests de reprise d'activité ou les flux de travail de triage. De plus, ce processus garantit que, si des erreurs se produisent ou si des données corrompues sont récupérées, la récupération peut être nettoyée sans risque de destruction de la réplique.
 
 image:dro-vmc-022.png["Description de l'image d'espace réservé temporaire."]
 

@@ -428,8 +428,8 @@ La dernière étape de la configuration de Veeam consiste à créer des tâches 
 ====
 
 
-[[bluexp-backup-and-recovery-tools-and-configuration]]
-=== Outils et configuration de BlueXP backup and recovery
+[[netapp-backup-and-recovery-tools-and-configuration]]
+=== NetApp Backup and Recovery outils et configuration
 
 Pour effectuer un basculement des machines virtuelles d'application et des volumes de base de données vers les services VMware Cloud Volume exécutés dans AWS, vous devez installer et configurer une instance en cours d'exécution de SnapCenter Server et de Veeam Backup and Replication Server.  Une fois le basculement terminé, vous devez également configurer ces outils pour reprendre les opérations de sauvegarde normales jusqu'à ce qu'un retour arrière vers le centre de données sur site soit planifié et exécuté.
 

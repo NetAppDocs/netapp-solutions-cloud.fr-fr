@@ -311,25 +311,25 @@ Vous devez être capable d'effectuer les tâches suivantes :
 
 
 =====
-.Vérification du compte Cloud Manager
+.Vérification du compte NetApp Console
 [%collapsible%open]
 =====
-Vous devez pouvoir déployer des ressources avec NetApp Cloud Manager.  Pour vérifier que vous le pouvez, effectuez les tâches suivantes :
+Vous devez pouvoir déployer des ressources avec NetApp Console. Pour vérifier que vous le pouvez, effectuez les tâches suivantes :
 
-* https://docs.netapp.com/us-en/bluexp-setup-admin/concept-modes.html["Inscrivez-vous à Cloud Central"^]si vous ne l'avez pas déjà fait.
-* https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-logging-in.html["Connectez-vous à Cloud Manager"^] .
-* https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-setting-up-netapp-accounts.html["Configurer les espaces de travail et les utilisateurs"^] .
-* https://docs.netapp.com/us-en/cloud-manager-setup-admin/concept-connectors.html["Créer un connecteur"^] .
+* https://docs.netapp.com/us-en/console-setup-admin/concept-overview.html["Comprendre le fonctionnement de NetApp Console"].
+* https://docs.netapp.com/us-en/console-setup-admin/task-logging-in.html["Connectez-vous à NetApp Console"^].
+* https://docs.netapp.com/us-en/console-setup-admin/concept-agents.html#when-you-need-a-console-agent["Comprendre quand vous avez besoin d’un agent Console"].
+* https://docs.netapp.com/us-en/console-setup-admin/task-install-agent-aws-console.html["Déployer l’agent NetApp Console sur AWS"^].
 
 
-=====
-.Amazon FSx ONTAP
-[%collapsible%open]
 =====
 Vous devez être en mesure d’effectuer la tâche suivante après avoir créé un compte AWS :
 
 * Créez un utilisateur administratif IAM capable de provisionner Amazon FSx pour le système de fichiers NetApp ONTAP .
 
+
+[]
+=====
 
 =====
 ====
@@ -669,8 +669,8 @@ image:dr-vmc-aws-009.png["Figure montrant une boîte de dialogue d'entrée/sorti
 ====
 
 
-[[bluexp-backup-and-recovery-tools]]
-== Outils de BlueXP backup and recovery
+[[netapp-backup-and-recovery-tools]]
+== NetApp Outils de sauvegarde et de récupération
 
 Pour effectuer un basculement de nos machines virtuelles d'application et de nos volumes de base de données vers les services VMware Cloud Volume exécutés dans AWS, il était nécessaire d'installer et de configurer une instance en cours d'exécution de SnapCenter Server et de Veeam Backup and Replication Server.  Une fois le basculement terminé, ces outils doivent également être configurés pour reprendre les opérations de sauvegarde normales jusqu'à ce qu'un retour arrière vers le centre de données sur site soit planifié et exécuté.
 

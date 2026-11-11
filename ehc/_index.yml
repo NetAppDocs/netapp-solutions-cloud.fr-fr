@@ -62,9 +62,9 @@ indexpage:
       url: https://netapp-automation.github.io/dro-simulator/?intro-1
     - title: DRO pour ANF avec simulateur AVS
       url: https://netapp-automation.github.io/dro-simulator-avs-anf/?intro-1
-    - title: Simulateur DRaaS BlueXP
+    - title: Simulateur NetApp Disaster Recovery
       url: https://netapp-automation.github.io/DRaaS_Simulator/?0.1
-    - title: BlueXP - Simulateur de sauvegarde et de récupération pour machines virtuelles
+    - title: Simulateur NetApp Backup and Recovery pour les VM
       url: https://netapp-automation.github.io/Backup_and_Recovery_for_VMs_Simulator/?0.1
   - title: Calculateurs de TCO
     links:
@@ -74,14 +74,14 @@ indexpage:
       url: https://tco.solutions.netapp.com/anfavstco/
     - title: Estimateur de coût total de possession (TCO) GCVE + NetApp Volumes
       url: https://tco.solutions.netapp.com/gcvegcnvtco/
-  - title: BlueXP disaster recovery
+  - title: NetApp Disaster Recovery
     links:
-    - title: Protégez les données de VMware avec le plug-in SnapCenter et la BlueXP
-        backup and recovery pour les machines virtuelles
+    - title: Protégez les données pour VMware avec SnapCenter Plug-in et NetApp Backup
+        and Recovery for VMs
       url: "../vmware/vmw-hybrid-321-dp-scv.html"
-    - title: Reprise après sinistre avec BlueXP
+    - title: Reprise après sinistre avec NetApp
       url: "../vmware/vmw-hybrid-dr-overview.html"
-    - title: Reprise après sinistre avec BlueXP pour les banques de données NFS
+    - title: NetApp Reprise d’activité après sinistre pour les datastores NFS
       url: "../vmware/vmw-hybrid-dr-nfs.html"
-    - title: Reprise après sinistre avec BlueXP pour les banques de données VMFS
+    - title: NetApp Reprise après sinistre pour les datastores VMFS
       url: "../vmware/vmw-hybrid-dr-vmfs.html"
